@@ -1,1512 +1,973 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <style>
-                body {
-                  background-color: white; /* Ensure the iframe has a white background */
-                }
-
-                
-              </style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kiosco Normativo Jurídico Colombia | Examenidoneidad.co</title>
-<meta name="description" content="Kiosco Normativo con IA del Profe Juan Osorio. Constitución, códigos, leyes, simulacros, mapas conceptuales y glosario jurídico.">
+<title>Kiosco Normativo | Examenidoneidad.co</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/lora@5.0.17/index.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/public-sans@5.0.18/index.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #1B2A4A;
-    --navy-dark: #14213B;
-    --navy-light: #2A3F5F;
-    --gold: #C9A227;
-    --gold-bright: #E3B23C;
-    --cream: #F4F1EA;
-    --cream-dark: #EBE6D8;
-    --red: #B3372F;
-    --red-soft: #FDEAEA;
-    --green: #10B981;
-    --green-soft: #D1FAE5;
-    --ink: #1F2937;
-    --ink-soft: #4B5563;
-    --border: #E5E7EB;
-    --shadow: 0 4px 12px rgba(27, 42, 74, 0.08);
-    --shadow-lg: 0 10px 30px rgba(27, 42, 74, 0.12);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Public Sans', system-ui, sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  h1, h2, h3, h4, .serif { font-family: 'Lora', Georgia, serif; }
-  a { color: inherit; text-decoration: none; }
-  button { font-family: inherit; cursor: pointer; border: none; background: none; }
-
-  /* HEADER */
-  .header {
-    background: var(--navy);
-    color: white;
-    padding: 16px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .header-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-  .brand { display: flex; align-items: center; gap: 14px; }
-  .brand-icon {
-    width: 52px; height: 52px;
-    background: var(--gold);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 12px rgba(201, 162, 39, 0.3);
-  }
-  .brand-icon svg { width: 32px; height: 32px; fill: white; }
-  .brand-title {
-    font-family: 'Lora', serif;
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
-  .brand-sub {
-    font-size: 11px;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-top: 4px;
-    font-weight: 600;
-  }
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .header-stats {
-    display: flex;
-    gap: 10px;
-    font-size: 11px;
-  }
-  .stat-pill {
-    background: rgba(255,255,255,0.1);
-    padding: 5px 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(201, 162, 39, 0.3);
-  }
-  .stat-pill strong { color: var(--gold); }
-  .ai-btn {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
-    color: var(--navy-dark);
-    padding: 8px 16px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 13px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
-    box-shadow: 0 4px 12px rgba(201, 162, 39, 0.3);
-  }
-  .ai-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(201, 162, 39, 0.4); }
-  .ai-btn .pulse {
-    width: 8px; height: 8px;
-    background: var(--green);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.2); }
-  }
-
-  /* NAV TABS */
-  .nav-tabs {
-    background: var(--navy-dark);
-    border-bottom: 3px solid var(--gold);
-    position: sticky;
-    top: 80px;
-    z-index: 99;
-  }
-  .nav-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    overflow-x: auto;
-  }
-  .nav-tab {
-    padding: 14px 18px;
-    color: #CBD5E1;
-    font-weight: 600;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 3px solid transparent;
-    margin-bottom: -3px;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .nav-tab:hover { color: white; background: rgba(255,255,255,0.04); }
-  .nav-tab.active {
-    color: white;
-    border-bottom-color: var(--gold);
-    background: var(--navy-light);
-  }
-  .nav-tab .icon { font-size: 16px; }
-  .nav-tab .count {
-    background: var(--gold);
-    color: var(--navy-dark);
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-size: 10px;
-    font-weight: 700;
-  }
-
-  /* MAIN */
-  .main {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 28px 24px 80px;
-  }
-
-  /* SEARCH */
-  .search-bar {
-    background: white;
-    border-radius: 12px;
-    padding: 12px 18px;
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .search-bar input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 14px;
-    font-family: inherit;
-    color: var(--ink);
-  }
-  .search-icon { color: var(--ink-soft); font-size: 18px; }
-  .search-ai-hint {
-    font-size: 11px;
-    color: var(--gold);
-    font-weight: 600;
-    padding: 4px 10px;
-    background: #FFF9E6;
-    border-radius: 999px;
-  }
-
-  /* GUIDE CARD */
-  .guide {
-    background: white;
-    border-left: 5px solid var(--navy);
-    border-radius: 12px;
-    padding: 22px;
-    box-shadow: var(--shadow);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 18px;
-    margin-bottom: 22px;
-  }
-  .guide-icon {
-    width: 48px; height: 48px;
-    background: var(--cream);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
-  }
-  .guide h3 { font-size: 18px; color: var(--navy); margin-bottom: 6px; }
-  .guide p { color: var(--ink-soft); margin-bottom: 12px; font-size: 13px; }
-  .guide-tip {
-    background: #FFF9E6;
-    border-left: 4px solid var(--gold);
-    padding: 10px 14px;
-    border-radius: 8px;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
-  .guide-tip .bolt { font-size: 18px; }
-  .guide-tip strong { color: var(--navy); display: block; margin-bottom: 2px; font-size: 12px; }
-  .guide-tip span { font-size: 12px; color: var(--ink-soft); }
-
-  /* SECTION */
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    font-weight: 700;
-    margin-bottom: 12px;
-    margin-top: 8px;
-  }
-  .section-label::before {
-    content: '';
-    width: 24px;
-    height: 2px;
-    background: var(--gold);
-  }
-
-  /* NORM CARD */
-  .norm-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
-  .norm-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 18px;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 14px;
-    align-items: center;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .norm-card:hover {
-    box-shadow: var(--shadow-lg);
-    border-color: var(--gold);
-    transform: translateY(-2px);
-  }
-  .norm-icon {
-    width: 44px; height: 44px;
-    background: var(--cream);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-  }
-  .norm-body h4 {
-    font-size: 14px;
-    color: var(--navy);
-    margin-bottom: 3px;
-    font-weight: 700;
-  }
-  .norm-meta {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 3px;
-  }
-  .norm-year { font-size: 10px; color: var(--ink-soft); font-weight: 500; }
-  .norm-branch {
-    font-size: 9px;
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-  .branch-constitucional { background: #FEF3C7; color: #92400E; }
-  .branch-civil { background: #FED7AA; color: #9A3412; }
-  .branch-laboral { background: #CCFBF1; color: #115E59; }
-  .branch-penal { background: #FECACA; color: #991B1B; }
-  .branch-administrativo { background: #DBEAFE; color: #1E40AF; }
-  .branch-comercial { background: #D1FAE5; color: #065F46; }
-  .branch-tributario { background: #E0E7FF; color: #3730A3; }
-  .branch-procesal { background: #F3E8FF; color: #6B21A8; }
-  .branch-familia { background: #FCE7F3; color: #9F1239; }
-  .norm-desc { font-size: 12px; color: var(--ink-soft); margin-top: 3px; }
-  .norm-badge {
-    background: var(--red-soft);
-    color: var(--red);
-    padding: 3px 8px;
-    border-radius: 6px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    white-space: nowrap;
-  }
-  .norm-arrow {
-    color: var(--ink-soft);
-    font-size: 16px;
-    transition: transform 0.2s;
-  }
-  .norm-card:hover .norm-arrow { transform: translateX(4px); color: var(--gold); }
-
-  /* MODAL */
-  .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(20, 33, 59, 0.7);
-    backdrop-filter: blur(4px);
-    display: none;
-    align-items: center; justify-content: center;
-    z-index: 1000;
-    padding: 20px;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: white;
-    border-radius: 16px;
-    max-width: 900px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.3);
-  }
-  .modal-header {
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-    position: sticky; top: 0;
-    background: white;
-    border-radius: 16px 16px 0 0;
-    z-index: 2;
-  }
-  .modal-close {
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    background: var(--cream);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    color: var(--ink-soft);
-    flex-shrink: 0;
-  }
-  .modal-close:hover { background: var(--cream-dark); }
-  .modal-body { padding: 22px; }
-  .modal-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-  .modal h2 { font-size: 20px; color: var(--navy); line-height: 1.3; margin-bottom: 10px; }
-  .modal-desc { color: var(--ink-soft); margin-bottom: 18px; font-size: 13px; }
-  .modal-section {
-    background: var(--cream);
-    border-radius: 12px;
-    padding: 14px;
-    margin-bottom: 12px;
-  }
-  .modal-section h4 {
-    font-size: 12px;
-    color: var(--navy);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .article-item {
-    background: white;
-    padding: 10px 14px;
-    border-radius: 8px;
-    margin-bottom: 6px;
-    border-left: 3px solid var(--gold);
-  }
-  .article-item strong { color: var(--navy); font-size: 12px; display: block; margin-bottom: 2px; }
-  .article-item span { color: var(--ink-soft); font-size: 11px; }
-  .tip-box {
-    background: #FFF9E6;
-    border-left: 4px solid var(--gold);
-    padding: 12px 14px;
-    border-radius: 8px;
-    font-size: 12px;
-    color: var(--ink);
-  }
-  .tip-box strong { color: var(--navy); display: block; margin-bottom: 4px; }
-  .code-ref {
-    background: var(--navy);
-    color: white;
-    padding: 14px 18px;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 14px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .code-ref .code { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: var(--gold); }
-  .code-ref .label { font-size: 11px; color: #CBD5E1; }
-  .btn-funcion-publica {
-    background: var(--gold);
-    color: var(--navy-dark);
-    padding: 7px 14px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 11px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
-  }
-  .btn-funcion-publica:hover { background: var(--gold-bright); }
-  .concept-map-btn {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
-    color: var(--navy-dark);
-    padding: 10px 18px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 12px;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-  .concept-map-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(201, 162, 39, 0.4); }
-  .concept-map-section {
-    margin-top: 20px;
-    padding: 20px;
-    background: linear-gradient(135deg, #FFF9E6 0%, #F4F1EA 100%);
-    border-radius: 16px;
-    border: 2px solid var(--gold);
-  }
-  .concept-map-section h3 {
-    color: var(--navy);
-    font-size: 18px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .concept-map-section p {
-    color: var(--ink-soft);
-    font-size: 13px;
-    margin-bottom: 16px;
-  }
-
-  /* GLOSARIO */
-  .glossary-section {
-    background: white;
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: var(--shadow);
-    margin-bottom: 20px;
-  }
-  .glossary-section h3 {
-    font-size: 18px;
-    color: var(--navy);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .glossary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 12px;
-  }
-  .glossary-item {
-    background: var(--cream);
-    border-radius: 10px;
-    padding: 14px;
-    border-left: 3px solid var(--gold);
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .glossary-item:hover {
-    background: #FFF9E6;
-    transform: translateX(4px);
-  }
-  .glossary-item h5 {
-    font-size: 13px;
-    color: var(--navy);
-    margin-bottom: 6px;
-    font-weight: 700;
-  }
-  .glossary-item p {
-    font-size: 11px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-  }
-  .glossary-item .tag {
-    display: inline-block;
-    background: var(--navy);
-    color: white;
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-size: 9px;
-    font-weight: 600;
-    margin-top: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .ai-chat-fab {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 24px rgba(27, 42, 74, 0.3);
-    cursor: pointer;
-    z-index: 999;
-    transition: all 0.3s;
-    border: 3px solid var(--gold);
-  }
-  .ai-chat-fab:hover {
-    transform: scale(1.08);
-    box-shadow: 0 12px 32px rgba(27, 42, 74, 0.4);
-  }
-  .ai-chat-fab .ai-icon {
-    font-size: 28px;
-  }
-  .ai-chat-fab .badge {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    background: var(--red);
-    color: white;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 999px;
-    border: 2px solid white;
-  }
-
-  .ai-chat-panel {
-    position: fixed;
-    bottom: 100px;
-    right: 24px;
-    width: 420px;
-    max-width: calc(100vw - 48px);
-    height: 600px;
-    max-height: calc(100vh - 140px);
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(27, 42, 74, 0.25);
-    display: none;
-    flex-direction: column;
-    z-index: 998;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-  .ai-chat-panel.open { display: flex; animation: slideUp 0.3s; }
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .ai-chat-header {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-    color: white;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 3px solid var(--gold);
-  }
-  .ai-avatar {
-    width: 44px; height: 44px;
-    background: var(--gold);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(201, 162, 39, 0.3);
-  }
-  .ai-header-info h4 {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 2px;
-  }
-  .ai-header-info .status {
-    font-size: 11px;
-    color: var(--gold);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .ai-header-info .status .dot {
-    width: 6px; height: 6px;
-    background: var(--green);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  .ai-close {
-    margin-left: auto;
-    width: 32px; height: 32px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.1);
-    color: white;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-  .ai-chat-quick {
-    padding: 12px 16px;
-    background: var(--cream);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .ai-chat-quick::-webkit-scrollbar { display: none; }
-  .quick-btn {
-    background: white;
-    border: 1px solid var(--border);
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--navy);
-    white-space: nowrap;
-    transition: all 0.2s;
-  }
-  .quick-btn:hover {
-    background: var(--navy);
-    color: white;
-    border-color: var(--navy);
-  }
-
-  .ai-chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    background: #FAFAF7;
-  }
-  .ai-msg {
-    display: flex;
-    gap: 10px;
-    animation: fadeIn 0.3s;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .ai-msg.user { flex-direction: row-reverse; }
-  .msg-avatar {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-  .ai-msg.bot .msg-avatar { background: var(--gold); }
-  .ai-msg.user .msg-avatar { background: var(--navy); color: white; font-size: 12px; font-weight: 700; }
-  .msg-bubble {
-    max-width: 85%;
-    padding: 10px 14px;
-    border-radius: 14px;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-  .ai-msg.bot .msg-bubble {
-    background: white;
-    border: 1px solid var(--border);
-    border-top-left-radius: 4px;
-  }
-  .ai-msg.user .msg-bubble {
-    background: var(--navy);
-    color: white;
-    border-top-right-radius: 4px;
-  }
-  .msg-bubble strong { color: var(--navy); }
-  .ai-msg.user .msg-bubble strong { color: var(--gold); }
-  .msg-bubble .ref-card {
-    background: var(--cream);
-    border-left: 3px solid var(--gold);
-    padding: 8px 10px;
-    margin-top: 8px;
-    border-radius: 6px;
-    font-size: 11px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .msg-bubble .ref-card:hover { background: var(--cream-dark); }
-  .msg-bubble .ref-card strong { display: block; color: var(--navy); font-size: 12px; margin-bottom: 2px; }
-  .msg-bubble .ref-card span { color: var(--ink-soft); }
-
-  .typing-indicator {
-    display: flex;
-    gap: 4px;
-    padding: 8px 0;
-  }
-  .typing-indicator span {
-    width: 7px; height: 7px;
-    background: var(--ink-soft);
-    border-radius: 50%;
-    animation: typing 1.4s infinite;
-  }
-  .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-  .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes typing {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-6px); opacity: 1; }
-  }
-
-  .ai-chat-input {
-    padding: 12px 16px;
-    border-top: 1px solid var(--border);
-    background: white;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  .ai-chat-input input {
-    flex: 1;
-    border: 1px solid var(--border);
-    padding: 10px 14px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-family: inherit;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .ai-chat-input input:focus { border-color: var(--gold); }
-  .ai-send {
-    width: 40px; height: 40px;
-    background: var(--navy);
-    color: white;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    transition: all 0.2s;
-    flex-shrink: 0;
-  }
-  .ai-send:hover { background: var(--gold); color: var(--navy-dark); }
-
-  .flashcard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-  .flashcard {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-    min-height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-  }
-  .flashcard:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--gold);
-  }
-  .flashcard.flipped {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-    color: white;
-  }
-  .flashcard.flipped .fc-q { color: var(--gold); }
-  .flashcard.flipped .fc-a { color: white; }
-  .flashcard.flipped .fc-hint { color: rgba(255,255,255,0.7); }
-  .fc-q {
-    font-family: 'Lora', serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 8px;
-    line-height: 1.4;
-  }
-  .fc-a {
-    font-size: 12px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-    display: none;
-  }
-  .flashcard.flipped .fc-a { display: block; }
-  .flashcard.flipped .fc-q { display: none; }
-  .fc-hint {
-    font-size: 10px;
-    color: var(--ink-soft);
-    margin-top: 8px;
-    opacity: 0.7;
-  }
-  .fc-cat {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 9px;
-    padding: 2px 8px;
-    border-radius: 999px;
-    background: var(--cream);
-    color: var(--navy);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .flashcard.flipped .fc-cat { background: var(--gold); color: var(--navy-dark); }
-
-  .progress-dashboard {
-    background: white;
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: var(--shadow);
-    margin-bottom: 20px;
-  }
-  .progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-  }
-  .progress-header h3 {
-    font-size: 16px;
-    color: var(--navy);
-  }
-  .progress-header .streak {
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
-    color: var(--navy-dark);
-    padding: 4px 12px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .progress-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 10px;
-  }
-  .progress-item {
-    background: var(--cream);
-    border-radius: 10px;
-    padding: 12px;
-    text-align: center;
-  }
-  .progress-item .num {
-    font-family: 'Lora', serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1;
-  }
-  .progress-item .lbl {
-    font-size: 10px;
-    color: var(--ink-soft);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 4px;
-    font-weight: 600;
-  }
-  .progress-bar-mini {
-    height: 4px;
-    background: var(--cream-dark);
-    border-radius: 999px;
-    overflow: hidden;
-    margin-top: 6px;
-  }
-  .progress-bar-mini .fill {
-    height: 100%;
-    background: var(--gold);
-    border-radius: 999px;
-    transition: width 0.5s;
-  }
-
-  .exam-header {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-    border-radius: 14px;
-    padding: 22px;
-    color: white;
-    margin-bottom: 18px;
-  }
-  .exam-header h2 { font-size: 20px; margin-bottom: 6px; }
-  .exam-header p { color: #CBD5E1; font-size: 13px; }
-
-  .category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .category-card {
-    background: white;
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    padding: 14px;
-    text-align: left;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .category-card:hover { border-color: #CBD5E1; transform: translateY(-2px); }
-  .category-card.selected { border-color: var(--gold); background: #FFF9E6; }
-  .category-card .emoji { font-size: 24px; margin-bottom: 6px; }
-  .category-card .name { font-weight: 700; font-size: 12px; color: var(--navy); margin-bottom: 2px; }
-  .category-card .count { font-size: 10px; color: var(--ink-soft); }
-
-  .start-box {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
-  .start-box h3 { font-size: 15px; color: var(--navy); margin-bottom: 4px; }
-  .start-box p { font-size: 12px; color: var(--ink-soft); }
-  .btn-primary {
-    background: var(--gold);
-    color: var(--navy-dark);
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 12px;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .btn-primary:hover { background: var(--gold-bright); transform: translateY(-1px); }
-  .btn-secondary {
-    background: var(--navy);
-    color: white;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 12px;
-  }
-
-  .exam-player { max-width: 800px; margin: 0 auto; }
-  .progress-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--navy);
-  }
-  .score-display { display: flex; gap: 10px; font-size: 11px; }
-  .score-display .correct { color: var(--green); font-weight: 700; }
-  .score-display .wrong { color: var(--red); font-weight: 700; }
-  .progress-track {
-    height: 6px;
-    background: var(--cream-dark);
-    border-radius: 999px;
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-  .progress-fill {
-    height: 100%;
-    background: var(--gold);
-    border-radius: 999px;
-    transition: width 0.4s;
-  }
-  .question-card {
-    background: white;
-    border-radius: 14px;
-    padding: 22px;
-    box-shadow: var(--shadow);
-  }
-  .q-category {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 999px;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 10px;
-    background: var(--cream);
-    color: var(--navy);
-  }
-  .q-text {
-    font-size: 15px;
-    color: var(--navy);
-    font-weight: 600;
-    line-height: 1.5;
-    margin-bottom: 14px;
-    font-family: 'Lora', serif;
-    white-space: pre-wrap;
-  }
-  .options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
-  .option {
-    background: white;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 12px;
-    text-align: left;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    transition: all 0.2s;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-  .option:hover:not(:disabled) { border-color: var(--gold); background: #FFFDF7; }
-  .option:disabled { cursor: default; }
-  .option-letter {
-    width: 26px; height: 26px;
-    border: 2px solid currentColor;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700;
-    font-size: 12px;
-    flex-shrink: 0;
-  }
-  .option.correct { border-color: var(--green); background: var(--green-soft); color: #065F46; }
-  .option.correct .option-letter { background: var(--green); color: white; border-color: var(--green); }
-  .option.wrong { border-color: var(--red); background: var(--red-soft); color: #991B1B; }
-  .option.wrong .option-letter { background: var(--red); color: white; border-color: var(--red); }
-  .option.dim { opacity: 0.5; }
-  .explanation {
-    background: #FFF9E6;
-    border-left: 4px solid var(--gold);
-    padding: 12px 14px;
-    border-radius: 8px;
-    margin-bottom: 14px;
-    font-size: 12px;
-  }
-  .explanation strong { color: var(--navy); display: block; margin-bottom: 4px; }
-
-  .results {
-    text-align: center;
-    background: white;
-    border-radius: 16px;
-    padding: 28px 22px;
-    box-shadow: var(--shadow-lg);
-  }
-  .results-emoji { font-size: 48px; margin-bottom: 10px; }
-  .results h2 { font-size: 22px; color: var(--navy); margin-bottom: 14px; }
-  .score-box {
-    background: var(--cream);
-    border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 18px;
-  }
-  .score-big {
-    font-size: 42px;
-    font-weight: 700;
-    color: var(--gold);
-    font-family: 'Lora', serif;
-    line-height: 1;
-  }
-  .score-label { font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
-  .score-pct { font-size: 18px; font-weight: 700; color: var(--navy); margin-top: 6px; }
-  .results-actions { display: flex; flex-direction: column; gap: 8px; max-width: 300px; margin: 0 auto; }
-  .results-actions button { width: 100%; }
-
-  .tab-content { display: none; }
-  .tab-content.active { display: block; animation: fadeIn 0.3s; }
-  .empty-state {
-    text-align: center;
-    padding: 28px 16px;
-    color: var(--ink-soft);
-  }
-  .empty-state .emoji { font-size: 36px; margin-bottom: 8px; }
-
-  .filter-bar {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
-  .filter-chip {
-    background: white;
-    border: 1px solid var(--border);
-    padding: 5px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .filter-chip:hover { border-color: var(--gold); }
-  .filter-chip.active {
-    background: var(--navy);
-    color: white;
-    border-color: var(--navy);
-  }
-
-  .footer {
-    background: var(--navy);
-    color: white;
-    padding: 24px;
-    text-align: center;
-    margin-top: 60px;
-  }
-  .footer-inner { max-width: 1280px; margin: 0 auto; }
-  .footer p { font-size: 11px; color: #9CA3AF; margin-bottom: 4px; }
-  .footer .contact { color: white; font-weight: 600; }
-  .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px 0;
-  }
-  .social-links a {
-    width: 34px; height: 34px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s;
-  }
-  .social-links a:hover { background: var(--gold); }
-
-  @media (max-width: 768px) {
-    .brand-title { font-size: 20px; }
-    .brand-icon { width: 40px; height: 40px; }
-    .brand-icon svg { width: 22px; height: 22px; }
-    .header-stats { display: none; }
-    .ai-btn span:not(.pulse) { display: none; }
-    .ai-btn { padding: 8px 12px; }
-    .guide { grid-template-columns: 1fr; padding: 14px; }
-    .guide-icon { width: 38px; height: 38px; font-size: 18px; }
-    .norm-card { grid-template-columns: auto 1fr; padding: 12px; }
-    .norm-arrow { display: none; }
-    .nav-tab { padding: 10px 12px; font-size: 11px; }
-    .q-text { font-size: 14px; }
-    .ai-chat-panel { right: 12px; left: 12px; width: auto; bottom: 90px; }
-    .ai-chat-fab { width: 56px; height: 56px; right: 16px; bottom: 16px; }
-    .ai-chat-fab .ai-icon { font-size: 24px; }
-  }
-
-  /* MAPAS CONCEPTUALES */
-  .cc {
-    --ink: #1d2a44;
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    color: var(--ink);
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 12px;
-    box-sizing: border-box;
-  }
-  .cc * { box-sizing: border-box; }
-  .cc h2 {
-    font-family: Anton, Impact, sans-serif;
-    font-weight: 400;
-    font-size: clamp(1.5rem, 3.4vw, 2.1rem);
-    text-align: center;
-    letter-spacing: 0.5px;
-    margin: 0.2em 0 0.8em;
-    line-height: 1.15;
-  }
-  .cc nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
-    margin-bottom: 18px;
-  }
-  .cc nav button {
-    border: 1.5px solid var(--ink);
-    background: #fff;
-    color: var(--ink);
-    border-radius: 999px;
-    padding: 6px 12px;
-    font: 600 0.8rem inherit;
-    cursor: pointer;
-  }
-  .cc nav button[aria-pressed=true] {
-    background: var(--ink);
-    color: #fff;
-  }
-  .cc nav button:focus-visible {
-    outline: 3px solid var(--gold);
-    outline-offset: 2px;
-  }
-  .cc .map {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-  .cc .box {
-    border: 2px solid var(--c);
-    background: var(--b);
-    border-radius: 12px;
-    padding: 10px 12px;
-    font-size: 0.84rem;
-    line-height: 1.4;
-  }
-  .cc .box h3 {
-    margin: -10px -12px 8px;
-    padding: 6px 12px;
-    background: var(--c);
-    color: #fff;
-    border-radius: 9px 9px 0 0;
-    font-size: 0.82rem;
-  }
-  .cc .box ul { margin: 0; padding-left: 16px; }
-  .cc .box li { margin: 2px 0; }
-  .cc .box p { margin: 0; }
-  .cc .mid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 8px;
-  }
-  .cc .ring {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 4px solid #2b5db8;
-    background: radial-gradient(circle, #fff 55%, #e6efff);
-    display: grid;
-    place-items: center;
-    font-size: 4.4rem;
-  }
-  .cc .mid b { font-size: 0.9rem; }
-  .cc .nota {
-    text-align: center;
-    font-size: 0.75rem;
-    opacity: 0.75;
-    margin-top: 16px;
-  }
-  @media (max-width: 760px) {
-    .cc .map { grid-template-columns: 1fr; }
-    .cc .mid { order: -1; }
-  }
+:root{--navy:#1B2A4A;--navy-dark:#14213B;--navy-light:#2A3F5F;--gold:#C9A227;--gold-bright:#E3B23C;--cream:#F4F1EA;--cream-dark:#EBE6D8;--red:#B3372F;--red-soft:#FDEAEA;--green:#10B981;--green-soft:#D1FAE5;--ink:#1F2937;--ink-soft:#4B5563;--border:#E5E7EB;--shadow:0 4px 12px rgba(27,42,74,.08);--shadow-lg:0 10px 30px rgba(27,42,74,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Public Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+h1,h2,h3,h4{font-family:'Lora',Georgia,serif}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+.header{background:var(--navy);color:white;padding:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.15);position:sticky;top:0;z-index:100}
+.header-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-icon{width:52px;height:52px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(201,162,39,.3)}
+.brand-icon svg{width:32px;height:32px;fill:white}
+.brand-title{font-family:'Lora',serif;font-size:28px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.brand-sub{font-size:11px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-top:4px;font-weight:600}
+.header-right{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.header-stats{display:flex;gap:10px;font-size:11px}
+.stat-pill{background:rgba(255,255,255,.1);padding:5px 10px;border-radius:999px;border:1px solid rgba(201,162,39,.3)}
+.stat-pill strong{color:var(--gold)}
+.ai-btn{background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--navy-dark);padding:8px 16px;border-radius:999px;font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(201,162,39,.3);transition:all .2s}
+.ai-btn:hover{transform:translateY(-2px)}
+.ai-btn .pulse{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.2)}}
+.nav-tabs{background:var(--navy-dark);border-bottom:3px solid var(--gold);position:sticky;top:80px;z-index:99}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;overflow-x:auto}
+.nav-tab{padding:14px 18px;color:#CBD5E1;font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px;border-bottom:3px solid transparent;margin-bottom:-3px;white-space:nowrap;transition:all .2s}
+.nav-tab:hover{color:white;background:rgba(255,255,255,.04)}
+.nav-tab.active{color:white;border-bottom-color:var(--gold);background:var(--navy-light)}
+.nav-tab .icon{font-size:16px}
+.nav-tab .count{background:var(--gold);color:var(--navy-dark);padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700}
+.main{max-width:1280px;margin:0 auto;padding:28px 24px 80px}
+.search-bar{background:white;border-radius:12px;padding:12px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.search-bar input{flex:1;border:none;outline:none;font-size:14px;font-family:inherit;color:var(--ink)}
+.search-icon{color:var(--ink-soft);font-size:18px}
+.search-ai-hint{font-size:11px;color:var(--gold);font-weight:600;padding:4px 10px;background:#FFF9E6;border-radius:999px}
+.guide{background:white;border-left:5px solid var(--navy);border-radius:12px;padding:22px;box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr;gap:18px;margin-bottom:22px}
+.guide-icon{width:48px;height:48px;background:var(--cream);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.guide h3{font-size:18px;color:var(--navy);margin-bottom:6px}
+.guide p{color:var(--ink-soft);margin-bottom:12px;font-size:13px}
+.guide-tip{background:#FFF9E6;border-left:4px solid var(--gold);padding:10px 14px;border-radius:8px;display:flex;gap:10px;align-items:flex-start}
+.guide-tip .bolt{font-size:18px}
+.guide-tip strong{color:var(--navy);display:block;margin-bottom:2px;font-size:12px}
+.guide-tip span{font-size:12px;color:var(--ink-soft)}
+.section-label{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-bottom:12px;margin-top:8px}
+.section-label::before{content:'';width:24px;height:2px;background:var(--gold)}
+.norm-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.norm-card{background:white;border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;transition:all .2s;cursor:pointer}
+.norm-card:hover{box-shadow:var(--shadow-lg);border-color:var(--gold);transform:translateY(-2px)}
+.norm-icon{width:44px;height:44px;background:var(--cream);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.norm-body h4{font-size:14px;color:var(--navy);margin-bottom:3px;font-weight:700}
+.norm-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:3px}
+.norm-year{font-size:10px;color:var(--ink-soft);font-weight:500}
+.norm-branch{font-size:9px;padding:2px 8px;border-radius:999px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.branch-constitucional{background:#FEF3C7;color:#92400E}
+.branch-civil{background:#FED7AA;color:#9A3412}
+.branch-laboral{background:#CCFBF1;color:#115E59}
+.branch-penal{background:#FECACA;color:#991B1B}
+.branch-administrativo{background:#DBEAFE;color:#1E40AF}
+.branch-comercial{background:#D1FAE5;color:#065F46}
+.branch-tributario{background:#E0E7FF;color:#3730A3}
+.branch-procesal{background:#F3E8FF;color:#6B21A8}
+.branch-familia{background:#FCE7F3;color:#9F1239}
+.norm-desc{font-size:12px;color:var(--ink-soft);margin-top:3px}
+.norm-badge{background:var(--red-soft);color:var(--red);padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700;letter-spacing:.1em;white-space:nowrap}
+.norm-arrow{color:var(--ink-soft);font-size:16px;transition:transform .2s}
+.norm-card:hover .norm-arrow{transform:translateX(4px);color:var(--gold)}
+.modal-overlay{position:fixed;inset:0;background:rgba(20,33,59,.7);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:white;border-radius:16px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 25px 60px rgba(0,0,0,.3)}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:16px;position:sticky;top:0;background:white;border-radius:16px 16px 0 0;z-index:2}
+.modal-close{width:36px;height:36px;border-radius:8px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--ink-soft)}
+.modal-close:hover{background:var(--cream-dark)}
+.modal-body{padding:22px}
+.modal-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.modal h2{font-size:20px;color:var(--navy);line-height:1.3;margin-bottom:10px}
+.modal-desc{color:var(--ink-soft);margin-bottom:18px;font-size:13px}
+.modal-section{background:var(--cream);border-radius:12px;padding:14px;margin-bottom:12px}
+.modal-section h4{font-size:12px;color:var(--navy);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.article-item{background:white;padding:10px 14px;border-radius:8px;margin-bottom:6px;border-left:3px solid var(--gold)}
+.article-item strong{color:var(--navy);font-size:12px;display:block;margin-bottom:2px}
+.article-item span{color:var(--ink-soft);font-size:11px}
+.tip-box{background:#FFF9E6;border-left:4px solid var(--gold);padding:12px 14px;border-radius:8px;font-size:12px;color:var(--ink)}
+.tip-box strong{color:var(--navy);display:block;margin-bottom:4px}
+.code-ref{background:var(--navy);color:white;padding:14px 18px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;margin-top:14px;flex-wrap:wrap;gap:12px}
+.code-ref .code{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--gold)}
+.code-ref .label{font-size:11px;color:#CBD5E1}
+.btn-funcion-publica{background:var(--gold);color:var(--navy-dark);padding:7px 14px;border-radius:8px;font-weight:700;font-size:11px;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+.btn-funcion-publica:hover{background:var(--gold-bright)}
+.concept-map-btn{background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--navy-dark);padding:10px 18px;border-radius:10px;font-weight:700;font-size:12px;display:inline-flex;align-items:center;gap:8px;margin-top:10px;transition:all .2s}
+.concept-map-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(201,162,39,.4)}
+.concept-map-section{margin-top:20px;padding:20px;background:linear-gradient(135deg,#FFF9E6,#F4F1EA);border-radius:16px;border:2px solid var(--gold)}
+.concept-map-section h3{color:var(--navy);font-size:18px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.concept-map-section p{color:var(--ink-soft);font-size:13px;margin-bottom:16px}
+.glossary-section{background:white;border-radius:14px;padding:20px;box-shadow:var(--shadow);margin-bottom:20px}
+.glossary-section h3{font-size:18px;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.glossary-item{background:var(--cream);border-radius:10px;padding:14px;border-left:3px solid var(--gold);transition:all .2s;cursor:pointer}
+.glossary-item:hover{background:#FFF9E6;transform:translateX(4px)}
+.glossary-item h5{font-size:13px;color:var(--navy);margin-bottom:6px;font-weight:700}
+.glossary-item p{font-size:11px;color:var(--ink-soft);line-height:1.5}
+.glossary-item .tag{display:inline-block;background:var(--navy);color:white;padding:2px 8px;border-radius:999px;font-size:9px;font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:.05em}
+.ai-chat-fab{position:fixed;bottom:24px;right:24px;width:64px;height:64px;background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(27,42,74,.3);cursor:pointer;z-index:999;transition:all .3s;border:3px solid var(--gold)}
+.ai-chat-fab:hover{transform:scale(1.08)}
+.ai-chat-fab .ai-icon{font-size:28px}
+.ai-chat-fab .badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:white;font-size:10px;font-weight:700;padding:2px 6px;border-radius:999px;border:2px solid white}
+.ai-chat-panel{position:fixed;bottom:100px;right:24px;width:420px;max-width:calc(100vw - 48px);height:600px;max-height:calc(100vh - 140px);background:white;border-radius:20px;box-shadow:0 20px 60px rgba(27,42,74,.25);display:none;flex-direction:column;z-index:998;overflow:hidden;border:1px solid var(--border)}
+.ai-chat-panel.open{display:flex;animation:slideUp .3s}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.ai-chat-header{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:white;padding:16px 20px;display:flex;align-items:center;gap:12px;border-bottom:3px solid var(--gold)}
+.ai-avatar{width:44px;height:44px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;box-shadow:0 4px 12px rgba(201,162,39,.3)}
+.ai-header-info h4{font-size:15px;font-weight:700;margin-bottom:2px}
+.ai-header-info .status{font-size:11px;color:var(--gold);display:flex;align-items:center;gap:4px}
+.ai-header-info .status .dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+.ai-close{margin-left:auto;width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.1);color:white;display:flex;align-items:center;justify-content:center;font-size:16px}
+.ai-chat-quick{padding:12px 16px;background:var(--cream);border-bottom:1px solid var(--border);display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.ai-chat-quick::-webkit-scrollbar{display:none}
+.quick-btn{background:white;border:1px solid var(--border);padding:6px 12px;border-radius:999px;font-size:11px;font-weight:600;color:var(--navy);white-space:nowrap;transition:all .2s}
+.quick-btn:hover{background:var(--navy);color:white;border-color:var(--navy)}
+.ai-chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:#FAFAF7}
+.ai-msg{display:flex;gap:10px;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.ai-msg.user{flex-direction:row-reverse}
+.msg-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ai-msg.bot .msg-avatar{background:var(--gold)}
+.ai-msg.user .msg-avatar{background:var(--navy);color:white;font-size:12px;font-weight:700}
+.msg-bubble{max-width:85%;padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5}
+.ai-msg.bot .msg-bubble{background:white;border:1px solid var(--border);border-top-left-radius:4px}
+.ai-msg.user .msg-bubble{background:var(--navy);color:white;border-top-right-radius:4px}
+.msg-bubble strong{color:var(--navy)}
+.ai-msg.user .msg-bubble strong{color:var(--gold)}
+.msg-bubble .ref-card{background:var(--cream);border-left:3px solid var(--gold);padding:8px 10px;margin-top:8px;border-radius:6px;font-size:11px;cursor:pointer;transition:all .2s}
+.msg-bubble .ref-card:hover{background:var(--cream-dark)}
+.msg-bubble .ref-card strong{display:block;color:var(--navy);font-size:12px;margin-bottom:2px}
+.msg-bubble .ref-card span{color:var(--ink-soft)}
+.typing-indicator{display:flex;gap:4px;padding:8px 0}
+.typing-indicator span{width:7px;height:7px;background:var(--ink-soft);border-radius:50%;animation:typing 1.4s infinite}
+.typing-indicator span:nth-child(2){animation-delay:.2s}
+.typing-indicator span:nth-child(3){animation-delay:.4s}
+@keyframes typing{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+.ai-chat-input{padding:12px 16px;border-top:1px solid var(--border);background:white;display:flex;gap:8px;align-items:center}
+.ai-chat-input input{flex:1;border:1px solid var(--border);padding:10px 14px;border-radius:999px;font-size:13px;font-family:inherit;outline:none;transition:border-color .2s}
+.ai-chat-input input:focus{border-color:var(--gold)}
+.ai-send{width:40px;height:40px;background:var(--navy);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s}
+.ai-send:hover{background:var(--gold);color:var(--navy-dark)}
+.flashcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:24px}
+.flashcard{background:white;border:1px solid var(--border);border-radius:14px;padding:18px;cursor:pointer;transition:all .3s;position:relative;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.flashcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+.flashcard.flipped{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:white}
+.flashcard.flipped .fc-q{color:var(--gold)}
+.flashcard.flipped .fc-a{color:white}
+.flashcard.flipped .fc-hint{color:rgba(255,255,255,.7)}
+.fc-q{font-family:'Lora',serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.4}
+.fc-a{font-size:12px;color:var(--ink-soft);line-height:1.5;display:none}
+.flashcard.flipped .fc-a{display:block}
+.flashcard.flipped .fc-q{display:none}
+.fc-hint{font-size:10px;color:var(--ink-soft);margin-top:8px;opacity:.7}
+.fc-cat{position:absolute;top:10px;right:10px;font-size:9px;padding:2px 8px;border-radius:999px;background:var(--cream);color:var(--navy);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.flashcard.flipped .fc-cat{background:var(--gold);color:var(--navy-dark)}
+.progress-dashboard{background:white;border-radius:14px;padding:20px;box-shadow:var(--shadow);margin-bottom:20px}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.progress-header h3{font-size:16px;color:var(--navy)}
+.progress-header .streak{background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--navy-dark);padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;display:flex;align-items:center;gap:4px}
+.progress-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.progress-item{background:var(--cream);border-radius:10px;padding:12px;text-align:center}
+.progress-item .num{font-family:'Lora',serif;font-size:24px;font-weight:700;color:var(--navy);line-height:1}
+.progress-item .lbl{font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;margin-top:4px;font-weight:600}
+.progress-bar-mini{height:4px;background:var(--cream-dark);border-radius:999px;overflow:hidden;margin-top:6px}
+.progress-bar-mini .fill{height:100%;background:var(--gold);border-radius:999px;transition:width .5s}
+.exam-header{background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:14px;padding:22px;color:white;margin-bottom:18px}
+.exam-header h2{font-size:20px;margin-bottom:6px}
+.exam-header p{color:#CBD5E1;font-size:13px}
+.category-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+.category-card{background:white;border:2px solid var(--border);border-radius:12px;padding:14px;text-align:left;transition:all .2s;cursor:pointer}
+.category-card:hover{border-color:#CBD5E1;transform:translateY(-2px)}
+.category-card.selected{border-color:var(--gold);background:#FFF9E6}
+.category-card .emoji{font-size:24px;margin-bottom:6px}
+.category-card .name{font-weight:700;font-size:12px;color:var(--navy);margin-bottom:2px}
+.category-card .count{font-size:10px;color:var(--ink-soft)}
+.start-box{background:white;border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.start-box h3{font-size:15px;color:var(--navy);margin-bottom:4px}
+.start-box p{font-size:12px;color:var(--ink-soft)}
+.btn-primary{background:var(--gold);color:var(--navy-dark);padding:10px 18px;border-radius:8px;font-weight:700;font-size:12px;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+.btn-primary:hover{background:var(--gold-bright);transform:translateY(-1px)}
+.btn-secondary{background:var(--navy);color:white;padding:10px 18px;border-radius:8px;font-weight:700;font-size:12px}
+.exam-player{max-width:800px;margin:0 auto}
+.progress-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:11px;font-weight:600;color:var(--navy)}
+.score-display{display:flex;gap:10px;font-size:11px}
+.score-display .correct{color:var(--green);font-weight:700}
+.score-display .wrong{color:var(--red);font-weight:700}
+.progress-track{height:6px;background:var(--cream-dark);border-radius:999px;overflow:hidden;margin-bottom:16px}
+.progress-fill{height:100%;background:var(--gold);border-radius:999px;transition:width .4s}
+.question-card{background:white;border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+.q-category{display:inline-block;padding:3px 10px;border-radius:999px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;background:var(--cream);color:var(--navy)}
+.q-text{font-size:15px;color:var(--navy);font-weight:600;line-height:1.5;margin-bottom:14px;font-family:'Lora',serif;white-space:pre-wrap}
+.options{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.option{background:white;border:2px solid var(--border);border-radius:10px;padding:10px 12px;text-align:left;display:flex;align-items:flex-start;gap:10px;transition:all .2s;font-size:13px;line-height:1.5}
+.option:hover:not(:disabled){border-color:var(--gold);background:#FFFDF7}
+.option:disabled{cursor:default}
+.option-letter{width:26px;height:26px;border:2px solid currentColor;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0}
+.option.correct{border-color:var(--green);background:var(--green-soft);color:#065F46}
+.option.correct .option-letter{background:var(--green);color:white;border-color:var(--green)}
+.option.wrong{border-color:var(--red);background:var(--red-soft);color:#991B1B}
+.option.wrong .option-letter{background:var(--red);color:white;border-color:var(--red)}
+.option.dim{opacity:.5}
+.explanation{background:#FFF9E6;border-left:4px solid var(--gold);padding:12px 14px;border-radius:8px;margin-bottom:14px;font-size:12px}
+.explanation strong{color:var(--navy);display:block;margin-bottom:4px}
+.results{text-align:center;background:white;border-radius:16px;padding:28px 22px;box-shadow:var(--shadow-lg)}
+.results-emoji{font-size:48px;margin-bottom:10px}
+.results h2{font-size:22px;color:var(--navy);margin-bottom:14px}
+.score-box{background:var(--cream);border-radius:12px;padding:18px;margin-bottom:18px}
+.score-big{font-size:42px;font-weight:700;color:var(--gold);font-family:'Lora',serif;line-height:1}
+.score-label{font-size:12px;color:var(--ink-soft);margin-top:4px}
+.score-pct{font-size:18px;font-weight:700;color:var(--navy);margin-top:6px}
+.results-actions{display:flex;flex-direction:column;gap:8px;max-width:300px;margin:0 auto}
+.results-actions button{width:100%}
+.tab-content{display:none}
+.tab-content.active{display:block;animation:fadeIn .3s}
+.empty-state{text-align:center;padding:28px 16px;color:var(--ink-soft)}
+.empty-state .emoji{font-size:36px;margin-bottom:8px}
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.filter-chip{background:white;border:1px solid var(--border);padding:5px 10px;border-radius:999px;font-size:11px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:all .2s}
+.filter-chip:hover{border-color:var(--gold)}
+.filter-chip.active{background:var(--navy);color:white;border-color:var(--navy)}
+.footer{background:var(--navy);color:white;padding:24px;text-align:center;margin-top:60px}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer p{font-size:11px;color:#9CA3AF;margin-bottom:4px}
+.footer .contact{color:white;font-weight:600}
+.social-links{display:flex;justify-content:center;gap:10px;margin:10px 0}
+.social-links a{width:34px;height:34px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.social-links a:hover{background:var(--gold)}
+.cc{--ink:#1d2a44;font-family:system-ui,sans-serif;color:var(--ink);max-width:1100px;margin:0 auto;padding:10px}
+.cc *{box-sizing:border-box}
+.cc h2{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:clamp(1.3rem,3vw,1.8rem);text-align:center;letter-spacing:.5px;margin:.2em 0 .7em}
+.cc nav{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:14px}
+.cc nav button{border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:5px 10px;font:600 .75rem inherit;cursor:pointer}
+.cc nav button[aria-pressed=true]{background:var(--ink);color:#fff}
+.cc .map{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cc .box{border:2px solid var(--c);background:var(--b);border-radius:10px;padding:8px 10px;font-size:.8rem;line-height:1.4}
+.cc .box h3{margin:-8px -10px 6px;padding:5px 10px;background:var(--c);color:#fff;border-radius:8px 8px 0 0;font-size:.78rem}
+.cc .box ul{margin:0;padding-left:14px}
+.cc .box li{margin:1px 0}
+.cc .box p{margin:0}
+.cc .mid{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
+.cc .ring{width:130px;height:130px;border-radius:50%;border:4px solid #2b5db8;background:radial-gradient(circle,#fff 55%,#e6efff);display:grid;place-items:center;font-size:4rem}
+.cc .mid b{font-size:.85rem}
+.cc .nota{text-align:center;font-size:.7rem;opacity:.75;margin-top:14px}
+@media(max-width:760px){.cc .map{grid-template-columns:1fr}.cc .mid{order:-1}}
+@media(max-width:768px){.brand-title{font-size:20px}.brand-icon{width:40px;height:40px}.brand-icon svg{width:22px;height:22px}.header-stats{display:none}.ai-btn span:not(.pulse){display:none}.ai-btn{padding:8px 12px}.guide{grid-template-columns:1fr;padding:14px}.guide-icon{width:38px;height:38px;font-size:18px}.norm-card{grid-template-columns:auto 1fr;padding:12px}.norm-arrow{display:none}.nav-tab{padding:10px 12px;font-size:11px}.q-text{font-size:13px}.ai-chat-panel{right:12px;left:12px;width:auto;bottom:90px}.ai-chat-fab{width:56px;height:56px;right:16px;bottom:16px}.ai-chat-fab .ai-icon{font-size:24px}}
 </style>
 </head>
 <body>
 
 <header class="header">
-  <div class="header-inner">
-    <div class="brand">
-      <div class="brand-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
-      </div>
-      <div>
-        <div class="brand-title">Kiosco Normativo</div>
-        <div class="brand-sub">Examenidoneidad.co</div>
-      </div>
-    </div>
-    <div class="header-right">
-      <div class="header-stats">
-        <div class="stat-pill"><strong id="totalNorms">0</strong> normas</div>
-        <div class="stat-pill"><strong id="totalQuestions">0</strong> preguntas</div>
-        <div class="stat-pill"><strong id="totalConcepts">0</strong> conceptos</div>
-      </div>
-      <button class="ai-btn" onclick="toggleAI()">
-        <span class="pulse"></span>
-        <span>🤖 Profe IA</span>
-      </button>
-    </div>
-  </div>
+<div class="header-inner">
+<div class="brand">
+<div class="brand-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
+<div><div class="brand-title">Kiosco Normativo</div><div class="brand-sub">Examenidoneidad.co</div></div>
+</div>
+<div class="header-right">
+<div class="header-stats">
+<div class="stat-pill"><strong id="totalNorms">0</strong> normas</div>
+<div class="stat-pill"><strong id="totalQuestions">0</strong> preguntas</div>
+<div class="stat-pill"><strong id="totalConcepts">0</strong> conceptos</div>
+</div>
+<button class="ai-btn" onclick="toggleAI()"><span class="pulse"></span><span>🤖 Profe IA</span></button>
+</div>
+</div>
 </header>
 
-<nav class="nav-tabs">
-  <div class="nav-inner">
-    <button class="nav-tab active" data-tab="dashboard"><span class="icon">📊</span><span>Inicio</span></button>
-    <button class="nav-tab" data-tab="examen"><span class="icon">🏛️</span><span>Idoneidad</span><span class="count" id="countExamen">0</span></button>
-    <button class="nav-tab" data-tab="constitucion"><span class="icon">📜</span><span>Constitución</span><span class="count" id="countConst">0</span></button>
-    <button class="nav-tab" data-tab="codigos"><span class="icon">📚</span><span>Códigos</span><span class="count" id="countCod">0</span></button>
-    <button class="nav-tab" data-tab="leyes"><span class="icon">⚖️</span><span>Leyes</span><span class="count" id="countLeyes">0</span></button>
-    <button class="nav-tab" data-tab="glosario"><span class="icon">📖</span><span>Glosario</span></button>
-    <button class="nav-tab" data-tab="flashcards"><span class="icon">🎴</span><span>Flashcards</span></button>
-    <button class="nav-tab" data-tab="entrenamiento"><span class="icon">🎯</span><span>Simulacro</span><span class="count" id="countExam">0</span></button>
-  </div>
-</nav>
+<nav class="nav-tabs"><div class="nav-inner">
+<button class="nav-tab active" data-tab="dashboard"><span class="icon">📊</span><span>Inicio</span></button>
+<button class="nav-tab" data-tab="examen"><span class="icon">🏛️</span><span>Idoneidad</span><span class="count" id="countExamen">0</span></button>
+<button class="nav-tab" data-tab="constitucion"><span class="icon">📜</span><span>Constitución</span><span class="count" id="countConst">0</span></button>
+<button class="nav-tab" data-tab="codigos"><span class="icon">📚</span><span>Códigos</span><span class="count" id="countCod">0</span></button>
+<button class="nav-tab" data-tab="leyes"><span class="icon">⚖️</span><span>Leyes</span><span class="count" id="countLeyes">0</span></button>
+<button class="nav-tab" data-tab="glosario"><span class="icon">📖</span><span>Glosario</span></button>
+<button class="nav-tab" data-tab="flashcards"><span class="icon">🎴</span><span>Flashcards</span></button>
+<button class="nav-tab" data-tab="entrenamiento"><span class="icon">🎯</span><span>Simulacro</span><span class="count" id="countExam">0</span></button>
+</div></nav>
 
 <main class="main">
-  <div class="search-bar">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="Buscar norma, artículo, concepto o preguntarle al Profe..." oninput="handleSearch()">
-    <span class="search-ai-hint">✨ IA activa</span>
-  </div>
+<div class="search-bar">
+<span class="search-icon">🔍</span>
+<input type="text" id="searchInput" placeholder="Buscar norma, artículo, concepto..." oninput="handleSearch()">
+<span class="search-ai-hint">✨ IA activa</span>
+</div>
 
-  <div class="tab-content active" id="tab-dashboard">
-    <div class="progress-dashboard">
-      <div class="progress-header">
-        <h3>📊 Tu Progreso de Estudio</h3>
-        <div class="streak">🔥 <span id="streakCount">0</span> días</div>
-      </div>
-      <div class="progress-grid">
-        <div class="progress-item"><div class="num" id="statNorms">0</div><div class="lbl">Normas vistas</div><div class="progress-bar-mini"><div class="fill" id="barNorms" style="width:0%"></div></div></div>
-        <div class="progress-item"><div class="num" id="statQuestions">0</div><div class="lbl">Preguntas resueltas</div><div class="progress-bar-mini"><div class="fill" id="barQuestions" style="width:0%"></div></div></div>
-        <div class="progress-item"><div class="num" id="statCorrect">0%</div><div class="lbl">Aciertos</div><div class="progress-bar-mini"><div class="fill" id="barCorrect" style="width:0%"></div></div></div>
-        <div class="progress-item"><div class="num" id="statFlashcards">0</div><div class="lbl">Flashcards</div><div class="progress-bar-mini"><div class="fill" id="barFlash" style="width:0%"></div></div></div>
-      </div>
-    </div>
-    <div class="guide">
-      <div class="guide-icon">🤖</div>
-      <div>
-        <h3>¡Hola! Soy el Profe IA</h3>
-        <p>Tu asistente personal para el Examen de Idoneidad. Puedo ayudarte a entender normas, resolver dudas, crear quizzes personalizados y guiarte en tu estudio.</p>
-        <div class="guide-tip">
-          <span class="bolt">💡</span>
-          <div>
-            <strong>Prueba preguntarme:</strong>
-            <span>"¿Qué es el silencio administrativo?", "Explícame el Art. 209", "Diferencia entre dolo y culpa"</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section-label">🔥 TEMAS MÁS CONSULTADOS</div>
-    <div class="flashcard-grid" id="trendingTopics"></div>
-  </div>
+<div class="tab-content active" id="tab-dashboard">
+<div class="progress-dashboard">
+<div class="progress-header"><h3>📊 Tu Progreso de Estudio</h3><div class="streak">🔥 <span id="streakCount">0</span> días</div></div>
+<div class="progress-grid">
+<div class="progress-item"><div class="num" id="statNorms">0</div><div class="lbl">Normas vistas</div><div class="progress-bar-mini"><div class="fill" id="barNorms" style="width:0%"></div></div></div>
+<div class="progress-item"><div class="num" id="statQuestions">0</div><div class="lbl">Preguntas resueltas</div><div class="progress-bar-mini"><div class="fill" id="barQuestions" style="width:0%"></div></div></div>
+<div class="progress-item"><div class="num" id="statCorrect">0%</div><div class="lbl">Aciertos</div><div class="progress-bar-mini"><div class="fill" id="barCorrect" style="width:0%"></div></div></div>
+<div class="progress-item"><div class="num" id="statFlashcards">0</div><div class="lbl">Flashcards</div><div class="progress-bar-mini"><div class="fill" id="barFlash" style="width:0%"></div></div></div>
+</div>
+</div>
+<div class="guide">
+<div class="guide-icon"></div>
+<div>
+<h3>¡Hola! Soy el Profe IA</h3>
+<p>Tu asistente personal para el Examen de Idoneidad. Puedo ayudarte a entender normas, resolver dudas y guiarte en tu estudio.</p>
+<div class="guide-tip"><span class="bolt">💡</span><div><strong>Prueba preguntarme:</strong><span>"¿Qué es el silencio administrativo?", "Explícame el Art. 209", "Diferencia entre dolo y culpa"</span></div></div>
+</div>
+</div>
+<div class="section-label"> TEMAS MÁS CONSULTADOS</div>
+<div class="flashcard-grid" id="trendingTopics"></div>
+</div>
 
-  <div class="tab-content" id="tab-examen">
-    <div class="section-label"> FUNCIÓN PÚBLICA Y CARRERA ADMINISTRATIVA</div>
-    <div class="norm-list" id="list-funcion-publica"></div>
-    <div class="section-label">💼 CONTRATACIÓN ESTATAL</div>
-    <div class="norm-list" id="list-contratacion"></div>
-    <div class="section-label">🛡️ CONTROL Y RESPONSABILIDAD</div>
-    <div class="norm-list" id="list-control"></div>
-    <div class="section-label">⚖️ PROCEDIMIENTO ADMINISTRATIVO</div>
-    <div class="norm-list" id="list-procedimiento"></div>
-  </div>
+<div class="tab-content" id="tab-examen">
+<div class="section-label">📋 FUNCIÓN PÚBLICA Y CARRERA ADMINISTRATIVA</div>
+<div class="norm-list" id="list-funcion-publica"></div>
+<div class="section-label">💼 CONTRATACIÓN ESTATAL</div>
+<div class="norm-list" id="list-contratacion"></div>
+<div class="section-label">🛡️ CONTROL Y RESPONSABILIDAD</div>
+<div class="norm-list" id="list-control"></div>
+<div class="section-label">⚖️ PROCEDIMIENTO ADMINISTRATIVO</div>
+<div class="norm-list" id="list-procedimiento"></div>
+</div>
 
-  <div class="tab-content" id="tab-constitucion">
-    <div class="section-label">📜 CONSTITUCIÓN POLÍTICA</div>
-    <div class="norm-list" id="list-constitucion"></div>
-    <div class="section-label">⚖️ ACCIONES CONSTITUCIONALES</div>
-    <div class="norm-list" id="list-acciones"></div>
-  </div>
+<div class="tab-content" id="tab-constitucion">
+<div class="section-label">📜 CONSTITUCIÓN POLÍTICA</div>
+<div class="norm-list" id="list-constitucion"></div>
+<div class="section-label">️ ACCIONES CONSTITUCIONALES</div>
+<div class="norm-list" id="list-acciones"></div>
+</div>
 
-  <div class="tab-content" id="tab-codigos">
-    <div class="section-label">📚 CÓDIGOS VIGENTES</div>
-    <div class="norm-list" id="list-codigos"></div>
-  </div>
+<div class="tab-content" id="tab-codigos">
+<div class="section-label">📚 CÓDIGOS VIGENTES</div>
+<div class="norm-list" id="list-codigos"></div>
+</div>
 
-  <div class="tab-content" id="tab-leyes">
-    <div class="section-label">⚖️ LEYES IMPORTANTES</div>
-    <div class="filter-bar" id="filterBar"></div>
-    <div class="norm-list" id="list-leyes"></div>
-  </div>
+<div class="tab-content" id="tab-leyes">
+<div class="section-label">️ LEYES IMPORTANTES</div>
+<div class="filter-bar" id="filterBar"></div>
+<div class="norm-list" id="list-leyes"></div>
+</div>
 
-  <div class="tab-content" id="tab-glosario">
-    <div class="exam-header">
-      <h2>📖 Glosario Jurídico Interactivo</h2>
-      <p>Conceptos clave organizados por rama del derecho. Haz clic en cada concepto para ver la definición completa.</p>
-    </div>
-    <div class="filter-bar" id="glossaryFilterBar"></div>
-    <div class="glossary-section">
-      <h3 id="glossaryTitle"> Todos los Conceptos</h3>
-      <div class="glossary-grid" id="glossaryGrid"></div>
-    </div>
-  </div>
+<div class="tab-content" id="tab-glosario">
+<div class="exam-header"><h2> Glosario Jurídico Interactivo</h2><p>Conceptos clave organizados por rama del derecho. Haz clic en cada concepto para ver la definición completa.</p></div>
+<div class="filter-bar" id="glossaryFilterBar"></div>
+<div class="glossary-section"><h3 id="glossaryTitle">📚 Todos los Conceptos</h3><div class="glossary-grid" id="glossaryGrid"></div></div>
+</div>
 
-  <div class="tab-content" id="tab-flashcards">
-    <div class="exam-header">
-      <h2> Flashcards de Estudio</h2>
-      <p>Haz clic en cada tarjeta para ver la respuesta. Memoriza los conceptos clave del examen.</p>
-    </div>
-    <div class="filter-bar" id="flashFilterBar"></div>
-    <div class="flashcard-grid" id="flashcardGrid"></div>
-  </div>
+<div class="tab-content" id="tab-flashcards">
+<div class="exam-header"><h2>🎴 Flashcards de Estudio</h2><p>Haz clic en cada tarjeta para ver la respuesta. Memoriza los conceptos clave del examen.</p></div>
+<div class="filter-bar" id="flashFilterBar"></div>
+<div class="flashcard-grid" id="flashcardGrid"></div>
+</div>
 
-  <div class="tab-content" id="tab-entrenamiento">
-    <div class="exam-header">
-      <h2>🎯 Banco de Preguntas — Simulacro</h2>
-      <p>Selecciona una categoría y pon a prueba tus conocimientos con preguntas tipo examen.</p>
-    </div>
-    <div id="exam-setup">
-      <div class="section-label">SELECCIONA UNA CATEGORÍA</div>
-      <div class="category-grid" id="categoryGrid"></div>
-      <div class="start-box">
-        <div>
-          <h3>Listo para comenzar</h3>
-          <p id="exam-info">10 preguntas de todas las categorías</p>
-        </div>
-        <button class="btn-primary" onclick="startExam()">Iniciar Simulacro →</button>
-      </div>
-    </div>
-    <div id="exam-player" class="exam-player" style="display:none;"></div>
-    <div id="exam-results" style="display:none;"></div>
-  </div>
+<div class="tab-content" id="tab-entrenamiento">
+<div class="exam-header"><h2>🎯 Banco de Preguntas — Simulacro</h2><p>Selecciona una categoría y pon a prueba tus conocimientos.</p></div>
+<div id="exam-setup">
+<div class="section-label">SELECCIONA UNA CATEGORÍA</div>
+<div class="category-grid" id="categoryGrid"></div>
+<div class="start-box"><div><h3>Listo para comenzar</h3><p id="exam-info">10 preguntas de todas las categorías</p></div><button class="btn-primary" onclick="startExam()">Iniciar Simulacro →</button></div>
+</div>
+<div id="exam-player" class="exam-player" style="display:none;"></div>
+<div id="exam-results" style="display:none;"></div>
+</div>
 </main>
 
 <footer class="footer">
-  <div class="footer-inner">
-    <p class="contact">Contacto WhatsApp +57 3243880762</p>
-    <div class="social-links">
-      <a href="http://wa.link/ab1gku" target="_blank" aria-label="WhatsApp">💬</a>
-      <a href="https://www.youtube.com/@juandaon" target="_blank" aria-label="YouTube">▶️</a>
-      <a href="https://www.tiktok.com/@examenidoneidad.co" target="_blank" aria-label="TikTok">🎵</a>
-      <a href="https://www.instagram.com/juanosorion/" target="_blank" aria-label="Instagram">📷</a>
-    </div>
-    <p style="margin-top:10px;">© 2026 Kiosco Normativo - Examen de Idoneidad</p>
-  </div>
+<div class="footer-inner">
+<p class="contact">Contacto WhatsApp +57 3243880762</p>
+<div class="social-links">
+<a href="http://wa.link/ab1gku" target="_blank" aria-label="WhatsApp">💬</a>
+<a href="https://www.youtube.com/@juandaon" target="_blank" aria-label="YouTube">▶️</a>
+<a href="https://www.tiktok.com/@examenidoneidad.co" target="_blank" aria-label="TikTok">🎵</a>
+<a href="https://www.instagram.com/juanosorion/" target="_blank" aria-label="Instagram">📷</a>
+</div>
+<p style="margin-top:10px;">© 2026 Kiosco Normativo - Examen de Idoneidad</p>
+</div>
 </footer>
 
-<div class="ai-chat-fab" onclick="toggleAI()">
-  <span class="ai-icon"></span>
-  <span class="badge">IA</span>
-</div>
+<div class="ai-chat-fab" onclick="toggleAI()"><span class="ai-icon">🤖</span><span class="badge">IA</span></div>
 
 <div class="ai-chat-panel" id="aiChatPanel">
-  <div class="ai-chat-header">
-    <div class="ai-avatar">👨‍</div>
-    <div class="ai-header-info">
-      <h4>Profe Juan Osorio IA</h4>
-      <div class="status"><span class="dot"></span>En línea · Experto en Examen Idoneidad</div>
-    </div>
-    <button class="ai-close" onclick="toggleAI()">✕</button>
-  </div>
-  <div class="ai-chat-quick">
-    <button class="quick-btn" onclick="quickAsk('¿Qué es el silencio administrativo?')">📋 Silencio administrativo</button>
-    <button class="quick-btn" onclick="quickAsk('Explícame el Art. 209')">⚖️ Art. 209</button>
-    <button class="quick-btn" onclick="quickAsk('¿Qué normas debo estudiar primero?')">🎯 Plan de estudio</button>
-    <button class="quick-btn" onclick="quickAsk('Diferencia entre dolo y culpa')"> Dolo vs Culpa</button>
-    <button class="quick-btn" onclick="quickAsk('¿Cuántos tipos de proceso existen en el CGP?')">📗 Tipos de proceso</button>
-    <button class="quick-btn" onclick="quickAsk('¿Qué es la tradición en el Código Civil?')">🏠 Tradición</button>
-  </div>
-  <div class="ai-chat-messages" id="aiMessages"></div>
-  <div class="ai-chat-input">
-    <input type="text" id="aiInput" placeholder="Pregúntale al Profe..." onkeypress="if(event.key==='Enter')sendAIMessage()">
-    <button class="ai-send" onclick="sendAIMessage()">➤</button>
-  </div>
+<div class="ai-chat-header">
+<div class="ai-avatar">👨‍🏫</div>
+<div class="ai-header-info"><h4>Profe Juan Osorio IA</h4><div class="status"><span class="dot"></span>En línea · Experto en Examen Idoneidad</div></div>
+<button class="ai-close" onclick="toggleAI()">✕</button>
+</div>
+<div class="ai-chat-quick">
+<button class="quick-btn" onclick="quickAsk('¿Qué es el silencio administrativo?')">📋 Silencio administrativo</button>
+<button class="quick-btn" onclick="quickAsk('Explícame el Art. 209')">⚖️ Art. 209</button>
+<button class="quick-btn" onclick="quickAsk('¿Qué normas debo estudiar primero?')"> Plan de estudio</button>
+<button class="quick-btn" onclick="quickAsk('Diferencia entre dolo y culpa')">🔍 Dolo vs Culpa</button>
+<button class="quick-btn" onclick="quickAsk('¿Qué es la tradición en el Código Civil?')">🏠 Tradición</button>
+</div>
+<div class="ai-chat-messages" id="aiMessages"></div>
+<div class="ai-chat-input">
+<input type="text" id="aiInput" placeholder="Pregúntale al Profe..." onkeypress="if(event.key==='Enter')sendAIMessage()">
+<button class="ai-send" onclick="sendAIMessage()">➤</button>
+</div>
 </div>
 
 <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <div class="modal-header">
-      <div style="flex:1;" id="modalHeader"></div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-  </div>
+<div class="modal">
+<div class="modal-header"><div style="flex:1;" id="modalHeader"></div><button class="modal-close" onclick="closeModal()">✕</button></div>
+<div class="modal-body" id="modalBody"></div>
+</div>
 </div>
 
 <script>
-// El JavaScript completo va aquí - es muy largo, así que te lo daré en el siguiente mensaje
-</script>
-</body>
-</html>
+// ===== DATOS =====
+const norms=[
+{id:100,code:'L909',name:'Ley 909 de 2004 — Empleo Público',year:2004,branch:'Administrativo',category:'examen-funcion',icon:'👔',description:'Normas sobre el empleo público y la carrera administrativa.',keyArticles:[{article:'Art. 1-5',description:'Objeto, ámbito y principios'},{article:'Art. 16-30',description:'Sistema de mérito, concursos'}],examTips:'Es la norma MÁS preguntada. Domina: tipos de empleos, concurso de méritos, situaciones administrativas y el rol de la CNSC.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=14861'},
+{id:110,code:'L80',name:'Ley 80 de 1993 — Estatuto General de Contratación',year:1993,branch:'Administrativo',category:'examen-contratacion',icon:'📑',description:'Estatuto General de Contratación de la Administración Pública.',keyArticles:[{article:'Art. 1-5',description:'Principios: transparencia, economía, responsabilidad'},{article:'Art. 20-30',description:'Modalidades de selección'}],examTips:'Domina los principios (especialmente selección objetiva y transparencia).',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=304'},
+{id:120,code:'L1952',name:'Ley 1952 de 2019 — Código Disciplinario',year:2019,branch:'Administrativo',category:'examen-control',icon:'⚖️',description:'Código General Disciplinario.',keyArticles:[{article:'Art. 1-20',description:'Principios: legalidad, tipicidad, culpabilidad'},{article:'Art. 21-50',description:'Faltas: gravísimas, graves, leves'}],examTips:'Domina principios, clasificación de faltas y sanciones.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=90324'},
+{id:121,code:'L42',name:'Ley 42 de 1993 — Control Fiscal',year:1993,branch:'Administrativo',category:'examen-control',icon:'',description:'Organiza el sistema de control fiscal financiero.',keyArticles:[{article:'Art. 1-20',description:'Sistema de control fiscal'}],examTips:'Revisa organización del control fiscal y competencias de la Contraloría.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=289'},
+{id:130,code:'L1437',name:'Ley 1437 de 2011 — CPA y CCA',year:2011,branch:'Administrativo',category:'examen-procedimiento',icon:'📋',description:'Código de Procedimiento Administrativo y de lo Contencioso Administrativo.',keyArticles:[{article:'Art. 1-20',description:'Principios: debido proceso, imparcialidad, eficacia'},{article:'Art. 21-50',description:'Actos administrativos'},{article:'Art. 130-200',description:'Medios de control contencioso'}],examTips:'Domina principios, actos administrativos y medios de control.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41249'},
+{id:1,code:'CP',name:'Constitución Política de Colombia',year:1991,branch:'Constitucional',category:'constitution',icon:'📜',description:'NORMA DE NORMAS — Carta Política del Estado colombiano.',keyArticles:[{article:'Art. 1-2',description:'Fundamentos del Estado social de derecho'},{article:'Art. 86',description:'Acción de Tutela'},{article:'Art. 209',description:'Función administrativa: principios'},{article:'Art. 123-125',description:'Servidores públicos y carrera'},{article:'Art. 241',description:'Corte Constitucional'}],examTips:'Enfócate en Art. 1-2, 209, 125, 86.',badge:'NORMA DE NORMAS',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125'},
+{id:2,code:'TUT',name:'Acción de Tutela (Art. 86)',year:1991,branch:'Constitucional',category:'actions',icon:'️',description:'Mecanismo constitucional para protección inmediata de derechos fundamentales.',keyArticles:[{article:'Art. 86 CP',description:'Regulación constitucional'},{article:'Dec. 2591/1991',description:'Reglamentación'}],examTips:'Requisitos: inmediatez, subsidiariedad, derechos fundamentales.'},
+{id:3,code:'HC',name:'Habeas Corpus (Art. 30)',year:1991,branch:'Constitucional',category:'actions',icon:'🔓',description:'Protege la libertad personal ante detención ilegal.',keyArticles:[{article:'Art. 30 CP',description:'Regulación constitucional'}],examTips:'Procede cuando hay privación ilegal de la libertad.'},
+{id:4,code:'HD',name:'Habeas Data (Art. 15)',year:1991,branch:'Constitucional',category:'actions',icon:'🗄️',description:'Derecho a conocer, actualizar y rectificar datos personales.',keyArticles:[{article:'Art. 15 CP',description:'Regulación constitucional'},{article:'Ley 1581/2012',description:'Ley Estatutaria'}],examTips:'Relacionado con intimidad y protección de datos.'},
+{id:10,code:'CC',name:'Código Civil — Ley 57 de 1887',year:1887,branch:'Civil',category:'code',icon:'📕',description:'Regula las relaciones jurídicas privadas entre personas.',keyArticles:[{article:'Art. 74',description:'Persona natural'},{article:'Art. 90',description:'Existencia legal'},{article:'Art. 633',description:'Persona jurídica'},{article:'Art. 669',description:'Dominio o propiedad'},{article:'Art. 673',description:'Modos de adquirir el dominio'},{article:'Art. 740',description:'Tradición'},{article:'Art. 762',description:'Posesión'},{article:'Art. 950',description:'Acción reivindicatoria'}],examTips:'Divide tu estudio: Personas, Bienes, Obligaciones, Contratos, Sucesiones.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=275',hasConceptMap:true},
+{id:11,code:'CGP',name:'Código General del Proceso — Ley 1564 de 2012',year:2012,branch:'Civil',category:'code',icon:'📗',description:'Moderniza el proceso civil colombiano.',keyArticles:[{article:'Art. 1-100',description:'Disposiciones generales'}],examTips:'Reemplaza al CPC. Enfócate en procesos ordinarios y ejecutivos.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=48425'},
+{id:13,code:'CPe',name:'Código Penal — Ley 599 de 2000',year:2000,branch:'Penal',category:'code',icon:'⚔️',description:'Código Penal colombiano. Parte General y Especial.',keyArticles:[{article:'Parte General (Arts. 1-100)',description:'Teoría del delito'},{article:'Arts. 21-24',description:'Dolo, culpa, preterintención'},{article:'Arts. 27-30',description:'Tentativa, autoría, participación'},{article:'Art. 32',description:'Causales de ausencia de responsabilidad'}],examTips:'Divide estudio: Parte General (teoría del delito) y Parte Especial (tipos penales).',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6388'},
+{id:14,code:'CPP',name:'Ley 906 de 2004 — Código de Procedimiento Penal',year:2004,branch:'Penal',category:'code',icon:'',description:'Sistema penal acusatorio.',keyArticles:[{article:'Art. 288',description:'Imputación'},{article:'Art. 301-302',description:'Flagrancia'},{article:'Art. 306-319',description:'Medidas de aseguramiento'}],examTips:'Domina etapas: indagación → imputación → acusación → juicio oral → sentencia.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=14787'},
+{id:18,code:'CInf',name:'Ley 1098 de 2006 — Código de Infancia',year:2006,branch:'Civil',category:'code',icon:'👶',description:'Protección integral de niños, niñas y adolescentes.',keyArticles:[{article:'Art. 1-50',description:'Principios'},{article:'Art. 139+',description:'Responsabilidad penal adolescente'}],examTips:'Principio del interés superior del niño.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=22106'},
+{id:30,code:'L1581',name:'Ley 1581 de 2012 — Protección de Datos',year:2012,branch:'Administrativo',category:'law',icon:'🔒',description:'Ley Estatutaria de Protección de Datos Personales.',keyArticles:[{article:'Art. 1-20',description:'Principios: legalidad, finalidad, libertad, veracidad'}],examTips:'Principios: legalidad, finalidad, libertad, veracidad.'},
+{id:34,code:'L5/92',name:'Ley 5 de 1992 — Reglamento del Congreso',year:1992,branch:'Constitucional',category:'law',icon:'🏛️',description:'Reglamento del Congreso de la República.',keyArticles:[{article:'Art. 1-50',description:'Organización del Congreso'},{article:'Art. 50-150',description:'Procedimiento legislativo'},{article:'Art. 150-250',description:'Control político'}],examTips:'Domina quórum, mayorías, comisiones, procedimiento legislativo.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=11368'},
+{id:36,code:'L575',name:'Ley 575 de 2000 — Violencia Intrafamiliar',year:2000,branch:'Familia',category:'law',icon:'👨‍‍👧',description:'Regula los mecanismos de protección contra la violencia intrafamiliar.',keyArticles:[{article:'Art. 1-10',description:'Objeto y sujetos protegidos'},{article:'Art. 11-20',description:'Medidas de protección'}],examTips:'Conoce los tipos de violencia y las medidas de protección.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=399'}
+];
 
+const glossary=[
+{term:'Silencio Administrativo Positivo',definition:'Cuando la administración no responde una petición dentro del término legal, se entiende que la solicitud fue aprobada. Aplica en casos específicos como licencias y permisos.',branch:'Administrativo',norm:'Ley 1437/2011, Art. 81'},
+{term:'Silencio Administrativo Negativo',definition:'Cuando la administración no responde una petición dentro del término legal, se entiende que la solicitud fue negada. Es la regla general.',branch:'Administrativo',norm:'Ley 1437/2011, Art. 82'},
+{term:'Acto Administrativo',definition:'Declaración de voluntad de la administración pública que produce efectos jurídicos individuales y concretos. Debe estar motivado.',branch:'Administrativo',norm:'Ley 1437/2011, Art. 5'},
+{term:'Principio de Legalidad',definition:'La administración solo puede actuar cuando exista una norma jurídica que le atribuya competencia.',branch:'Administrativo',norm:'Constitución, Art. 6'},
+{term:'Descentralización',definition:'Transferencia de competencias del Estado central a entidades con personería jurídica propia.',branch:'Administrativo',norm:'Constitución, Art. 1'},
+{term:'Desconcentración',definition:'Distribución de competencias dentro de una misma persona jurídica. Mantiene la jerarquía.',branch:'Administrativo',norm:'Doctrina'},
+{term:'Derecho de Petición',definition:'Derecho fundamental a presentar peticiones respetuosas a las autoridades. Términos: 15 días general, 10 días documentos, 30 días consultas.',branch:'Constitucional',norm:'Constitución, Art. 23; Ley 1755/2015'},
+{term:'Tutela',definition:'Mecanismo constitucional para la protección inmediata de derechos fundamentales. No requiere abogado.',branch:'Constitucional',norm:'Constitución, Art. 86'},
+{term:'Habeas Corpus',definition:'Acción constitucional para proteger la libertad personal ante detención ilegal.',branch:'Constitucional',norm:'Constitución, Art. 30'},
+{term:'Habeas Data',definition:'Derecho a conocer, actualizar y rectificar información personal en bases de datos.',branch:'Constitucional',norm:'Constitución, Art. 15'},
+{term:'Acción Popular',definition:'Acción judicial para la protección de derechos e intereses colectivos. Cualquier persona puede ejercerla.',branch:'Constitucional',norm:'Constitución, Art. 88'},
+{term:'Acción de Grupo',definition:'Acción judicial para la protección de intereses colectivos cuando 20+ personas han sufrido daños.',branch:'Constitucional',norm:'Constitución, Art. 88'},
+{term:'Bloque de Constitucionalidad',definition:'Conjunto de normas que sirven como parámetro de control: Constitución, tratados de DDHH y leyes estatutarias.',branch:'Constitucional',norm:'Constitución, Art. 93'},
+{term:'Control Concentrado',definition:'La Corte Constitucional es el único órgano con competencia para declarar la inexequibilidad de las leyes.',branch:'Constitucional',norm:'Constitución, Art. 241'},
+{term:'Debido Proceso',definition:'Derecho fundamental aplicable a toda actuación judicial y administrativa. Incluye defensa, presunción de inocencia, juez natural.',branch:'Constitucional',norm:'Constitución, Art. 29'},
+{term:'Non Bis In Idem',definition:'Principio que prohíbe ser investigado o sancionado dos veces por los mismos hechos.',branch:'Constitucional',norm:'Constitución, Art. 29'},
+{term:'Persona Natural',definition:'Todos los individuos de la especie humana, sea cual sea su edad, sexo, estirpe o condición.',branch:'Civil',norm:'Código Civil, Art. 74'},
+{term:'Existencia Legal',definition:'La existencia legal de toda persona principia al nacer, al separarse completamente de su madre.',branch:'Civil',norm:'Código Civil, Art. 90'},
+{term:'Persona Jurídica',definition:'Persona ficticia, capaz de ejercer derechos, contraer obligaciones civiles y ser representada.',branch:'Civil',norm:'Código Civil, Art. 633'},
+{term:'Dominio o Propiedad',definition:'Derecho real en una cosa corporal para gozar y disponer de ella, sin ir contra la ley o contra derecho ajeno.',branch:'Civil',norm:'Código Civil, Art. 669'},
+{term:'Modos de Adquirir el Dominio',definition:'Ocupación, accesión, tradición, sucesión por causa de muerte y prescripción.',branch:'Civil',norm:'Código Civil, Art. 673'},
+{term:'Tradición',definition:'Modo de adquirir el dominio que consiste en la entrega que el dueño hace de la cosa a otro, con ánimo de transferirla.',branch:'Civil',norm:'Código Civil, Art. 740'},
+{term:'Posesión',definition:'Tenencia de una cosa con ánimo de señor o dueño.',branch:'Civil',norm:'Código Civil, Art. 762'},
+{term:'Acción Reivindicatoria',definition:'Acción real que corresponde al propietario para reclamar la cosa de quien la posee.',branch:'Civil',norm:'Código Civil, Art. 950'},
+{term:'Dolo',definition:'El autor CONOCE y QUIERE el resultado. Directo 1° grado: sabe y quiere. Eventual: prevé como probable y lo deja al azar.',branch:'Penal',norm:'Código Penal, Art. 22'},
+{term:'Culpa',definition:'Infracción al deber objetivo de cuidado. Consciente: prevé pero confía en evitar. Inconsciente: no prevé pero debió prever.',branch:'Penal',norm:'Código Penal, Art. 23'},
+{term:'Tentativa',definition:'Inicio de ejecución con actos idóneos, consumación no se produce por causas ajenas al autor.',branch:'Penal',norm:'Código Penal, Art. 27'},
+{term:'Desistimiento Voluntario',definition:'Autor abandona ejecución o impide resultado por su propia voluntad.',branch:'Penal',norm:'Código Penal, Art. 27'},
+{term:'Autoría',definition:'Realiza directamente la conducta o tiene dominio del hecho. Directo, mediato, coautor.',branch:'Penal',norm:'Código Penal, Art. 29'},
+{term:'Participación',definition:'Determinador: hace nacer la decisión. Cómplice: ayuda a decisión ya tomada.',branch:'Penal',norm:'Código Penal, Art. 30'},
+{term:'Error de Tipo',definition:'Recae sobre ELEMENTOS DEL TIPO (hechos). Invencible: excluye dolo Y culpa. Vencible: excluye dolo, deja culpa.',branch:'Penal',norm:'Código Penal, Art. 32 n.º 10'},
+{term:'Error de Prohibición',definition:'Recae sobre la LICITUD (cree que es legal). Invencible: excluye culpabilidad. Vencible: ATENÚA la pena.',branch:'Penal',norm:'Código Penal, Art. 32 n.º 11'},
+{term:'Legítima Defensa',definition:'Causal de JUSTIFICACIÓN. Requisitos: agresión injusta, actual o inminente; racionalidad del medio; no provocación.',branch:'Penal',norm:'Código Penal, Art. 32 n.º 6'},
+{term:'Peculado',definition:'Servidor público que se apodera de bienes que se le hayan confiado por razón de sus funciones.',branch:'Penal',norm:'Código Penal, Art. 593'},
+{term:'Cohecho',definition:'Servidor público que recibe dinero o dádiva. Propio (omite/retarda acto) e impropio (ejecuta acto debido).',branch:'Penal',norm:'Código Penal, Arts. 405-407'},
+{term:'Concusión',definition:'El servidor público EXIGE (abusa de su posición). Se diferencia del cohecho: el servidor RECIBE.',branch:'Penal',norm:'Código Penal, Art. 404'},
+{term:'Prevaricato',definition:'Servidor público que dicta resolución contraria a la ley, expresamente.',branch:'Penal',norm:'Código Penal, Art. 413'},
+{term:'Negociación Incompatible',definition:'Servidor público que se interesa en contratos en que tenga interés en razón de su cargo.',branch:'Penal',norm:'Código Penal, Art. 412'},
+{term:'Tráfico de Influencias',definition:'Gestionar asuntos ajenos ante autoridades abusando de influencia real o supuesta.',branch:'Penal',norm:'Código Penal, Art. 411'},
+{term:'Carrera Administrativa',definition:'Garantiza el acceso, permanencia y ascenso en el servicio público con fundamento en el mérito.',branch:'Función Pública',norm:'Constitución, Art. 125'},
+{term:'CNSC',definition:'Comisión Nacional del Servicio Civil. Administra y vigila las carreras administrativas.',branch:'Función Pública',norm:'Constitución, Art. 130'},
+{term:'Servidor Público',definition:'Miembros de las corporaciones públicas, empleados y trabajadores del Estado.',branch:'Función Pública',norm:'Constitución, Art. 123'},
+{term:'Inhabilidad',definition:'Impedimento jurídico para acceder a cargos públicos.',branch:'Función Pública',norm:'Constitución'},
+{term:'Incompatibilidad',definition:'Imposibilidad de ejercer simultáneamente determinadas actividades, cargos o situaciones.',branch:'Función Pública',norm:'Constitución'},
+{term:'SECOP',definition:'Sistema Electrónico de Contratación Pública. Introducido por Ley 1150 de 2007.',branch:'Contratación',norm:'Ley 1150/2007'},
+{term:'Selección Objetiva',definition:'La escogencia del contratista debe responder a criterios previamente establecidos y verificables.',branch:'Contratación',norm:'Ley 80/1993'},
+{term:'Contratación Directa',definition:'Solo procede por causales taxativas establecidas en la ley.',branch:'Contratación',norm:'Ley 80/1993'},
+{term:'Control Fiscal',definition:'Es posterior y selectivo. Lo ejerce la Contraloría.',branch:'Control',norm:'Constitución, Art. 267'},
+{term:'Responsabilidad Fiscal',definition:'Requiere DAÑO al patrimonio público. Busca RESARCIR, no sancionar penalmente.',branch:'Control',norm:'Ley 42/1993'},
+{term:'Sistema Interamericano de DDHH',definition:'Comisión Interamericana (CIDH) y Corte Interamericana de DDHH.',branch:'DDHH',norm:'Convención Americana'},
+{term:'Control de Convencionalidad',definition:'Obligación de todos los jueces de asegurar que las normas internas se ajusten a la Convención Americana.',branch:'DDHH',norm:'Convención Americana'},
+{term:'Silogismo Jurídico',definition:'Premisa mayor (norma), premisa menor (hecho) y conclusión (decisión).',branch:'Argumentación',norm:'Doctrina'},
+{term:'Subsunción',definition:'Proceso de verificar si los hechos se subsumen en el supuesto normativo.',branch:'Argumentación',norm:'Doctrina'},
+{term:'Analogía',definition:'Aplicar una norma a un caso no previsto en ella, pero similar al previsto.',branch:'Argumentación',norm:'Doctrina'},
+{term:'Antinomias',definition:'Contradicciones entre normas jurídicas. Criterios: jerárquico, cronológico, especialidad.',branch:'Argumentación',norm:'Doctrina'},
+{term:'Ponderación',definition:'Se aplica cuando existe un conflicto entre dos o más derechos fundamentales y no es posible resolverlo mediante la subsunción.',branch:'Argumentación',norm:'Jurisprudencia Corte Constitucional'}
+];
 
-              <script>
-                              // ===== RESTO DEL CÓDIGO (igual que antes) =====
-// ... (continúa con las funciones renderCategories, selectCategory, startExam, etc.)
+const questions=[
+{id:1,category:'Derecho Administrativo',difficulty:'medium',question:'Una entidad pública expide un acto administrativo imponiendo una obligación no prevista en la Constitución, ley o reglamento. ¿Cuál es la razón jurídica más sólida para cuestionar su validez?',options:['La administración solo puede actuar con autorización judicial previa.','La administración está sometida al principio de legalidad y requiere competencia atribuida por el ordenamiento.','Los particulares nunca pueden estar sometidos a obligaciones administrativas.','Todo acto requiere autorización del Congreso.'],correctIndex:1,explanation:'La administración está sometida al principio de legalidad. Solo puede actuar cuando el ordenamiento le atribuya competencia.'},
+{id:2,category:'Derecho Administrativo',difficulty:'easy',question:'¿Cuál situación corresponde mejor al concepto de descentralización administrativa?',options:['Un ministro imparte instrucciones a una dirección interna.','Un alcalde distribuye funciones entre secretarías.','La Nación transfiere competencias a una entidad con personería jurídica y autonomía administrativa.','Un superior revisa actuaciones de su subordinado.'],correctIndex:2,explanation:'La descentralización implica transferir competencias a una entidad con personería jurídica propia.'},
+{id:3,category:'Derecho Administrativo',difficulty:'easy',question:'El artículo 209 de la Constitución establece principios de la función administrativa. ¿Cuál NO corresponde expresamente?',options:['Igualdad.','Moralidad.','Publicidad.','Supremacía judicial.'],correctIndex:3,explanation:'El Art. 209 CP menciona: igualdad, moralidad, eficacia, economía, celeridad, imparcialidad y publicidad. NO menciona "supremacía judicial".'},
+{id:201,category:'Teoría del Delito',difficulty:'easy',question:'La estructura dogmática del delito sigue el orden:',options:['Conducta → tipicidad → antijuridicidad → culpabilidad.','Tipicidad → conducta → culpabilidad → antijuridicidad.','Antijuridicidad → tipicidad → conducta → culpabilidad.','Conducta → culpabilidad → tipicidad → antijuridicidad.'],correctIndex:0,explanation:'La estructura dogmática: conducta → tipicidad → antijuridicidad → culpabilidad.'},
+{id:202,category:'Teoría del Delito',difficulty:'medium',question:'Una persona mientras duerme mueve involuntariamente el brazo y golpea a otra causándole lesión. ¿Qué elemento debe analizarse inicialmente?',options:['Culpabilidad.','Antijuridicidad.','Existencia de conducta jurídicamente relevante.','Imputabilidad.'],correctIndex:2,explanation:'Primero se analiza si existe conducta (acción u omisión voluntaria). Los movimientos involuntarios no constituyen conducta.'},
+{id:203,category:'Teoría del Delito',difficulty:'easy',question:'En Derecho Penal, la tipicidad se refiere a:',options:['La existencia de un daño material.','La adecuación de una conducta concreta a la descripción legal del delito.','La existencia de culpabilidad.','La existencia de una sentencia condenatoria.'],correctIndex:1,explanation:'La tipicidad (Art. 10 CP) es la adecuación exacta entre la conducta y la descripción legal.'},
+{id:204,category:'Teoría del Delito',difficulty:'medium',question:'¿Cuál elemento pertenece principalmente a la tipicidad objetiva?',options:['Dolo.','Culpa.','Resultado, sujeto activo, sujeto pasivo y relación de causalidad.','Imputabilidad.'],correctIndex:2,explanation:'La tipicidad objetiva incluye elementos del mundo exterior: sujetos, verbo rector, objeto material, resultado y nexo causal.'},
+{id:205,category:'Teoría del Delito',difficulty:'easy',question:'El principio de tipicidad exige que:',options:['Toda conducta moralmente reprochable sea delito.','La conducta punible tenga una descripción legal previa suficientemente determinada.','El juez pueda crear delitos mediante analogía.','La Fiscalía pueda establecer delitos mediante reglamentos.'],correctIndex:1,explanation:'El principio de tipicidad (Art. 10 CP) exige que la ley describa de manera inequívoca la conducta punible.'},
+{id:206,category:'Teoría del Delito',difficulty:'easy',question:'La legítima defensa constituye:',options:['Una causal de atipicidad.','Una causal de justificación.','Una causal de inimputabilidad.','Una forma de participación.'],correctIndex:1,explanation:'La legítima defensa (Art. 32 n.º 6 CP) es una causal de justificación que elimina la antijuridicidad.'},
+{id:207,category:'Teoría del Delito',difficulty:'medium',question:'Pedro empuja accidentalmente a Juan durante una aglomeración. Juan cae sobre una tercera persona y resulta lesionada. Antes de atribuir responsabilidad debe analizarse:',options:['La existencia de conducta y la relación causal/imputación del resultado.','Únicamente el resultado.','Únicamente la intención de Pedro.','La reincidencia.'],correctIndex:0,explanation:'Debe analizarse si hubo conducta voluntaria y si el resultado es objetivamente imputable.'},
+{id:208,category:'Teoría del Delito',difficulty:'medium',question:'Carlos dispara contra una persona con intención de matarla. El disparo falla porque la víctima se agacha. La situación corresponde a:',options:['Delito imposible en todos los casos.','Tentativa.','Desistimiento.','Culpa.'],correctIndex:1,explanation:'Hay tentativa (Art. 27 CP): inicio de ejecución con actos idóneos, pero la consumación no se produjo por circunstancias ajenas.'},
+{id:209,category:'Teoría del Delito',difficulty:'medium',question:'Laura introduce veneno en la bebida de María. Antes de que María beba, Laura voluntariamente retira la bebida. La institución que debe analizarse es:',options:['Tentativa inacabada exclusivamente.','Desistimiento voluntario.','Legítima defensa.','Error de tipo.'],correctIndex:1,explanation:'El desistimiento voluntario opera cuando el autor abandona la ejecución o impide el resultado por su propia voluntad.'},
+{id:210,category:'Teoría del Delito',difficulty:'easy',question:'Una persona toma una maleta creyendo razonablemente que es la suya, cuando en realidad pertenece a otra. El problema corresponde a:',options:['Error de tipo.','Error de prohibición.','Legítima defensa.','Imputabilidad.'],correctIndex:0,explanation:'Es error de tipo (Art. 32 n.º 10 CP): recae sobre un elemento objetivo (la ajenidad de la cosa).'},
+{id:211,category:'Teoría del Delito',difficulty:'medium',question:'Una persona conoce lo que está haciendo, pero cree que jurídicamente está permitido porque desconoce la prohibición penal. Estamos ante:',options:['Error de tipo.','Error de prohibición.','Tentativa.','Autoría mediata.'],correctIndex:1,explanation:'Es error de prohibición (Art. 32 n.º 11 CP): recae sobre la licitud.'},
+{id:212,category:'Teoría del Delito',difficulty:'easy',question:'Quien realiza directamente los elementos esenciales del tipo penal es:',options:['Cómplice.','Autor directo.','Determinador.','Encubridor.'],correctIndex:1,explanation:'El autor directo (Art. 29 CP) realiza por sí mismo la conducta típica.'},
+{id:213,category:'Teoría del Delito',difficulty:'medium',question:'Una persona convence deliberadamente a otra para que cometa un homicidio, proporcionándole la decisión criminal. La figura es:',options:['Determinación.','Complicidad.','Autoría mediata.','Tentativa.'],correctIndex:0,explanation:'El determinador (Art. 30 CP) hace nacer en otro la decisión de delinquir.'},
+{id:501,category:'Función Pública',difficulty:'medium',question:'Una entidad territorial convoca un concurso para proveer un empleo de carrera. El alcalde decide nombrar directamente a una persona de su confianza. ¿Cuál es la principal objeción constitucional?',options:['El alcalde necesitaba autorización del concejo.','Se desconoce el principio del mérito como criterio de acceso a los empleos de carrera administrativa.','Los alcaldes nunca pueden realizar nombramientos.','Todos los empleos públicos son de libre nombramiento y remoción.'],correctIndex:1,explanation:'El Art. 125 CP establece el principio del mérito para empleos de carrera.'},
+{id:502,category:'Función Pública',difficulty:'easy',question:'De acuerdo con el artículo 125 de la Constitución, los empleos en el Estado son, por regla general:',options:['De libre nombramiento y remoción.','De carrera.','De período fijo.','De elección popular.'],correctIndex:1,explanation:'El Art. 125 CP establece que, por regla general, los empleos son de carrera.'},
+{id:503,category:'Función Pública',difficulty:'easy',question:'La CNSC cumple principalmente una función relacionada con:',options:['Administración y vigilancia de carreras de servidores públicos.','Juzgamiento penal de servidores.','Expedición de sentencias administrativas.','Dirección política de departamentos.'],correctIndex:0,explanation:'La CNSC administra y vigila las carreras administrativas (Art. 130 CP).'},
+{id:601,category:'Contratación',difficulty:'medium',question:'En la contratación estatal, la entidad puede escoger discrecionalmente al contratista que considere más conveniente, siempre que motive posteriormente su decisión.',options:['Verdadero.','Falso.'],correctIndex:1,explanation:'FALSO. La selección debe ser objetiva, conforme a criterios preestablecidos, no discrecional.'},
+{id:602,category:'Contratación',difficulty:'easy',question:'La publicación de un proceso contractual en el SECOP hace automáticamente legal cualquier requisito establecido por la entidad.',options:['Verdadero.','Falso.'],correctIndex:1,explanation:'FALSO. La publicación en SECOP no valida requisitos ilegales o contrarios a la ley.'},
+{id:701,category:'Control Fiscal',difficulty:'medium',question:'Una empresa industrial y comercial del Estado administra recursos públicos. ¿Puede la Contraloría ejercer control fiscal?',options:['No, por autonomía administrativa.','Sí, el control fiscal puede ejercerse sobre entidades y particulares que administren recursos o bienes públicos.','Solamente puede intervenir la Procuraduría.','El control fiscal únicamente procede frente a ministerios.'],correctIndex:1,explanation:'El control fiscal alcanza a entidades y particulares que administren recursos o bienes públicos.'},
+{id:702,category:'Control Fiscal',difficulty:'easy',question:'El control fiscal tiene como finalidad principal sancionar penalmente a los servidores públicos.',options:['Verdadero.','Falso.'],correctIndex:1,explanation:'FALSO. El control fiscal vigila la gestión fiscal, no sanciona penalmente.'},
+{id:801,category:'Régimen Disciplinario',difficulty:'medium',question:'Un servidor público es investigado disciplinariamente porque su conducta "afectó gravemente la imagen institucional" sin identificar qué falta disciplinaria fue vulnerada. ¿Cuál es el principal problema?',options:['Se vulnera exclusivamente el principio de publicidad.','Se vulneran los principios de legalidad y tipicidad.','No existe problema jurídico.','Se trata únicamente de una irregularidad administrativa.'],correctIndex:1,explanation:'La legalidad y tipicidad exigen que la conducta esté expresamente prevista como falta disciplinaria.'},
+{id:802,category:'Régimen Disciplinario',difficulty:'easy',question:'En materia disciplinaria, la responsabilidad objetiva está permitida cuando se demuestra que el servidor incumplió materialmente una obligación.',options:['Verdadero.','Falso.'],correctIndex:1,explanation:'FALSO. La responsabilidad disciplinaria requiere culpabilidad (dolo o culpa), no es objetiva.'},
+{id:803,category:'Régimen Disciplinario',difficulty:'medium',question:'Un servidor público es investigado disciplinariamente por una conducta. Posteriormente, la misma autoridad inicia nuevo proceso por los mismos hechos. ¿Qué principio resulta comprometido?',options:['Celeridad.','Non bis in idem.','Publicidad.','Coordinación administrativa.'],correctIndex:1,explanation:'El principio non bis in idem prohíbe ser investigado o sancionado dos veces por los mismos hechos.'}
+];
 
+const flashcards=[
+{q:'¿Qué establece el Art. 209 CP?',a:'Principios de la función administrativa: igualdad, moralidad, eficacia, economía, celeridad, imparcialidad, publicidad.',cat:'Constitucional'},
+{q:'¿Qué es la Acción de Tutela?',a:'Mecanismo constitucional (Art. 86) para protección inmediata de derechos fundamentales.',cat:'Constitucional'},
+{q:'Requisitos de la Legítima Defensa',a:'Art. 32 n.º 6 CP: agresión ilegítima, actual o inminente; racionalidad del medio; no provocación.',cat:'Penal'},
+{q:'Diferencia entre Dolo y Culpa',a:'Dolo (Art. 22): conoce y quiere. Culpa (Art. 23): infracción al deber objetivo de cuidado.',cat:'Penal'},
+{q:'¿Qué regula la Ley 909 de 2004?',a:'Empleo público y carrera administrativa. Sistema de mérito para acceso, permanencia y ascenso.',cat:'Función Pública'},
+{q:'Principios de la Contratación Estatal',a:'Ley 80/1993: transparencia, economía, responsabilidad, selección objetiva.',cat:'Contratación'},
+{q:'¿Qué es el SECOP?',a:'Sistema Electrónico de Contratación Pública. Introducido por Ley 1150 de 2007.',cat:'Contratación'},
+{q:'Diferencia entre Error de Tipo y Error de Prohibición',a:'Tipo: recae sobre elementos del tipo (hechos). Prohibición: recae sobre la licitud.',cat:'Penal'},
+{q:'¿Qué es la CNSC?',a:'Comisión Nacional del Servicio Civil. Administra y vigila carreras administrativas.',cat:'Función Pública'},
+{q:'Principios del Control Fiscal',a:'Ley 42/1993: posterior y selectivo. Lo ejerce la Contraloría.',cat:'Control'},
+{q:'¿Qué es el non bis in idem?',a:'Principio que prohíbe ser investigado/sancionado dos veces por los mismos hechos.',cat:'Disciplinario'},
+{q:'Requisitos de la Tentativa',a:'Art. 27 CP: inicio de ejecución con actos idóneos, consumación no se produce por causas ajenas.',cat:'Penal'},
+{q:'¿Qué es el Habeas Data?',a:'Derecho (Art. 15 CP) a conocer, actualizar y rectificar información personal en bases de datos.',cat:'Constitucional'},
+{q:'Diferencia entre Descentralización y Desconcentración',a:'Descentralización: transfiere a entidad con personería jurídica. Desconcentración: distribuye dentro de misma persona jurídica.',cat:'Administrativo'},
+{q:'¿Qué es el Desistimiento Voluntario?',a:'Autor abandona ejecución o impide resultado por su propia voluntad.',cat:'Penal'},
+{q:'Medios de Control Contencioso',a:'Nulidad simple, nulidad y restablecimiento del derecho, reparación directa, controversias contractuales.',cat:'Administrativo'},
+{q:'¿Qué es el Bloque de Constitucionalidad?',a:'Art. 93 CP: integra Constitución, tratados de DDHH ratificados y leyes estatutarias.',cat:'Constitucional'},
+{q:'¿Qué es el Peculado?',a:'Art. 593 CP: servidor público que se apodera de bienes que se le hayan confiado.',cat:'Penal'},
+{q:'¿Qué es el Cohecho?',a:'Arts. 405-407 CP: servidor público que recibe dinero o dádiva.',cat:'Penal'},
+{q:'Diferencia entre Concusión y Cohecho',a:'Concusión: el servidor EXIGE (abusa). Cohecho: el servidor RECIBE (acuerdo).',cat:'Penal'},
+{q:'¿Qué es la Tradición (Art. 740 CC)?',a:'Modo de adquirir el dominio que consiste en la entrega que el dueño hace de la cosa a otro.',cat:'Civil'},
+{q:'¿Qué es la Posesión (Art. 762 CC)?',a:'Tenencia de una cosa con ánimo de señor o dueño.',cat:'Civil'},
+{q:'¿Qué es el Dominio (Art. 669 CC)?',a:'Derecho real en una cosa corporal para gozar y disponer de ella.',cat:'Civil'},
+{q:'¿Qué es el Silencio Administrativo Positivo?',a:'Cuando la administración no responde, se entiende aprobada la solicitud.',cat:'Administrativo'},
+{q:'¿Qué es el Silencio Administrativo Negativo?',a:'Cuando la administración no responde, se entiende negada la solicitud.',cat:'Administrativo'}
+];
+
+const aiKnowledge={
+conceptos:[
+{keywords:['silencio administrativo','positivo','negativo'],topic:'Silencio Administrativo',response:'**Silencio Administrativo:**\n\n **Positivo (Art. 81 Ley 1437/2011):** Cuando la administración no responde, se entiende APROBADA. Aplica en casos específicos como licencias.\n\n📌 **Negativo (Art. 82 Ley 1437/2011):** Cuando la administración no responde, se entiende NEGADA. Es la regla general.\n\n️ **Clave:** El silencio positivo es la excepción; el negativo es la regla.',refs:[{id:130,title:'Ley 1437 de 2011'}]},
+{keywords:['209','art 209','función administrativa','principios'],topic:'Artículo 209',response:'El **Art. 209 de la Constitución** es CLAVE. Principios de la función administrativa:\n\n Igualdad, Moralidad, Eficacia, Economía, Celeridad, Imparcialidad, Publicidad\n\n⚠️ "Supremacía judicial" NO está en el Art. 209 (pregunta trampa frecuente).',refs:[{id:1,title:'Constitución Política'}]},
+{keywords:['dolo','culpa','diferencia'],topic:'Dolo vs Culpa',response:'**Dolo (Art. 22 CP):** El autor CONOCE y QUIERE el resultado.\n• Directo 1° grado: sabe y quiere\n• Eventual: prevé como probable y lo deja al azar\n\n**Culpa (Art. 23 CP):** Infracción al deber objetivo de cuidado.\n• Consciente: prevé pero confía en evitar\n• Inconsciente: no prevé pero debió prever\n\n🎯 **Diferencia clave:** En dolo eventual "acepta el riesgo"; en culpa consciente "confía en evitarlo".',refs:[{id:13,title:'Código Penal'}]},
+{keywords:['909','ley 909','empleo público'],topic:'Ley 909 de 2004',response:'La **Ley 909 de 2004** es la norma MÁS preguntada. Regula el empleo público y la carrera administrativa.\n\n📌 Tipos de empleos: carrera, libre nombramiento, período fijo\n📌 Sistema de mérito\n📌 **Concurso de méritos** obligatorio\n📌 **CNSC** administra las carreras (Art. 130 CP)\n\n⚠️ La provisionalidad NO otorga derechos de carrera.',refs:[{id:100,title:'Ley 909 de 2004'}]},
+{keywords:['bloque','constitucionalidad'],topic:'Bloque de Constitucionalidad',response:'El **Bloque de Constitucionalidad** (Art. 93 CP) integra:\n\n Constitución Política\n📌 Tratados de DDHH ratificados\n📌 Leyes estatutarias que desarrollan derechos fundamentales\n📌 Jurisprudencia de la Corte Constitucional',refs:[{id:1,title:'Constitución Política'}]},
+{keywords:['tradición','código civil','modo de adquirir'],topic:'Tradición',response:'**Tradición (Art. 740 CC):** Modo de adquirir el dominio que consiste en la entrega que el dueño hace de la cosa a otro, con ánimo de transferirla.\n\n**Requisitos:**\n Tradente: facultad e intención de transferir\n📌 Adquirente: capacidad e intención de adquirir\n📌 Acto: entrega de la cosa\n\n⚠️ **No confundir** la tradición (modo) con el contrato (título).',refs:[{id:10,title:'Código Civil'}]},
+{keywords:['posesión','tenencia','ánimo'],topic:'Posesión',response:'**Posesión (Art. 762 CC):** Tenencia de una cosa con ánimo de señor o dueño.\n\n**Elementos:**\n📌 Material: tenencia\n📌 Subjetivo: ánimo de señor o dueño\n Objeto: cosa determinada\n\n🎯 **Diferencia con mera tenencia:** Falta el ánimo de señor o dueño.',refs:[{id:10,title:'Código Civil'}]},
+{keywords:['dominio','propiedad','669'],topic:'Dominio',response:'**Dominio (Art. 669 CC):** Derecho real en una cosa corporal para gozar y disponer de ella, sin ir contra la ley o contra derecho ajeno.\n\n**Contenido:**\n📌 Usar\n📌 Gozar\n📌 Disponer\n\n**Límites:** La ley y los derechos de terceros.',refs:[{id:10,title:'Código Civil'}]},
+{keywords:['tutela','acción de tutela','art 86'],topic:'Acción de Tutela',response:'La **Acción de Tutela** (Art. 86 CP) es el mecanismo constitucional más importante para proteger derechos fundamentales. Es inmediata, preferente y no requiere abogado.\n\n**Requisitos:**\n• Inmediatez\n• Subsidiariedad\n• Derecho fundamental vulnerado\n\n**Reglamentada por:** Decreto 2591 de 1991.',refs:[{id:2,title:'Acción de Tutela'}]},
+{keywords:['1437','cpa','cca'],topic:'Ley 1437 de 2011',response:'La **Ley 1437 de 2011** contiene el CPA y CCA.\n\n**Principios (Art. 3):**\n📌 Debido proceso, Imparcialidad, Eficacia, Celeridad, Publicidad\n\n**Medios de control:**\n• Nulidad simple\n• Nulidad y restablecimiento del derecho\n• Reparación directa\n• Controversias contractuales',refs:[{id:130,title:'Ley 1437 de 2011'}]},
+{keywords:['80','ley 80','contratación'],topic:'Ley 80 de 1993',response:'La **Ley 80 de 1993** es el Estatuto General de Contratación.\n\n**Principios:**\n📌 Transparencia, Economía, Responsabilidad, Selección objetiva\n\n**Modalidades:**\n• Licitación pública\n• Concurso de méritos\n• Selección abreviada\n• Contratación directa (causales taxativas)\n• Mínima cuantía',refs:[{id:110,title:'Ley 80 de 1993'}]},
+{keywords:['1952','disciplinario'],topic:'Ley 1952 de 2019',response:'La **Ley 1952 de 2019** es el Código General Disciplinario.\n\n**Principios:** Legalidad, Tipicidad, Culpabilidad, Favorabilidad, Non bis in idem\n\n**Faltas:** Gravísimas, Graves, Leves\n\n**Sanciones:** Destitución, Suspensión, Multa, Inhabilidad',refs:[{id:120,title:'Ley 1952 de 2019'}]},
+{keywords:['control fiscal','contraloría'],topic:'Control Fiscal',response:'El **Control Fiscal** (Ley 42 de 1993, Art. 267 CP):\n📌 Es **posterior y selectivo**\n📌 Lo ejerce la Contraloría\n📌 Aplica a entidades públicas Y particulares\n\n⚠️ La Contraloría VIGILA pero no ADMINISTRA.',refs:[{id:121,title:'Ley 42 de 1993'}]},
+{keywords:['plan de estudio','qué estudiar'],topic:'Plan de Estudio',response:'🎯 **Plan de estudio:**\n\n**PRIORIDAD ALTA (60%):**\n1️ Ley 909 de 2004\n2️⃣ Ley 80 de 1993\n3️⃣ Ley 1437 de 2011\n4️⃣ Art. 209 CP\n5️⃣ Ley 1952 de 2019\n\n**PRIORIDAD MEDIA:**\n6️⃣ Ley 42 de 1993\n7️ Ley 678 de 2001\n8️⃣ Decreto 1083 de 2015\n9️⃣ Ley 1755 de 2015\n\n💡 Usa las flashcards y simulacros diariamente.',refs:[]},
+{keywords:['hola','buenos','hey','saludos'],topic:'Saludo',response:'¡Hola! 👋 Soy el Profe Juan Osorio IA. Puedo ayudarte con:\n\n📚 Explicar normas y conceptos\n🎯 Crear quizzes personalizados\n💡 Consejos de estudio\n🔍 Buscar artículos específicos\n\n¿Sobre qué tema quieres que hablemos?',refs:[]},
+{keywords:['gracias','thank','agradezco'],topic:'Agradecimiento',response:'¡De nada! 😊 Estoy aquí para ayudarte. Si tienes otra duda, pregúntame sin miedo.',refs:[]}
+],
+getResponse(query){
+const q=query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+for(const c of this.conceptos){
+for(const kw of c.keywords){
+const kwNorm=kw.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+if(q.includes(kwNorm))return{text:c.response,refs:c.refs||[],topic:c.topic};
+}
+}
+return{text:'Hmm, no tengo una respuesta específica para eso, pero puedo ayudarte con:\n\n📜 **Acciones constitucionales**\n⚖️ **Teoría del delito**\n👔 **Función pública**\n💼 **Contratación estatal**\n🛡️ **Control fiscal y disciplinario**\n🏠 **Código Civil**\n🎯 **Plan de estudio**\n\n¿Sobre cuál de estos temas quieres que hablemos?',refs:[]};
+}
+};
+
+const ccConceptMapData=[
+{a:"74",t:"PERSONA NATURAL",i:"🧑‍‍🧑",d:"Son personas todos los individuos de la especie humana, sea cual sea su edad, sexo, estirpe o condición.",c:["Todo ser humano es sujeto de derechos y obligaciones.","Nadie puede ser excluido de la condición de persona."],k:["Naturaleza: norma definitoria","Función: reconocer la personalidad","Concordancia: C.N. arts. 13, 14, 15 y 17"],e:["Sujeto: individuo de la especie humana","Criterio: pertenecer a la especie humana","Irrelevantes: edad, sexo, estirpe, condición"],x:"Un menor de edad o un extranjero también es persona y titular de derechos.",m:["Persona natural (art. 74)","Persona jurídica (art. 633)"],u:["Fundamenta que cualquier individuo puede ser parte en un proceso.","Se combina con las reglas de existencia legal (art. 90)."],r:"Confundir ser persona con poder actuar por sí mismo: son cosas distintas."},
+{a:"90",t:"EXISTENCIA LEGAL",i:"👶",d:"La existencia legal de toda persona principia al nacer, esto es, al separarse completamente de su madre.",c:["La criatura que muere en el vientre o antes de separarse por completo se reputa no haber existido jamás.","Tampoco existió quien no sobrevivió a la separación ni un momento."],k:["Naturaleza: norma de determinación","Función: fijar el inicio de la personalidad","Concordancia: art. 1019"],e:["Hecho: nacimiento","Condición: separación completa de la madre","Efecto: personalidad jurídica"],x:"Un bebé nace y vive apenas un instante: existió legalmente y pudo ser titular de derechos.",m:["Nacimiento con vida","Muerte antes de la separación (se reputa no existir)"],u:["Clave en sucesiones: probar que el heredero existía al abrirse la herencia.","Se prueba con el registro civil de nacimiento."],r:"Creer que la existencia legal empieza con la concepción; el art. 90 la ubica en el nacimiento."},
+{a:"633",t:"PERSONA JURÍDICA",i:"🏢",d:"Persona ficticia, capaz de ejercer derechos, contraer obligaciones civiles y ser representada judicial y extrajudicialmente.",c:["Puede ser titular de derechos y deudora de obligaciones.","Actúa mediante representante, judicial y extrajudicialmente."],k:["Naturaleza: norma definitoria","Función: crear sujetos distintos de sus miembros","Especies: corporaciones y fundaciones de beneficencia pública"],e:["Sujeto: persona ficticia","Capacidad: derechos y obligaciones civiles","Representación: judicial y extrajudicial"],x:"Una fundación de beneficencia pública celebra un contrato a través de su representante.",m:["Corporaciones","Fundaciones de beneficencia pública","Entidades que participan de ambos caracteres"],u:["Identificar quién es el sujeto procesal: la entidad, no sus miembros.","Verificar que quien firma o demanda tenga la representación."],r:"Demandar a los miembros cuando la titular de la obligación es la persona jurídica."},
+{a:"669",t:"DOMINIO O PROPIEDAD",i:"",d:"Derecho real en una cosa corporal para gozar y disponer de ella, sin ir contra la ley o contra derecho ajeno.",c:["Faculta a usar, gozar y disponer del bien.","Su ejercicio está limitado por la ley y por los derechos de terceros."],k:["Naturaleza: derecho real","Objeto: cosa corporal","Nota: la Corte Constitucional declaró inexequible el adverbio 'arbitrariamente' (Sent. C-595)"],e:["Sujeto: propietario","Objeto: cosa corporal","Contenido: gozar y disponer","Límite: ley y derecho ajeno"],x:"El dueño de un apartamento puede arrendarlo o venderlo, respetando la ley y los derechos de otros.",m:["Propiedad plena","Nuda propiedad (separada del goce de la cosa)"],u:["Base de la acción reivindicatoria (art. 950).","Se acredita con título y su registro."],r:"Pensar que el dueño puede hacer cualquier cosa con su bien: la ley y el derecho ajeno lo limitan."},
+{a:"673",t:"MODOS DE ADQUIRIR EL DOMINIO",i:"🔑",d:"Los modos de adquirir el dominio son la ocupación, la accesión, la tradición, la sucesión por causa de muerte y la prescripción.",c:["Solo por alguno de estos modos se adquiere el dominio.","La sucesión y la prescripción se desarrollan en otras partes del código."],k:["Naturaleza: norma de enumeración","Función: delimitar las vías de adquisición","Concordancia: arts. 685, 713, 740, 1008, 1674, 2512 y 2519"],e:["1. Ocupación","2. Accesión","3. Tradición","4. Sucesión por causa de muerte","5. Prescripción"],x:"Alguien compra una casa (título) y se la entregan e inscriben (modo: tradición).",m:["Originarios: ocupación, accesión, prescripción","Derivativos: tradición, sucesión"],u:["Identificar el modo con el que el demandante dice ser dueño.","Si no hay modo válido, no hay dominio."],r:"Creer que firmar el contrato basta para ser dueño: se requiere el modo."},
+{a:"740",t:"TRADICIÓN",i:"🤝",d:"Modo de adquirir el dominio que consiste en la entrega que el dueño hace de la cosa a otro.",c:["Transfiere el dominio y los demás derechos reales.","Exige voluntad de quien entrega y de quien recibe."],k:["Naturaleza: modo de adquirir el dominio","Función: transferir derechos reales","Concordancia: arts. 665, 673, 754, 756 y 764"],e:["Tradente: facultad e intención de transferir","Adquirente: capacidad e intención de adquirir","Acto: entrega de la cosa"],x:"El vendedor entrega el vehículo con intención de transferirlo y el comprador lo recibe para adquirirlo.",m:["Tradición de bienes muebles","Tradición de derechos reales distintos del dominio"],u:["Demostrar que hubo entrega con intención de transferir.","Atacar la tradición si faltó facultad o capacidad de una parte."],r:"Confundir la tradición (modo) con el contrato (título)."},
+{a:"762",t:"POSESIÓN",i:"🌾",d:"Tenencia de una cosa determinada con ánimo de señor o dueño, por sí mismo o por otra persona que la tenga a su nombre.",c:["El poseedor es reputado dueño mientras otra persona no justifique serlo.","Puede ser protegida por las acciones posesorias."],k:["Naturaleza: situación de hecho con efectos jurídicos","Función: proteger a quien se comporta como dueño","Concordancia: arts. 785 y 2518"],e:["Elemento material: tenencia","Elemento subjetivo: ánimo de señor o dueño","Objeto: cosa determinada"],x:"Una familia cultiva y cerca un lote por años, actuando como dueña.",m:["Posesión ejercida directamente","Posesión ejercida por otro a su nombre"],u:["Se prueba con hechos positivos propios del dominio (art. 981): cercar, construir, sembrar.","Presupuesto de la prescripción."],r:"Confundir posesión con mera tenencia: falta el ánimo de señor o dueño."},
+{a:"950",t:"ACCIÓN REIVINDICATORIA",i:"⚖️",d:"La acción reivindicatoria o de dominio corresponde a quien tiene la propiedad plena o nuda, absoluta o fiduciaria de la cosa.",c:["Permite reclamar la cosa de quien la posee.","Protege al propietario frente a la privación de su bien."],k:["Naturaleza: acción real","Función: recuperar la cosa","Concordancia: arts. 665, 670, 978, 1988, 2278, 2342 y 2418"],e:["Demandante: propietario (pleno, nudo, absoluto o fiduciario)","Objeto: cosa de la que se es dueño","Fundamento: el dominio"],x:"El dueño de un lote demanda a quien lo ocupa sin título para que se lo restituya.",m:["Por propietario pleno","Por nudo propietario","Por propietario fiduciario"],u:["Se debe probar el dominio del demandante.","Se complementa con la acción publiciana para quien está en vías de adquirir."],r:"Demandar sin acreditar la calidad de propietario."}
+];
+
+// ===== ESTADO =====
+let currentTab='dashboard';
+let selectedCategory='all';
+let selectedBranchFilter='all';
+let selectedFlashFilter='all';
+let selectedGlossaryFilter='all';
+let examQuestions=[];
+let currentQuestion=0;
+let score=0;
+let wrongCount=0;
+let selectedAnswer=null;
+let currentSearch='';
+let stats=JSON.parse(localStorage.getItem('kioscoStats')||'{"normsViewed":0,"questionsAnswered":0,"correctAnswers":0,"flashcardsViewed":0,"streak":1,"lastVisit":""}');
+
+// ===== INICIALIZACIÓN =====
+function init(){
+updateStreak();
+updateStats();
+renderNorms();
+renderCategories();
+renderFilters();
+renderFlashcards();
+renderGlossary();
+renderTrending();
+updateCounts();
+setupTabs();
+initAI();
+}
+
+function updateStreak(){
+const today=new Date().toDateString();
+if(stats.lastVisit!==today){
+const yesterday=new Date(Date.now()-86400000).toDateString();
+if(stats.lastVisit===yesterday)stats.streak++;
+else if(stats.lastVisit)stats.streak=1;
+stats.lastVisit=today;
+saveStats();
+}
+document.getElementById('streakCount').textContent=stats.streak;
+}
+
+function saveStats(){localStorage.setItem('kioscoStats',JSON.stringify(stats));}
+
+function updateStats(){
+document.getElementById('statNorms').textContent=stats.normsViewed;
+document.getElementById('statQuestions').textContent=stats.questionsAnswered;
+document.getElementById('statCorrect').textContent=stats.questionsAnswered>0?Math.round((stats.correctAnswers/stats.questionsAnswered)*100)+'%':'0%';
+document.getElementById('statFlashcards').textContent=stats.flashcardsViewed;
+const maxNorms=norms.length,maxQ=100,maxFlash=flashcards.length;
+document.getElementById('barNorms').style.width=Math.min((stats.normsViewed/maxNorms)*100,100)+'%';
+document.getElementById('barQuestions').style.width=Math.min((stats.questionsAnswered/maxQ)*100,100)+'%';
+document.getElementById('barCorrect').style.width=(stats.questionsAnswered>0?(stats.correctAnswers/stats.questionsAnswered)*100:0)+'%';
+document.getElementById('barFlash').style.width=Math.min((stats.flashcardsViewed/maxFlash)*100,100)+'%';
+}
+
+function updateCounts(){
+const examenCount=norms.filter(n=>n.category.startsWith('examen')).length;
+const constCount=norms.filter(n=>n.category==='constitution'||n.category==='actions').length;
+const codeCount=norms.filter(n=>n.category==='code').length;
+const lawCount=norms.filter(n=>n.category==='law').length;
+document.getElementById('totalNorms').textContent=norms.length;
+document.getElementById('totalQuestions').textContent=questions.length;
+document.getElementById('totalConcepts').textContent=glossary.length;
+document.getElementById('countExamen').textContent=examenCount;
+document.getElementById('countConst').textContent=constCount;
+document.getElementById('countCod').textContent=codeCount;
+document.getElementById('countLeyes').textContent=lawCount;
+document.getElementById('countExam').textContent=questions.length;
+}
+
+function handleSearch(){
+currentSearch=document.getElementById('searchInput').value;
+if(currentSearch.length>2){
+if(currentSearch.includes('?')||currentSearch.toLowerCase().startsWith('qué')||currentSearch.toLowerCase().startsWith('como')||currentSearch.toLowerCase().startsWith('explica')){
+if(!document.getElementById('aiChatPanel').classList.contains('open'))toggleAI();
+document.getElementById('aiInput').value=currentSearch;
+}
+}
+renderNorms();
+}
+
+function setupTabs(){
+document.querySelectorAll('.nav-tab').forEach(tab=>{
+tab.addEventListener('click',()=>{
+document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+tab.classList.add('active');
+document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+document.getElementById('tab-'+tab.dataset.tab).classList.add('active');
+currentTab=tab.dataset.tab;
+if(tab.dataset.tab==='glosario')renderGlossary();
+});
+});
+}
+
+function getFilteredNorms(){
+if(!currentSearch)return norms;
+const q=currentSearch.toLowerCase();
+return norms.filter(n=>n.name.toLowerCase().includes(q)||n.code.toLowerCase().includes(q)||n.branch.toLowerCase().includes(q)||n.description.toLowerCase().includes(q)||String(n.year).includes(q));
+}
+
+function renderNorms(){
+const filtered=getFilteredNorms();
+const sections={'list-funcion-publica':'examen-funcion','list-contratacion':'examen-contratacion','list-control':'examen-control','list-procedimiento':'examen-procedimiento','list-constitucion':'constitution','list-acciones':'actions','list-codigos':'code'};
+for(const[listId,cat]of Object.entries(sections)){
+const el=document.getElementById(listId);
+if(!el)continue;
+const items=filtered.filter(n=>n.category===cat);
+el.innerHTML=items.length?items.map(normCardHTML).join(''):emptyStateHTML('No se encontraron normas');
+}
+renderLeyes(filtered);
+}
+
+function renderLeyes(filtered){
+const leyList=document.getElementById('list-leyes');
+let leyItems=filtered.filter(n=>n.category==='law');
+if(selectedBranchFilter!=='all')leyItems=leyItems.filter(n=>n.branch===selectedBranchFilter);
+leyList.innerHTML=leyItems.length?leyItems.map(normCardHTML).join(''):emptyStateHTML('No se encontraron leyes');
+}
+
+function renderFilters(){
+const branches=['all',...new Set(norms.filter(n=>n.category==='law').map(n=>n.branch))];
+const bar=document.getElementById('filterBar');
+bar.innerHTML=branches.map(b=>`<button class="filter-chip ${b===selectedBranchFilter?'active':''}" onclick="setBranchFilter('${b}')">${b==='all'?'Todas':b}</button>`).join('');
+}
+
+function setBranchFilter(b){selectedBranchFilter=b;renderFilters();renderLeyes(getFilteredNorms());}
+
+function normCardHTML(n){
+const branchClass='branch-'+n.branch.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+return`<div class="norm-card" onclick="openNorm(${n.id})"><div class="norm-icon">${n.icon}</div><div class="norm-body"><h4>${n.name}</h4><div class="norm-meta"><span class="norm-year">${n.year}</span><span class="norm-branch ${branchClass}">${n.branch}</span>${n.badge?`<span class="norm-badge">${n.badge}</span>`:''}</div><div class="norm-desc">${n.description}</div></div><div class="norm-arrow">→</div></div>`;
+}
+
+function emptyStateHTML(msg){return`<div class="empty-state"><div class="emoji">🔍</div><p>${msg}</p></div>`;}
+
+function openNorm(id){
+const n=norms.find(x=>x.id===id);
+if(!n)return;
+stats.normsViewed++;
+saveStats();
+updateStats();
+const branchClass='branch-'+n.branch.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+document.getElementById('modalHeader').innerHTML=`<div class="modal-meta"><span class="norm-branch ${branchClass}">${n.branch}</span><span class="norm-year">${n.year}</span>${n.badge?`<span class="norm-badge">${n.badge}</span>`:''}</div><h2>${n.name}</h2>`;
+let body=`<p class="modal-desc">${n.description}</p>`;
+if(n.keyArticles&&n.keyArticles.length){
+body+=`<div class="modal-section"><h4>📋 Artículos Clave</h4>${n.keyArticles.map(a=>`<div class="article-item"><strong>${a.article}</strong><span>${a.description}</span></div>`).join('')}</div>`;
+}
+if(n.examTips){
+body+=`<div class="modal-section"><h4>💡 Consejo del Profe IA</h4><div class="tip-box"><strong> Recomendación personalizada:</strong>${n.examTips}</div></div>`;
+}
+let linksHtml='';
+if(n.url)linksHtml+=`<a href="${n.url}" target="_blank" class="btn-funcion-publica">📖 Ver en Función Pública →</a>`;
+if(n.hasConceptMap)linksHtml+=`<button class="concept-map-btn" onclick="showConceptMap()">️ Ver Mapa Conceptual</button>`;
+body+=`<div class="code-ref"><div><div class="label">Código de Referencia</div><div class="code">${n.code}</div></div><div style="display:flex;gap:8px;flex-wrap:wrap;">${linksHtml}</div></div>`;
+if(n.hasConceptMap){
+body+=`<div id="conceptMapContainer" class="concept-map-section" style="display:none;"><h3>🗺️ Mapas Conceptuales del Código Civil</h3><p>Navega por los artículos clave del Código Civil colombiano.</p><section class="cc" id="cc-mapas"><h2 id="cc-titulo"></h2><nav id="cc-nav"></nav><div class="map" id="cc-map"></div><p class="nota">Texto base: Código Civil colombiano (Ley 57 de 1887).</p></section></div>`;
+}
+document.getElementById('modalBody').innerHTML=body;
+document.getElementById('modal').classList.add('open');
+document.body.style.overflow='hidden';
+}
+
+function showConceptMap(){
+const container=document.getElementById('conceptMapContainer');
+if(container.style.display==='none'){
+container.style.display='block';
+renderConceptMap();
+container.scrollIntoView({behavior:'smooth',block:'start'});
+}else{
+container.style.display='none';
+}
+}
+
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ===== MAPA CONCEPTUAL =====
+function renderConceptMap(){
+const COL=[["1. Descripción","#e0a100","#fff7dc"],["2. Consecuencia jurídica","#d8434a","#ffe9ea"],["3. Clasificación jurídica","#2b6fd6","#e6f0ff"],["4. Elementos jurídicos","#2e9a4d","#e5f6ea"],["5. Ejemplo práctico","#e8781a","#fff0e0"],["6. Modalidades","#7a4fc2","#efe8fa"],["7. Uso estratégico en litigio","#5b6470","#eceef1"],["Error común","#c4161c","#ffe3e4"]];
+function li(a){return"<ul>"+a.map(function(s){return"<li>"+s+"</li>"}).join("")+"</ul>"}
+function box(n,body){var c=COL[n];return'<div class="box" style="--c:'+c[1]+';--b:'+c[2]+'"><h3>'+c[0]+'</h3>'+body+'</div>'}
+function show(i){
+var o=ccConceptMapData[i];
+document.getElementById("cc-titulo").textContent="ARTÍCULO "+o.a+" – "+o.t;
+document.getElementById("cc-map").innerHTML=box(0,"<p>"+o.d+"</p>")+box(1,li(o.c))+box(2,li(o.k))+box(3,li(o.e))+'<div class="mid"><div class="ring" aria-hidden="true">'+o.i+'</div><b>Art. '+o.a+'</b></div>'+box(4,"<p>"+o.x+"</p>")+box(5,li(o.m))+box(6,li(o.u))+box(7,"<p>"+o.r+"</p>");
+var bs=document.querySelectorAll("#cc-nav button");
+for(var j=0;j<bs.length;j++)bs[j].setAttribute("aria-pressed",j===i);
+}
+var nav=document.getElementById("cc-nav");
+nav.innerHTML='';
+ccConceptMapData.forEach(function(o,i){
+var b=document.createElement("button");b.type="button";b.textContent="Art. "+o.a;
+b.onclick=function(){show(i)};nav.appendChild(b);
+});
+show(0);
+}
+
+// ===== GLOSARIO =====
+function renderGlossary(){
+const branches=['all',...new Set(glossary.map(g=>g.branch))];
+const filterBar=document.getElementById('glossaryFilterBar');
+filterBar.innerHTML=branches.map(b=>`<button class="filter-chip ${b===selectedGlossaryFilter?'active':''}" onclick="setGlossaryFilter('${b}')">${b==='all'?'Todas':b}</button>`).join('');
+const grid=document.getElementById('glossaryGrid');
+const filtered=selectedGlossaryFilter==='all'?glossary:glossary.filter(g=>g.branch===selectedGlossaryFilter);
+grid.innerHTML=filtered.map(g=>`<div class="glossary-item" onclick="showGlossaryDetail('${g.term.replace(/'/g,"\\'")}')"><h5>${g.term}</h5><p>${g.definition.substring(0,100)}...</p><span class="tag">${g.branch}</span></div>`).join('');
+}
+
+function setGlossaryFilter(b){selectedGlossaryFilter=b;renderGlossary();}
+
+function showGlossaryDetail(term){
+const g=glossary.find(x=>x.term===term);
+if(!g)return;
+document.getElementById('modalHeader').innerHTML=`<h2>${g.term}</h2>`;
+document.getElementById('modalBody').innerHTML=`<div class="modal-section"><h4> Definición</h4><p style="font-size:13px;line-height:1.6;">${g.definition}</p></div><div class="modal-section"><h4>🏷️ Rama del Derecho</h4><p style="font-size:12px;">${g.branch}</p></div><div class="modal-section"><h4>📜 Norma de Referencia</h4><p style="font-size:12px;">${g.norm}</p></div>`;
+document.getElementById('modal').classList.add('open');
+document.body.style.overflow='hidden';
+}
+
+// ===== FLASHCARDS =====
+function renderFlashcards(){
+const cats=['all',...new Set(flashcards.map(f=>f.cat))];
+const filterBar=document.getElementById('flashFilterBar');
+filterBar.innerHTML=cats.map(c=>`<button class="filter-chip ${c===selectedFlashFilter?'active':''}" onclick="setFlashFilter('${c}')">${c==='all'?'Todas':c}</button>`).join('');
+const grid=document.getElementById('flashcardGrid');
+const filtered=selectedFlashFilter==='all'?flashcards:flashcards.filter(f=>f.cat===selectedFlashFilter);
+grid.innerHTML=filtered.map((f,i)=>`<div class="flashcard" onclick="flipCard(this,${i})"><span class="fc-cat">${f.cat}</span><div class="fc-q">${f.q}</div><div class="fc-a">${f.a}</div><div class="fc-hint"> Clic para ver respuesta</div></div>`).join('');
+}
+
+function setFlashFilter(c){selectedFlashFilter=c;renderFlashcards();}
+function flipCard(el,idx){el.classList.toggle('flipped');if(el.classList.contains('flipped')){stats.flashcardsViewed++;saveStats();updateStats();}}
+
+function renderTrending(){
+const trending=[
+{q:'¿Qué es la Acción de Tutela?',a:'Mecanismo constitucional (Art. 86) para protección inmediata de derechos fundamentales.',cat:' Popular'},
+{q:'Art. 209 CP - Principios',a:'Igualdad, moralidad, eficacia, economía, celeridad, imparcialidad, publicidad.',cat:'⭐ Clave'},
+{q:'Diferencia Dolo vs Culpa',a:'Dolo: conoce y quiere. Culpa: infracción al deber de cuidado.',cat:'🎯 Examen'},
+{q:'Ley 909 de 2004',a:'Empleo público y carrera administrativa. Sistema de mérito.',cat:'📚 Norma'}
+];
+document.getElementById('trendingTopics').innerHTML=trending.map(t=>`<div class="flashcard" onclick="flipCard(this)"><span class="fc-cat">${t.cat}</span><div class="fc-q">${t.q}</div><div class="fc-a">${t.a}</div><div class="fc-hint">👆 Clic para ver</div></div>`).join('');
+}
+
+// ===== AGENTE IA =====
+function initAI(){
+document.getElementById('aiMessages').innerHTML=`<div class="ai-msg bot"><div class="msg-avatar">‍🏫</div><div class="msg-bubble">¡Hola! 👋 Soy el <strong>Profe Juan Osorio IA</strong>, tu asistente para el Examen de Idoneidad.<br><br>Puedo ayudarte con:<br>📚 Explicar normas y conceptos<br> Crear quizzes personalizados<br>💡 Darte consejos de estudio<br>🔍 Buscar artículos específicos<br><br>¿Sobre qué tema quieres que hablemos hoy?</div></div>`;
+}
+
+function toggleAI(){
+const panel=document.getElementById('aiChatPanel');
+panel.classList.toggle('open');
+if(panel.classList.contains('open'))setTimeout(()=>document.getElementById('aiInput').focus(),300);
+}
+
+function quickAsk(q){document.getElementById('aiInput').value=q;sendAIMessage();}
+
+function sendAIMessage(){
+const input=document.getElementById('aiInput');
+const msg=input.value.trim();
+if(!msg)return;
+const messages=document.getElementById('aiMessages');
+messages.innerHTML+=`<div class="ai-msg user"><div class="msg-avatar">Tú</div><div class="msg-bubble">${msg}</div></div>`;
+input.value='';
+const typing=document.createElement('div');
+typing.className='ai-msg bot';
+typing.id='typing';
+typing.innerHTML=`<div class="msg-avatar">👨‍🏫</div><div class="msg-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
+messages.appendChild(typing);
+messages.scrollTop=messages.scrollHeight;
+setTimeout(()=>{
+document.getElementById('typing')?.remove();
+const response=aiKnowledge.getResponse(msg);
+let html=`<div class="msg-bubble">${response.text.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}`;
+if(response.refs&&response.refs.length>0){
+html+='<div style="margin-top:10px;">';
+response.refs.forEach(r=>{html+=`<div class="ref-card" onclick="closeAIAndOpenNorm(${r.id})"><strong>📖 ${r.title}</strong><span>Clic para ver la norma completa →</span></div>`;});
+html+='</div>';
+}
+html+=`</div>`;
+messages.innerHTML+=`<div class="ai-msg bot"><div class="msg-avatar">👨‍🏫</div>${html}</div>`;
+messages.scrollTop=messages.scrollHeight;
+},800+Math.random()*600);
+}
+
+function closeAIAndOpenNorm(id){toggleAI();setTimeout(()=>openNorm(id),300);}
+
+// ===== EXAMEN =====
+function renderCategories(){
+const categories=[
+{id:'all',label:'Todas las Categorías',emoji:'🎯'},
+{id:'Derecho Administrativo',label:'Derecho Administrativo',emoji:'🏛️'},
+{id:'Teoría del Delito',label:'Teoría del Delito',emoji:'⚔️'},
+{id:'Función Pública',label:'Función Pública',emoji:'👔'},
+{id:'Contratación',label:'Contratación Estatal',emoji:'💼'},
+{id:'Control Fiscal',label:'Control Fiscal',emoji:'🔍'},
+{id:'Régimen Disciplinario',label:'Régimen Disciplinario',emoji:'⚖️'}
+];
+const grid=document.getElementById('categoryGrid');
+grid.innerHTML=categories.map(c=>{
+const count=c.id==='all'?questions.length:questions.filter(q=>q.category===c.id).length;
+return`<div class="category-card ${c.id===selectedCategory?'selected':''}" onclick="selectCategory('${c.id}')"><div class="emoji">${c.emoji}</div><div class="name">${c.label}</div><div class="count">${count} preguntas</div></div>`;
+}).join('');
+}
+
+function selectCategory(id){
+selectedCategory=id;
+renderCategories();
+const count=id==='all'?questions.length:questions.filter(q=>q.category===id).length;
+document.getElementById('exam-info').textContent=`${Math.min(10,count)} preguntas ${id==='all'?'de todas las categorías':'de '+id.toLowerCase()}`;
+}
+
+function startExam(){
+let pool=selectedCategory==='all'?[...questions]:questions.filter(q=>q.category===selectedCategory);
+if(pool.length===0){alert('No hay preguntas disponibles para esta categoría.');return;}
+pool=pool.sort(()=>Math.random()-0.5).slice(0,Math.min(10,pool.length));
+examQuestions=pool;
+currentQuestion=0;
+score=0;
+wrongCount=0;
+selectedAnswer=null;
+document.getElementById('exam-setup').style.display='none';
+document.getElementById('exam-results').style.display='none';
+document.getElementById('exam-player').style.display='block';
+renderQuestion();
+}
+
+function renderQuestion(){
+const q=examQuestions[currentQuestion];
+const progress=((currentQuestion+1)/examQuestions.length)*100;
+document.getElementById('exam-player').innerHTML=`
+<div class="progress-bar"><span>Pregunta ${currentQuestion+1} de ${examQuestions.length}</span><div class="score-display"><span class="correct">✓ ${score}</span><span class="wrong">✗ ${wrongCount}</span></div></div>
+<div class="progress-track"><div class="progress-fill" style="width:${progress}%"></div></div>
+<div class="question-card">
+<span class="q-category">${q.category}</span>
+<div class="q-text">${q.question}</div>
+<div class="options" id="options">
+${q.options.map((opt,i)=>`<button class="option" onclick="answer(${i})"><span class="option-letter">${String.fromCharCode(65+i)}</span><span>${opt}</span></button>`).join('')}
+</div>
+<div id="feedback"></div>
+</div>`;
+}
+
+function answer(i){
+if(selectedAnswer!==null)return;
+selectedAnswer=i;
+const q=examQuestions[currentQuestion];
+const correct=i===q.correctIndex;
+if(correct)score++;else wrongCount++;
+stats.questionsAnswered++;
+if(correct)stats.correctAnswers++;
+saveStats();
+updateStats();
+const options=document.querySelectorAll('.option');
+options.forEach((opt,idx)=>{
+opt.disabled=true;
+if(idx===q.correctIndex)opt.classList.add('correct');
+else if(idx===i)opt.classList.add('wrong');
+else opt.classList.add('dim');
+});
+document.getElementById('feedback').innerHTML=`<div class="explanation"><strong>${correct?'✓ ¡Correcto!':' Incorrecto'} — Explicación:</strong>${q.explanation}</div><button class="btn-primary" onclick="nextQuestion()" style="width:100%;justify-content:center;">${currentQuestion<examQuestions.length-1?'Siguiente Pregunta →':'Ver Resultados'}</button>`;
+}
+
+function nextQuestion(){
+selectedAnswer=null;
+if(currentQuestion<examQuestions.length-1){currentQuestion++;renderQuestion();}
+else finishExam();
+}
+
+function finishExam(){
+const pct=Math.round((score/examQuestions.length)*100);
+const emoji=pct>=80?'🏆':pct>=60?'🎉':pct>=40?'':'💪';
+const message=pct>=80?'¡Excelente! Dominas el tema.':pct>=60?'¡Buen trabajo! Sigue practicando.':pct>=40?'Necesitas repasar algunos temas.':'Te recomendamos estudiar más el tema.';
+document.getElementById('exam-player').style.display='none';
+document.getElementById('exam-results').style.display='block';
+document.getElementById('exam-results').innerHTML=`<div class="results"><div class="results-emoji">${emoji}</div><h2>¡Simulacro Completado!</h2><p style="color:var(--ink-soft);margin-bottom:12px;">${message}</p><div class="score-box"><div class="score-label">Tu puntuación</div><div class="score-big">${score} / ${examQuestions.length}</div><div class="score-pct">${pct}%</div></div><div class="results-actions"><button class="btn-primary" onclick="restartExam()">Intentar de Nuevo</button><button class="btn-secondary" onclick="backToSetup()">Volver a Selección</button></div></div>`;
+}
+
+function restartExam(){startExam();}
+function backToSetup(){document.getElementById('exam-player').style.display='none';document.getElementById('exam-results').style.display='none';document.getElementById('exam-setup').style.display='block';}
+
+// ===== INICIAR =====
 init();
 </script>
 </body>
 </html>
-
-
-              </script>
-                        </body>
-                        </html>
-                    
