@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kiosco Normativo | Examenidoneidad.co</title>
+<meta name="description" content="Kiosco Normativo con IA del Profe Juan Osorio. Constitución, códigos, leyes, simulacros, mapas conceptuales, glosario y banco de 400 preguntas de Derecho Penal.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/lora@5.0.17/index.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/public-sans@5.0.18/index.min.css">
 <style>
@@ -14,7 +15,7 @@ h1,h2,h3,h4{font-family:'Lora',Georgia,serif}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 .header{background:var(--navy);color:white;padding:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.15);position:sticky;top:0;z-index:100}
-.header-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.header-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:14px}
 .brand-icon{width:52px;height:52px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(201,162,39,.3)}
 .brand-icon svg{width:32px;height:32px;fill:white}
@@ -276,11 +277,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <nav class="nav-tabs"><div class="nav-inner">
 <button class="nav-tab active" data-tab="dashboard"><span class="icon">📊</span><span>Inicio</span></button>
-<button class="nav-tab" data-tab="examen"><span class="icon">🏛️</span><span>Idoneidad</span><span class="count" id="countExamen">0</span></button>
+<button class="nav-tab" data-tab="examen"><span class="icon">️</span><span>Idoneidad</span><span class="count" id="countExamen">0</span></button>
 <button class="nav-tab" data-tab="constitucion"><span class="icon">📜</span><span>Constitución</span><span class="count" id="countConst">0</span></button>
 <button class="nav-tab" data-tab="codigos"><span class="icon">📚</span><span>Códigos</span><span class="count" id="countCod">0</span></button>
 <button class="nav-tab" data-tab="leyes"><span class="icon">⚖️</span><span>Leyes</span><span class="count" id="countLeyes">0</span></button>
-<button class="nav-tab" data-tab="glosario"><span class="icon">📖</span><span>Glosario</span></button>
+<button class="nav-tab" data-tab="banco-penal"><span class="icon">⚔️</span><span>Banco Penal</span><span class="count" id="countPenal">400</span></button>
+<button class="nav-tab" data-tab="glosario"><span class="icon"></span><span>Glosario</span></button>
 <button class="nav-tab" data-tab="flashcards"><span class="icon">🎴</span><span>Flashcards</span></button>
 <button class="nav-tab" data-tab="entrenamiento"><span class="icon">🎯</span><span>Simulacro</span><span class="count" id="countExam">0</span></button>
 </div></nav>
@@ -294,7 +296,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <div class="tab-content active" id="tab-dashboard">
 <div class="progress-dashboard">
-<div class="progress-header"><h3>📊 Tu Progreso de Estudio</h3><div class="streak">🔥 <span id="streakCount">0</span> días</div></div>
+<div class="progress-header"><h3>📊 Tu Progreso de Estudio</h3><div class="streak"> <span id="streakCount">0</span> días</div></div>
 <div class="progress-grid">
 <div class="progress-item"><div class="num" id="statNorms">0</div><div class="lbl">Normas vistas</div><div class="progress-bar-mini"><div class="fill" id="barNorms" style="width:0%"></div></div></div>
 <div class="progress-item"><div class="num" id="statQuestions">0</div><div class="lbl">Preguntas resueltas</div><div class="progress-bar-mini"><div class="fill" id="barQuestions" style="width:0%"></div></div></div>
@@ -303,7 +305,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 </div>
 </div>
 <div class="guide">
-<div class="guide-icon"></div>
+<div class="guide-icon">🤖</div>
 <div>
 <h3>¡Hola! Soy el Profe IA</h3>
 <p>Tu asistente personal para el Examen de Idoneidad. Puedo ayudarte a entender normas, resolver dudas y guiarte en tu estudio.</p>
@@ -317,9 +319,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <div class="tab-content" id="tab-examen">
 <div class="section-label">📋 FUNCIÓN PÚBLICA Y CARRERA ADMINISTRATIVA</div>
 <div class="norm-list" id="list-funcion-publica"></div>
-<div class="section-label">💼 CONTRATACIÓN ESTATAL</div>
+<div class="section-label"> CONTRATACIÓN ESTATAL</div>
 <div class="norm-list" id="list-contratacion"></div>
-<div class="section-label">🛡️ CONTROL Y RESPONSABILIDAD</div>
+<div class="section-label">️ CONTROL Y RESPONSABILIDAD</div>
 <div class="norm-list" id="list-control"></div>
 <div class="section-label">⚖️ PROCEDIMIENTO ADMINISTRATIVO</div>
 <div class="norm-list" id="list-procedimiento"></div>
@@ -328,35 +330,47 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <div class="tab-content" id="tab-constitucion">
 <div class="section-label">📜 CONSTITUCIÓN POLÍTICA</div>
 <div class="norm-list" id="list-constitucion"></div>
-<div class="section-label">️ ACCIONES CONSTITUCIONALES</div>
+<div class="section-label">⚖️ ACCIONES CONSTITUCIONALES</div>
 <div class="norm-list" id="list-acciones"></div>
 </div>
 
 <div class="tab-content" id="tab-codigos">
-<div class="section-label">📚 CÓDIGOS VIGENTES</div>
+<div class="section-label"> CÓDIGOS VIGENTES</div>
 <div class="norm-list" id="list-codigos"></div>
 </div>
 
 <div class="tab-content" id="tab-leyes">
-<div class="section-label">️ LEYES IMPORTANTES</div>
+<div class="section-label">⚖️ LEYES IMPORTANTES</div>
 <div class="filter-bar" id="filterBar"></div>
 <div class="norm-list" id="list-leyes"></div>
 </div>
 
+<div class="tab-content" id="tab-banco-penal">
+<div class="exam-header">
+<h2>⚔️ Banco de 400 Preguntas - Ley 599 de 2000</h2>
+<p>Código Penal colombiano organizado por secciones. Incluye opción múltiple, verdadero/falso, relación, completamiento, jerarquización, respuesta corta y desarrollo.</p>
+</div>
+<div class="filter-bar" id="penalSectionFilter"></div>
+<div id="penalContent"></div>
+</div>
+
 <div class="tab-content" id="tab-glosario">
-<div class="exam-header"><h2> Glosario Jurídico Interactivo</h2><p>Conceptos clave organizados por rama del derecho. Haz clic en cada concepto para ver la definición completa.</p></div>
+<div class="exam-header"><h2>📖 Glosario Jurídico Interactivo</h2><p>Conceptos clave organizados por rama del derecho.</p></div>
 <div class="filter-bar" id="glossaryFilterBar"></div>
 <div class="glossary-section"><h3 id="glossaryTitle">📚 Todos los Conceptos</h3><div class="glossary-grid" id="glossaryGrid"></div></div>
 </div>
 
 <div class="tab-content" id="tab-flashcards">
-<div class="exam-header"><h2>🎴 Flashcards de Estudio</h2><p>Haz clic en cada tarjeta para ver la respuesta. Memoriza los conceptos clave del examen.</p></div>
+<div class="exam-header"><h2>🎴 Flashcards de Estudio</h2><p>Haz clic en cada tarjeta para ver la respuesta.</p></div>
 <div class="filter-bar" id="flashFilterBar"></div>
 <div class="flashcard-grid" id="flashcardGrid"></div>
 </div>
 
 <div class="tab-content" id="tab-entrenamiento">
-<div class="exam-header"><h2>🎯 Banco de Preguntas — Simulacro</h2><p>Selecciona una categoría y pon a prueba tus conocimientos.</p></div>
+<div class="exam-header">
+<h2> Banco de Preguntas — Simulacro</h2>
+<p>Selecciona una categoría y pon a prueba tus conocimientos.</p>
+</div>
 <div id="exam-setup">
 <div class="section-label">SELECCIONA UNA CATEGORÍA</div>
 <div class="category-grid" id="categoryGrid"></div>
@@ -374,13 +388,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <a href="http://wa.link/ab1gku" target="_blank" aria-label="WhatsApp">💬</a>
 <a href="https://www.youtube.com/@juandaon" target="_blank" aria-label="YouTube">▶️</a>
 <a href="https://www.tiktok.com/@examenidoneidad.co" target="_blank" aria-label="TikTok">🎵</a>
-<a href="https://www.instagram.com/juanosorion/" target="_blank" aria-label="Instagram">📷</a>
+<a href="https://www.instagram.com/juanosorion/" target="_blank" aria-label="Instagram"></a>
 </div>
 <p style="margin-top:10px;">© 2026 Kiosco Normativo - Examen de Idoneidad</p>
 </div>
 </footer>
 
-<div class="ai-chat-fab" onclick="toggleAI()"><span class="ai-icon">🤖</span><span class="badge">IA</span></div>
+<div class="ai-chat-fab" onclick="toggleAI()"><span class="ai-icon"></span><span class="badge">IA</span></div>
 
 <div class="ai-chat-panel" id="aiChatPanel">
 <div class="ai-chat-header">
@@ -394,6 +408,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <button class="quick-btn" onclick="quickAsk('¿Qué normas debo estudiar primero?')"> Plan de estudio</button>
 <button class="quick-btn" onclick="quickAsk('Diferencia entre dolo y culpa')">🔍 Dolo vs Culpa</button>
 <button class="quick-btn" onclick="quickAsk('¿Qué es la tradición en el Código Civil?')">🏠 Tradición</button>
+<button class="quick-btn" onclick="quickAsk('¿Qué es la tentativa?')">⚔️ Tentativa</button>
 </div>
 <div class="ai-chat-messages" id="aiMessages"></div>
 <div class="ai-chat-input">
@@ -404,33 +419,180 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
 <div class="modal">
-<div class="modal-header"><div style="flex:1;" id="modalHeader"></div><button class="modal-close" onclick="closeModal()">✕</button></div>
+<div class="modal-header"><div style="flex:1;" id="modalHeader"></div><button class="modal-close" onclick="closeModal()"></button></div>
 <div class="modal-body" id="modalBody"></div>
 </div>
 </div>
 
 <script>
-// ===== DATOS =====
+// ===== DATOS DE NORMAS =====
 const norms=[
 {id:100,code:'L909',name:'Ley 909 de 2004 — Empleo Público',year:2004,branch:'Administrativo',category:'examen-funcion',icon:'👔',description:'Normas sobre el empleo público y la carrera administrativa.',keyArticles:[{article:'Art. 1-5',description:'Objeto, ámbito y principios'},{article:'Art. 16-30',description:'Sistema de mérito, concursos'}],examTips:'Es la norma MÁS preguntada. Domina: tipos de empleos, concurso de méritos, situaciones administrativas y el rol de la CNSC.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=14861'},
-{id:110,code:'L80',name:'Ley 80 de 1993 — Estatuto General de Contratación',year:1993,branch:'Administrativo',category:'examen-contratacion',icon:'📑',description:'Estatuto General de Contratación de la Administración Pública.',keyArticles:[{article:'Art. 1-5',description:'Principios: transparencia, economía, responsabilidad'},{article:'Art. 20-30',description:'Modalidades de selección'}],examTips:'Domina los principios (especialmente selección objetiva y transparencia).',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=304'},
+{id:110,code:'L80',name:'Ley 80 de 1993 — Estatuto General de Contratación',year:1993,branch:'Administrativo',category:'examen-contratacion',icon:'',description:'Estatuto General de Contratación de la Administración Pública.',keyArticles:[{article:'Art. 1-5',description:'Principios: transparencia, economía, responsabilidad'},{article:'Art. 20-30',description:'Modalidades de selección'}],examTips:'Domina los principios (especialmente selección objetiva y transparencia).',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=304'},
 {id:120,code:'L1952',name:'Ley 1952 de 2019 — Código Disciplinario',year:2019,branch:'Administrativo',category:'examen-control',icon:'⚖️',description:'Código General Disciplinario.',keyArticles:[{article:'Art. 1-20',description:'Principios: legalidad, tipicidad, culpabilidad'},{article:'Art. 21-50',description:'Faltas: gravísimas, graves, leves'}],examTips:'Domina principios, clasificación de faltas y sanciones.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=90324'},
 {id:121,code:'L42',name:'Ley 42 de 1993 — Control Fiscal',year:1993,branch:'Administrativo',category:'examen-control',icon:'',description:'Organiza el sistema de control fiscal financiero.',keyArticles:[{article:'Art. 1-20',description:'Sistema de control fiscal'}],examTips:'Revisa organización del control fiscal y competencias de la Contraloría.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=289'},
 {id:130,code:'L1437',name:'Ley 1437 de 2011 — CPA y CCA',year:2011,branch:'Administrativo',category:'examen-procedimiento',icon:'📋',description:'Código de Procedimiento Administrativo y de lo Contencioso Administrativo.',keyArticles:[{article:'Art. 1-20',description:'Principios: debido proceso, imparcialidad, eficacia'},{article:'Art. 21-50',description:'Actos administrativos'},{article:'Art. 130-200',description:'Medios de control contencioso'}],examTips:'Domina principios, actos administrativos y medios de control.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41249'},
-{id:1,code:'CP',name:'Constitución Política de Colombia',year:1991,branch:'Constitucional',category:'constitution',icon:'📜',description:'NORMA DE NORMAS — Carta Política del Estado colombiano.',keyArticles:[{article:'Art. 1-2',description:'Fundamentos del Estado social de derecho'},{article:'Art. 86',description:'Acción de Tutela'},{article:'Art. 209',description:'Función administrativa: principios'},{article:'Art. 123-125',description:'Servidores públicos y carrera'},{article:'Art. 241',description:'Corte Constitucional'}],examTips:'Enfócate en Art. 1-2, 209, 125, 86.',badge:'NORMA DE NORMAS',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125'},
-{id:2,code:'TUT',name:'Acción de Tutela (Art. 86)',year:1991,branch:'Constitucional',category:'actions',icon:'️',description:'Mecanismo constitucional para protección inmediata de derechos fundamentales.',keyArticles:[{article:'Art. 86 CP',description:'Regulación constitucional'},{article:'Dec. 2591/1991',description:'Reglamentación'}],examTips:'Requisitos: inmediatez, subsidiariedad, derechos fundamentales.'},
-{id:3,code:'HC',name:'Habeas Corpus (Art. 30)',year:1991,branch:'Constitucional',category:'actions',icon:'🔓',description:'Protege la libertad personal ante detención ilegal.',keyArticles:[{article:'Art. 30 CP',description:'Regulación constitucional'}],examTips:'Procede cuando hay privación ilegal de la libertad.'},
-{id:4,code:'HD',name:'Habeas Data (Art. 15)',year:1991,branch:'Constitucional',category:'actions',icon:'🗄️',description:'Derecho a conocer, actualizar y rectificar datos personales.',keyArticles:[{article:'Art. 15 CP',description:'Regulación constitucional'},{article:'Ley 1581/2012',description:'Ley Estatutaria'}],examTips:'Relacionado con intimidad y protección de datos.'},
+{id:1,code:'CP',name:'Constitución Política de Colombia',year:1991,branch:'Constitucional',category:'constitution',icon:'',description:'NORMA DE NORMAS — Carta Política del Estado colombiano.',keyArticles:[{article:'Art. 1-2',description:'Fundamentos del Estado social de derecho'},{article:'Art. 86',description:'Acción de Tutela'},{article:'Art. 209',description:'Función administrativa: principios'},{article:'Art. 123-125',description:'Servidores públicos y carrera'},{article:'Art. 241',description:'Corte Constitucional'}],examTips:'Enfócate en Art. 1-2, 209, 125, 86.',badge:'NORMA DE NORMAS',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125'},
+{id:2,code:'TUT',name:'Acción de Tutela (Art. 86)',year:1991,branch:'Constitucional',category:'actions',icon:'🛡️',description:'Mecanismo constitucional para protección inmediata de derechos fundamentales.',keyArticles:[{article:'Art. 86 CP',description:'Regulación constitucional'},{article:'Dec. 2591/1991',description:'Reglamentación'}],examTips:'Requisitos: inmediatez, subsidiariedad, derechos fundamentales.'},
+{id:3,code:'HC',name:'Habeas Corpus (Art. 30)',year:1991,branch:'Constitucional',category:'actions',icon:'',description:'Protege la libertad personal ante detención ilegal.',keyArticles:[{article:'Art. 30 CP',description:'Regulación constitucional'}],examTips:'Procede cuando hay privación ilegal de la libertad.'},
+{id:4,code:'HD',name:'Habeas Data (Art. 15)',year:1991,branch:'Constitucional',category:'actions',icon:'️',description:'Derecho a conocer, actualizar y rectificar datos personales.',keyArticles:[{article:'Art. 15 CP',description:'Regulación constitucional'},{article:'Ley 1581/2012',description:'Ley Estatutaria'}],examTips:'Relacionado con intimidad y protección de datos.'},
 {id:10,code:'CC',name:'Código Civil — Ley 57 de 1887',year:1887,branch:'Civil',category:'code',icon:'📕',description:'Regula las relaciones jurídicas privadas entre personas.',keyArticles:[{article:'Art. 74',description:'Persona natural'},{article:'Art. 90',description:'Existencia legal'},{article:'Art. 633',description:'Persona jurídica'},{article:'Art. 669',description:'Dominio o propiedad'},{article:'Art. 673',description:'Modos de adquirir el dominio'},{article:'Art. 740',description:'Tradición'},{article:'Art. 762',description:'Posesión'},{article:'Art. 950',description:'Acción reivindicatoria'}],examTips:'Divide tu estudio: Personas, Bienes, Obligaciones, Contratos, Sucesiones.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=275',hasConceptMap:true},
 {id:11,code:'CGP',name:'Código General del Proceso — Ley 1564 de 2012',year:2012,branch:'Civil',category:'code',icon:'📗',description:'Moderniza el proceso civil colombiano.',keyArticles:[{article:'Art. 1-100',description:'Disposiciones generales'}],examTips:'Reemplaza al CPC. Enfócate en procesos ordinarios y ejecutivos.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=48425'},
 {id:13,code:'CPe',name:'Código Penal — Ley 599 de 2000',year:2000,branch:'Penal',category:'code',icon:'⚔️',description:'Código Penal colombiano. Parte General y Especial.',keyArticles:[{article:'Parte General (Arts. 1-100)',description:'Teoría del delito'},{article:'Arts. 21-24',description:'Dolo, culpa, preterintención'},{article:'Arts. 27-30',description:'Tentativa, autoría, participación'},{article:'Art. 32',description:'Causales de ausencia de responsabilidad'}],examTips:'Divide estudio: Parte General (teoría del delito) y Parte Especial (tipos penales).',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6388'},
-{id:14,code:'CPP',name:'Ley 906 de 2004 — Código de Procedimiento Penal',year:2004,branch:'Penal',category:'code',icon:'',description:'Sistema penal acusatorio.',keyArticles:[{article:'Art. 288',description:'Imputación'},{article:'Art. 301-302',description:'Flagrancia'},{article:'Art. 306-319',description:'Medidas de aseguramiento'}],examTips:'Domina etapas: indagación → imputación → acusación → juicio oral → sentencia.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=14787'},
+{id:14,code:'CPP',name:'Ley 906 de 2004 — Código de Procedimiento Penal',year:2004,branch:'Penal',category:'code',icon:'🔍',description:'Sistema penal acusatorio.',keyArticles:[{article:'Art. 288',description:'Imputación'},{article:'Art. 301-302',description:'Flagrancia'},{article:'Art. 306-319',description:'Medidas de aseguramiento'}],examTips:'Domina etapas: indagación → imputación → acusación → juicio oral → sentencia.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=14787'},
 {id:18,code:'CInf',name:'Ley 1098 de 2006 — Código de Infancia',year:2006,branch:'Civil',category:'code',icon:'👶',description:'Protección integral de niños, niñas y adolescentes.',keyArticles:[{article:'Art. 1-50',description:'Principios'},{article:'Art. 139+',description:'Responsabilidad penal adolescente'}],examTips:'Principio del interés superior del niño.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=22106'},
 {id:30,code:'L1581',name:'Ley 1581 de 2012 — Protección de Datos',year:2012,branch:'Administrativo',category:'law',icon:'🔒',description:'Ley Estatutaria de Protección de Datos Personales.',keyArticles:[{article:'Art. 1-20',description:'Principios: legalidad, finalidad, libertad, veracidad'}],examTips:'Principios: legalidad, finalidad, libertad, veracidad.'},
 {id:34,code:'L5/92',name:'Ley 5 de 1992 — Reglamento del Congreso',year:1992,branch:'Constitucional',category:'law',icon:'🏛️',description:'Reglamento del Congreso de la República.',keyArticles:[{article:'Art. 1-50',description:'Organización del Congreso'},{article:'Art. 50-150',description:'Procedimiento legislativo'},{article:'Art. 150-250',description:'Control político'}],examTips:'Domina quórum, mayorías, comisiones, procedimiento legislativo.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=11368'},
-{id:36,code:'L575',name:'Ley 575 de 2000 — Violencia Intrafamiliar',year:2000,branch:'Familia',category:'law',icon:'👨‍‍👧',description:'Regula los mecanismos de protección contra la violencia intrafamiliar.',keyArticles:[{article:'Art. 1-10',description:'Objeto y sujetos protegidos'},{article:'Art. 11-20',description:'Medidas de protección'}],examTips:'Conoce los tipos de violencia y las medidas de protección.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=399'}
+{id:36,code:'L575',name:'Ley 575 de 2000 — Violencia Intrafamiliar',year:2000,branch:'Familia',category:'law',icon:'👨‍👩‍👧',description:'Regula los mecanismos de protección contra la violencia intrafamiliar.',keyArticles:[{article:'Art. 1-10',description:'Objeto y sujetos protegidos'},{article:'Art. 11-20',description:'Medidas de protección'}],examTips:'Conoce los tipos de violencia y las medidas de protección.',url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=399'}
 ];
 
+// ===== BANCO DE 400 PREGUNTAS DE DERECHO PENAL =====
+const penalBankQuestions = [
+  // SECCIÓN A: OPCIÓN MÚLTIPLE (1-80)
+  {id:1,section:'A',type:'mc',question:'¿Qué ley expidió el Código Penal colombiano?',options:['Ley 599 de 2000','Ley 906 de 2004','Ley 1098 de 2006','Ley 1801 de 2016'],correctIndex:0,explanation:'La Ley 599 de 2000 expidió el Código Penal colombiano.'},
+  {id:2,section:'A',type:'mc',question:'El principio de legalidad exige, principalmente, que:',options:['La conducta y la sanción estén previstas previamente en la ley','El juez cree delitos según la gravedad del caso','La costumbre pueda crear penas','Toda conducta inmoral sea punible'],correctIndex:0,explanation:'El principio de legalidad (Art. 6 CP) exige que la conducta y la sanción estén previstas previamente en la ley.'},
+  {id:3,section:'A',type:'mc',question:'¿Cuál es uno de los principios rectores del Código Penal colombiano?',options:['La dignidad humana','La responsabilidad familiar','La peligrosidad social como único criterio','La obediencia automática'],correctIndex:0,explanation:'El Art. 1 CP consagra el respeto por la dignidad humana como principio rector.'},
+  {id:4,section:'A',type:'mc',question:'De acuerdo con la estructura general del delito, una conducta punible debe ser:',options:['Típica, antijurídica y culpable','Inmoral, dañina y pública','Grave, reiterada y confesada','Ilícita, escandalosa y conocida'],correctIndex:0,explanation:'Art. 9 CP: la conducta punible debe ser típica, antijurídica y culpable.'},
+  {id:5,section:'A',type:'mc',question:'La antijuridicidad material se relaciona con:',options:['La lesión o puesta en peligro de un bien jurídico sin justa causa','La simple desaprobación moral de una conducta','La existencia de una denuncia','La aceptación de los hechos por el acusado'],correctIndex:0,explanation:'Art. 11 CP: la antijuridicidad material es la lesión o puesta en peligro de un bien jurídico sin justa causa.'},
+  {id:6,section:'A',type:'mc',question:'El principio de culpabilidad se opone, en general, a:',options:['La responsabilidad penal objetiva','La aplicación de la ley favorable','La investigación de la conducta','La valoración de la prueba'],correctIndex:0,explanation:'El principio de culpabilidad (Art. 12 CP) se opone a la responsabilidad penal objetiva.'},
+  {id:7,section:'A',type:'mc',question:'En términos generales, el dolo supone que el agente:',options:['Conoce los hechos constitutivos de la infracción y quiere realizarlos','Actúa siempre sin conocer los hechos','Produce un resultado imprevisible','Comete una conducta sin voluntad ni conocimiento'],correctIndex:0,explanation:'Art. 22 CP: el dolo implica conocer los hechos y querer realizarlos.'},
+  {id:8,section:'A',type:'mc',question:'La culpa se relaciona con:',options:['La infracción del deber objetivo de cuidado','La decisión deliberada de causar siempre el resultado','La ausencia de cualquier resultado','La intención de cometer un delito distinto'],correctIndex:0,explanation:'Art. 23 CP: la culpa es la infracción del deber objetivo de cuidado.'},
+  {id:9,section:'A',type:'mc',question:'Una conducta es preterintencional cuando:',options:['El resultado previsible excede la intención inicial del agente','El agente no realiza ninguna acción','El resultado era totalmente ajeno a la conducta','El agente actúa con dolo eventual exclusivamente'],correctIndex:0,explanation:'Art. 24 CP: la preterintención ocurre cuando el resultado excede la intención inicial.'},
+  {id:10,section:'A',type:'mc',question:'En términos generales, hay tentativa cuando el agente:',options:['Inicia la ejecución y no consuma el delito por circunstancias ajenas a su voluntad','Solo imagina cometer un delito','Realiza cualquier acto preparatorio, sin excepción','Consuma completamente la conducta'],correctIndex:0,explanation:'Art. 27 CP: la tentativa requiere inicio de ejecución y falta de consumación por circunstancias ajenas.'},
+  {id:11,section:'A',type:'mc',question:'¿Cuál afirmación sobre los actos preparatorios es más adecuada?',options:['No constituyen automáticamente tentativa, aunque algunos pueden estar tipificados de manera autónoma','Siempre equivalen a delito consumado','Siempre se sancionan como tentativa','Nunca pueden ser objeto de regulación penal'],correctIndex:0,explanation:'Los actos preparatorios no son tentativa, salvo que la ley los tipifique autónomamente.'},
+  {id:12,section:'A',type:'mc',question:'La omisión consiste, en términos generales, en:',options:['No realizar una conducta que era jurídicamente exigible','Ejecutar necesariamente una acción violenta','Causar un resultado mediante cualquier acción','Ocultar una sentencia judicial'],correctIndex:0,explanation:'La omisión es el no hacer cuando existe un deber jurídico de actuar.'},
+  {id:13,section:'A',type:'mc',question:'La comisión por omisión puede plantearse cuando el agente:',options:['Tiene un deber jurídico de garante y omite evitar un resultado en las condiciones previstas por la ley','Presencia un hecho sin tener ningún deber jurídico','Desconoce cualquier circunstancia del caso','Se limita a realizar un acto preparatorio'],correctIndex:0,explanation:'Art. 25 CP: la comisión por omisión requiere posición de garante.'},
+  {id:14,section:'A',type:'mc',question:'Es autor de una conducta punible quien, en términos generales:',options:['La realiza directamente o la realiza por medio de otro como instrumento','Solo conoce a la víctima','Se entera del hecho después de consumado','No interviene en la conducta'],correctIndex:0,explanation:'Art. 29 CP: el autor realiza directamente la conducta o por medio de otro como instrumento.'},
+  {id:15,section:'A',type:'mc',question:'La coautoría se relaciona, entre otros elementos, con:',options:['Un plan común, división del trabajo y aporte esencial en los términos legales','La presencia casual de varias personas','La relación familiar entre los intervinientes','La ausencia de contribución al hecho'],correctIndex:0,explanation:'Art. 29 CP: la coautoría requiere plan común, división del trabajo y aporte esencial.'},
+  {id:16,section:'A',type:'mc',question:'El determinador es quien:',options:['Induce a otro a realizar una conducta antijurídica','Recibe una sentencia condenatoria','Investiga el delito','Presencia el hecho sin intervenir'],correctIndex:0,explanation:'Art. 30 CP: el determinador induce a otro a realizar la conducta.'},
+  {id:17,section:'A',type:'mc',question:'El cómplice es, en términos generales, quien:',options:['Contribuye o presta ayuda a la conducta punible, en las condiciones previstas por la ley','Siempre ejecuta por sí solo todos los elementos del delito','Decide la pena aplicable','Tiene necesariamente la calidad de servidor público'],correctIndex:0,explanation:'Art. 30 CP: el cómplice contribuye o presta ayuda a la conducta punible.'},
+  {id:18,section:'A',type:'mc',question:'El principio de favorabilidad permite, en los términos legales:',options:['Aplicar retroactivamente la ley penal más favorable','Aplicar siempre la ley más severa','Crear delitos por analogía','Eliminar la necesidad de probar la conducta'],correctIndex:0,explanation:'Art. 2 CP: la ley penal favorable se aplica retroactivamente.'},
+  {id:19,section:'A',type:'mc',question:'La prohibición de analogía en materia penal impide, en general:',options:['Crear o ampliar delitos y penas en perjuicio de la persona procesada','Interpretar el sentido de una norma','Aplicar una ley favorable','Consultar la jurisprudencia'],correctIndex:0,explanation:'La prohibición de analogía impide crear o ampliar delitos en perjuicio del procesado.'},
+  {id:20,section:'A',type:'mc',question:'El principio non bis in idem se refiere a la prohibición general de:',options:['Imputar más de una vez la misma conducta punible, con las salvedades legales','Investigar delitos cometidos en el extranjero','Imponer cualquier pena accesoria','Revisar una decisión judicial'],correctIndex:0,explanation:'Art. 8 CP: non bis in idem prohíbe juzgar dos veces por el mismo hecho.'},
+  {id:21,section:'A',type:'mc',question:'Las conductas culposas y preterintencionales son punibles:',options:['Cuando la ley las prevé expresamente','Siempre, aunque la ley no las contemple','Solo si existe confesión','Únicamente cuando hay varias víctimas'],correctIndex:0,explanation:'Art. 21 CP: solo son punibles cuando la ley las prevé expresamente.'},
+  {id:22,section:'A',type:'mc',question:'Según el Código Penal, las conductas punibles se dividen en:',options:['Delitos y contravenciones','Faltas civiles y disciplinarias','Conductas públicas y privadas','Acciones y demandas'],correctIndex:0,explanation:'El Código Penal divide las conductas punibles en delitos y contravenciones.'},
+  {id:23,section:'A',type:'mc',question:'El bien jurídico es, en términos generales:',options:['El interés o valor protegido por la norma penal','El objeto material que siempre se decomisa','La pena impuesta por el juez','La denuncia de la víctima'],correctIndex:0,explanation:'El bien jurídico es el interés o valor protegido por la norma penal.'},
+  {id:24,section:'A',type:'mc',question:'La inimputabilidad se relaciona principalmente con la incapacidad, al momento del hecho y bajo los presupuestos legales, para:',options:['Comprender la ilicitud de la conducta o determinarse de acuerdo con esa comprensión','Recordar el nombre de la víctima','Pagar una multa','Comparecer ante un juez'],correctIndex:0,explanation:'Art. 33 CP: inimputabilidad es la incapacidad de comprender la ilicitud o determinarse conforme a esa comprensión.'},
+  {id:25,section:'A',type:'mc',question:'Un error invencible sobre un elemento constitutivo del tipo penal puede:',options:['Excluir el dolo, sin descartar necesariamente toda modalidad culposa si la ley la contempla','Convertir automáticamente la conducta en tentativa','Agravar siempre la pena','Crear un delito nuevo'],correctIndex:0,explanation:'Art. 32 n.º 10 CP: el error invencible sobre un elemento del tipo excluye el dolo.'},
+  {id:26,section:'A',type:'mc',question:'El error invencible sobre la ilicitud de la conducta se relaciona con:',options:['La imposibilidad de comprender que la conducta era ilícita, bajo las condiciones legales','La intención de causar un resultado','La existencia de coautoría','La consumación del delito'],correctIndex:0,explanation:'Art. 32 n.º 11 CP: el error invencible sobre la ilicitud excluye la culpabilidad.'},
+  {id:27,section:'A',type:'mc',question:'El consentimiento del titular puede tener relevancia como causal de ausencia de responsabilidad cuando:',options:['Es válido y recae sobre un bien jurídico disponible, en los términos legales','Se obtiene mediante violencia','Lo otorga cualquier persona, aunque no sea titular','Se refiere a un bien indisponible, sin excepción'],correctIndex:0,explanation:'El consentimiento válido sobre bienes jurídicos disponibles puede excluir la responsabilidad.'},
+  {id:28,section:'A',type:'mc',question:'La legítima defensa requiere, en términos generales:',options:['Una agresión injusta actual o inminente y los demás requisitos legales','Una venganza posterior al peligro','Una agresión pasada y ya terminada','Una mera sospecha sin circunstancias adicionales'],correctIndex:0,explanation:'Art. 32 n.º 6 CP: legítima defensa requiere agresión injusta, actual o inminente.'},
+  {id:29,section:'A',type:'mc',question:'El estado de necesidad se relaciona con:',options:['La protección de un derecho frente a un peligro actual o inminente, según los requisitos legales','La autorización para cometer cualquier delito','La imposición automática de una pena','La existencia necesaria de un servidor público'],correctIndex:0,explanation:'Art. 32 n.º 7 CP: estado de necesidad protege un derecho frente a un peligro actual o inminente.'},
+  {id:30,section:'A',type:'mc',question:'¿Cuál afirmación describe mejor el dolo eventual?',options:['El agente prevé como probable la infracción y deja al azar que ocurra o no','El agente desconoce totalmente los hechos','El resultado era imposible de prever','El agente actúa únicamente por negligencia'],correctIndex:0,explanation:'Art. 22 inc. 2 CP: dolo eventual es cuando el agente prevé el resultado como probable y lo deja al azar.'},
+  {id:31,section:'A',type:'mc',question:'Como regla general, la ley penal colombiana se aplica a conductas realizadas:',options:['En el territorio nacional, sin perjuicio de las excepciones legales e internacionales','Exclusivamente por ciudadanos colombianos','Solo en el lugar donde reside la víctima','Únicamente en el exterior'],correctIndex:0,explanation:'Art. 14 CP: la ley penal se aplica a conductas realizadas en el territorio nacional.'},
+  {id:32,section:'A',type:'mc',question:'La responsabilidad penal es, en términos generales:',options:['Personal y ligada a la conducta atribuible al agente conforme a la ley','Automáticamente extensible a los familiares','Transferible por contrato','Siempre colectiva'],correctIndex:0,explanation:'La responsabilidad penal es personal e intransferible.'},
+  {id:33,section:'A',type:'mc',question:'Entre las funciones de la pena previstas por el Código Penal se encuentran:',options:['Prevención general, retribución justa, prevención especial, reinserción social y protección','Venganza privada y expulsión automática','Reparación civil exclusiva','Recaudo fiscal como única finalidad'],correctIndex:0,explanation:'Art. 3 CP: las funciones de la pena incluyen prevención general, retribución justa, prevención especial, reinserción social y protección.'},
+  {id:34,section:'A',type:'mc',question:'Las funciones de las medidas de seguridad incluyen, según el Código:',options:['Protección, curación, tutela y rehabilitación','Venganza, reparación y publicidad','Prevención general únicamente','Exclusión permanente sin revisión'],correctIndex:0,explanation:'Art. 69 CP: las medidas de seguridad tienen funciones de protección, curación, tutela y rehabilitación.'},
+  {id:35,section:'A',type:'mc',question:'¿Cuál de las siguientes puede ser una pena principal?',options:['La multa','La denuncia','La investigación','La prueba pericial'],correctIndex:0,explanation:'La multa es una pena principal prevista en el Código Penal.'},
+  {id:36,section:'A',type:'mc',question:'Una pena accesoria es, en términos generales:',options:['Una consecuencia penal que acompaña a la pena principal cuando la ley lo dispone','Una demanda civil','Una medida de prueba','Una decisión administrativa sin relación con el delito'],correctIndex:0,explanation:'Las penas accesorias acompañan a la pena principal cuando la ley lo dispone.'},
+  {id:37,section:'A',type:'mc',question:'¿Cuál pena está prohibida por la Constitución colombiana?',options:['La pena de muerte','La multa','La prisión','La inhabilitación'],correctIndex:0,explanation:'Art. 12 CP: está prohibida la pena de muerte, la tortura y los tratos crueles, inhumanos o degradantes.'},
+  {id:38,section:'A',type:'mc',question:'La determinación judicial de la pena debe realizarse:',options:['Con arreglo a la ley y a los criterios aplicables de individualización','Según la opinión pública exclusivamente','Sin considerar las circunstancias legales','Por decisión de la víctima'],correctIndex:0,explanation:'La pena se determina con arreglo a la ley y criterios de individualización.'},
+  {id:39,section:'A',type:'mc',question:'Una diferencia general entre pena y medida de seguridad es que:',options:['Tienen fundamentos y funciones jurídicas distintas','Son sinónimos en todos los casos','La medida de seguridad es una indemnización civil','La pena no requiere previsión legal'],correctIndex:0,explanation:'Pena y medida de seguridad tienen fundamentos y funciones jurídicas distintas.'},
+  {id:40,section:'A',type:'mc',question:'Las sanciones penales deben respetar, entre otros, los principios de:',options:['Necesidad, proporcionalidad y razonabilidad','Arbitrariedad y secreto','Venganza y discriminación','Automatismo y analogía'],correctIndex:0,explanation:'Las sanciones penales deben respetar los principios de necesidad, proporcionalidad y razonabilidad.'},
+  {id:41,section:'A',type:'mc',question:'El delito de homicidio protege principalmente:',options:['La vida humana','La fe pública','La administración pública','El patrimonio cultural'],correctIndex:0,explanation:'Art. 103 CP: el homicidio protege la vida humana.'},
+  {id:42,section:'A',type:'mc',question:'Para estudiar el feminicidio debe considerarse que:',options:['No basta, por sí solo, con que la víctima sea mujer; deben analizarse los elementos y contextos previstos legalmente','Es cualquier muerte accidental de una mujer','Solo existe si hay parentesco entre autor y víctima','Es una modalidad de daño en bien ajeno'],correctIndex:0,explanation:'El feminicidio requiere elementos y contextos específicos previstos legalmente.'},
+  {id:43,section:'A',type:'mc',question:'Las lesiones personales se relacionan principalmente con la afectación de:',options:['La integridad personal, el cuerpo o la salud','La fe pública','La administración de justicia','La moneda'],correctIndex:0,explanation:'Art. 111 CP: las lesiones personales afectan la integridad personal, el cuerpo o la salud.'},
+  {id:44,section:'A',type:'mc',question:'El secuestro afecta principalmente:',options:['La libertad individual','La fe pública','El medio ambiente','La administración pública'],correctIndex:0,explanation:'El secuestro afecta principalmente la libertad individual.'},
+  {id:45,section:'A',type:'mc',question:'La desaparición forzada se caracteriza, en términos generales, por:',options:['La privación de la libertad seguida de ocultamiento o negativa a reconocerla o informar el paradero, según la ley','La pérdida accidental de documentos','La simple inasistencia a una citación','La negativa a pagar una deuda'],correctIndex:0,explanation:'La desaparición forzada implica privación de libertad seguida de ocultamiento o negativa a informar.'},
+  {id:46,section:'A',type:'mc',question:'Los delitos contra la libertad, integridad y formación sexuales protegen, entre otros intereses:',options:['La libertad y la integridad sexual','Exclusivamente la propiedad','Únicamente la administración pública','La autenticidad de los documentos'],correctIndex:0,explanation:'Estos delitos protegen la libertad, integridad y formación sexuales.'},
+  {id:47,section:'A',type:'mc',question:'El genocidio requiere, entre otros elementos, la intención de destruir total o parcialmente:',options:['Un grupo protegido por la ley','Cualquier asociación comercial','Un documento público','Una entidad bancaria'],correctIndex:0,explanation:'El genocidio requiere intención de destruir total o parcialmente un grupo protegido.'},
+  {id:48,section:'A',type:'mc',question:'La tortura está relacionada, en términos generales, con:',options:['Infligir sufrimientos graves bajo las condiciones y finalidades previstas en la ley','Cualquier discusión verbal','Un daño exclusivamente patrimonial','Una infracción de tránsito'],correctIndex:0,explanation:'La tortura implica infligir sufrimientos graves bajo condiciones y finalidades previstas en la ley.'},
+  {id:49,section:'A',type:'mc',question:'El Código Penal contempla delitos contra personas y bienes protegidos por:',options:['El derecho internacional humanitario','El derecho comercial exclusivamente','Las normas de tránsito','El régimen tributario'],correctIndex:0,explanation:'El Código contempla delitos contra personas y bienes protegidos por el derecho internacional humanitario.'},
+  {id:50,section:'A',type:'mc',question:'La trata de personas puede presentarse:',options:['Dentro del país o con traslado internacional, según los hechos y la ley','Solo cuando se cruza una frontera internacional','Únicamente si hay compraventa formal','Solo cuando la víctima es menor de edad'],correctIndex:0,explanation:'La trata de personas puede presentarse dentro del país o con traslado internacional.'},
+  {id:51,section:'A',type:'mc',question:'El hurto se relaciona, en términos generales, con:',options:['Apoderarse de una cosa mueble ajena con propósito de obtener provecho','Destruir exclusivamente un documento público','Recibir una dádiva como servidor público','Omitir un deber de cuidado'],correctIndex:0,explanation:'Art. 239 CP: el hurto es apoderarse de una cosa mueble ajena con propósito de obtener provecho.'},
+  {id:52,section:'A',type:'mc',question:'La estafa se caracteriza, en términos generales, por:',options:['Inducir o mantener a otro en error mediante engaño, con efectos patrimoniales previstos por la ley','La simple pérdida accidental de un objeto','La privación de libertad sin otro elemento','La falsedad ideológica siempre cometida por un servidor público'],correctIndex:0,explanation:'Art. 246 CP: la estafa es inducir o mantener a otro en error mediante engaño con efectos patrimoniales.'},
+  {id:53,section:'A',type:'mc',question:'La extorsión consiste, en términos generales, en:',options:['Constreñir a otro a hacer, tolerar u omitir algo con propósito de obtener provecho ilícito','Apoderarse de una cosa sin ningún tipo de presión','Alterar necesariamente moneda extranjera','Incumplir cualquier contrato civil'],correctIndex:0,explanation:'Art. 244 CP: la extorsión es constreñir a otro con propósito de obtener provecho ilícito.'},
+  {id:54,section:'A',type:'mc',question:'El abuso de confianza se relaciona con la apropiación de un bien que:',options:['Había sido recibido bajo una relación de confianza o con una obligación determinada','Nunca estuvo en poder del agente','Pertenece siempre al Estado','Carece de dueño'],correctIndex:0,explanation:'Art. 252 CP: el abuso de confianza implica apropiación de un bien recibido bajo relación de confianza.'},
+  {id:55,section:'A',type:'mc',question:'El daño en bien ajeno se relaciona principalmente con:',options:['Destruir, inutilizar o dañar un bien ajeno en los términos legales','Alterar la libertad sexual','Recibir un soborno','Incumplir un deber de garante'],correctIndex:0,explanation:'Art. 265 CP: el daño en bien ajeno es destruir, inutilizar o dañar un bien ajeno.'},
+  {id:56,section:'A',type:'mc',question:'La receptación se relaciona, en general, con:',options:['Actuar respecto de bienes provenientes de una conducta delictiva, bajo los requisitos legales','Crear una ley penal','Imponer una medida de seguridad','Declarar falsamente ante un juez, necesariamente'],correctIndex:0,explanation:'La receptación implica actuar sobre bienes provenientes de una conducta delictiva.'},
+  {id:57,section:'A',type:'mc',question:'El lavado de activos se relaciona, de manera general, con:',options:['Operaciones sobre bienes de origen ilícito dirigidas a ocultar o encubrir ese origen, según la ley','Cualquier transacción comercial legal','La pérdida accidental de dinero','Una deuda civil vencida'],correctIndex:0,explanation:'El lavado de activos implica operaciones sobre bienes de origen ilícito para ocultar su origen.'},
+  {id:58,section:'A',type:'mc',question:'Los delitos contra el patrimonio económico protegen principalmente:',options:['Intereses patrimoniales','La administración de justicia exclusivamente','La vida exclusivamente','La autenticidad de los documentos únicamente'],correctIndex:0,explanation:'Los delitos contra el patrimonio económico protegen intereses patrimoniales.'},
+  {id:59,section:'A',type:'mc',question:'El peculado por apropiación se relaciona con:',options:['La apropiación de bienes o recursos vinculados a la función pública, en las condiciones legales','La apropiación de cualquier bien sin importar quién intervenga','La falsificación de moneda extranjera','La omisión de una declaración testimonial'],correctIndex:0,explanation:'El peculado por apropiación implica apropiación de bienes vinculados a la función pública.'},
+  {id:60,section:'A',type:'mc',question:'El cohecho se vincula principalmente con:',options:['La función pública y los beneficios relacionados con ella, en las modalidades legales','La libertad sexual','El medio ambiente exclusivamente','El daño accidental a bienes privados'],correctIndex:0,explanation:'El cohecho se vincula con la función pública y beneficios relacionados con ella.'},
+  {id:61,section:'A',type:'mc',question:'El cohecho por dar u ofrecer se relaciona principalmente con:',options:['La conducta de quien da u ofrece un beneficio indebido a un servidor público, según la ley','La conducta exclusiva del juez que dicta sentencia','La omisión de socorro','El apoderamiento de un bien mueble'],correctIndex:0,explanation:'El cohecho por dar u ofrecer implica dar u ofrecer un beneficio indebido a un servidor público.'},
+  {id:62,section:'A',type:'mc',question:'El prevaricato por acción se relaciona, en términos generales, con:',options:['Una decisión, resolución o dictamen manifiestamente contrario a la ley, emitido por servidor público en los términos legales','Cualquier error de digitación','La pérdida de un documento privado','La omisión de pagar una deuda'],correctIndex:0,explanation:'Art. 413 CP: el prevaricato por acción implica decisión manifiestamente contraria a la ley.'},
+  {id:63,section:'A',type:'mc',question:'Los delitos contra la fe pública protegen principalmente:',options:['La confianza en la autenticidad y veracidad de ciertos documentos, signos o medios regulados','La integridad física exclusivamente','El patrimonio natural únicamente','La libertad de locomoción solamente'],correctIndex:0,explanation:'Los delitos contra la fe pública protegen la confianza en documentos, signos o medios regulados.'},
+  {id:64,section:'A',type:'mc',question:'El falso testimonio se relaciona, en términos generales, con:',options:['Faltar a la verdad bajo las condiciones previstas por la ley ante autoridad competente','No recordar un dato irrelevante en una conversación privada','Negarse a celebrar un contrato','Perder un documento'],correctIndex:0,explanation:'El falso testimonio implica faltar a la verdad ante autoridad competente bajo las condiciones legales.'},
+  {id:65,section:'A',type:'mc',question:'El concierto para delinquir se relaciona con:',options:['El acuerdo de varias personas para cometer delitos, en las condiciones legales','La simple presencia en una reunión','La comisión accidental de una infracción','La discusión sobre una norma'],correctIndex:0,explanation:'Art. 340 CP: el concierto para delinquir es el acuerdo de varias personas para cometer delitos.'},
+  {id:66,section:'A',type:'mc',question:'Los delitos ambientales protegen principalmente:',options:['El ambiente y los recursos naturales, conforme a los tipos legales vigentes','La autenticidad de los documentos','La administración de justicia únicamente','La libertad de expresión exclusivamente'],correctIndex:0,explanation:'Los delitos ambientales protegen el ambiente y los recursos naturales.'},
+  {id:67,section:'A',type:'mc',question:'La violencia intrafamiliar está contemplada en el Código Penal dentro de los delitos relacionados con:',options:['La familia','La fe pública','La moneda','El régimen electoral exclusivamente'],correctIndex:0,explanation:'La violencia intrafamiliar está en los delitos contra la familia.'},
+  {id:68,section:'A',type:'mc',question:'Cuando un tipo penal exige una calidad especial del autor, como la de servidor público, esa calidad:',options:['Debe analizarse como parte de los elementos del tipo correspondiente','Es irrelevante en todos los casos','Se presume por el lugar donde ocurrió el hecho','Se transmite a todos los familiares'],correctIndex:0,explanation:'La calidad especial del autor es un elemento del tipo que debe analizarse.'},
+  {id:69,section:'A',type:'mc',question:'La parte general del Código Penal regula principalmente:',options:['Principios, aplicación de la ley, conducta punible y consecuencias jurídicas','Únicamente los delitos ambientales','Exclusivamente los delitos contra la vida','Solo el procedimiento de juicio oral'],correctIndex:0,explanation:'La parte general regula principios, aplicación de la ley, conducta punible y consecuencias jurídicas.'},
+  {id:70,section:'A',type:'mc',question:'La parte especial del Código Penal contiene principalmente:',options:['La descripción de conductas punibles y sus sanciones','Las reglas de tránsito','El régimen de contratación estatal','Las normas de procedimiento civil'],correctIndex:0,explanation:'La parte especial contiene la descripción de conductas punibles y sus sanciones.'},
+  {id:71,section:'A',type:'mc',question:'El artículo 10 del Código Penal exige, en términos generales, que los tipos penales sean definidos de manera:',options:['Inequívoca, expresa y clara','Secreta y flexible','Analógica y abierta a cualquier conducta','Exclusivamente consuetudinaria'],correctIndex:0,explanation:'Art. 10 CP: los tipos penales deben ser definidos de manera inequívoca, expresa y clara.'},
+  {id:72,section:'A',type:'mc',question:'Para sancionar una conducta culposa se requiere, en general, que:',options:['La modalidad culposa esté prevista por la ley','El juez la cree para el caso','El resultado sea grave, aunque la ley no lo contemple','Exista siempre una confesión'],correctIndex:0,explanation:'Art. 21 CP: las conductas culposas son punibles cuando la ley las prevé expresamente.'},
+  {id:73,section:'A',type:'mc',question:'En los delitos de resultado, el análisis puede requerir determinar:',options:['La relación causal entre la conducta y el resultado, conforme a la ley','La opinión pública sobre el caso','El domicilio de la víctima, exclusivamente','La existencia de un contrato civil'],correctIndex:0,explanation:'En los delitos de resultado se debe determinar la relación causal entre conducta y resultado.'},
+  {id:74,section:'A',type:'mc',question:'La diferencia entre una omisión propia y una posible comisión por omisión puede depender de:',options:['La estructura del tipo y, en esta última, de la posición de garante y los requisitos legales','La existencia de una denuncia anónima','La nacionalidad de la víctima','El monto de la indemnización'],correctIndex:0,explanation:'La comisión por omisión requiere posición de garante y requisitos legales específicos.'},
+  {id:75,section:'A',type:'mc',question:'En un delito de mera conducta, por regla general:',options:['La consumación no depende necesariamente de que se produzca un resultado separado','Siempre se requiere una lesión física','Se exige necesariamente daño patrimonial','No existe conducta humana'],correctIndex:0,explanation:'En los delitos de mera conducta la consumación no depende de un resultado separado.'},
+  {id:76,section:'A',type:'mc',question:'Para que haya tentativa, es necesario, en términos generales:',options:['El comienzo de ejecución y la falta de consumación por circunstancias ajenas al agente','Únicamente la intención interna','Una denuncia previa','La existencia de varias víctimas'],correctIndex:0,explanation:'Art. 27 CP: la tentativa requiere comienzo de ejecución y falta de consumación por circunstancias ajenas.'},
+  {id:77,section:'A',type:'mc',question:'Según la regla general sobre desistimiento voluntario de la tentativa:',options:['Puede excluir la pena por tentativa, sin perjuicio de los actos ya ejecutados que constituyan delito','Siempre equivale a delito consumado','Agrava automáticamente la pena','No tiene ninguna relevancia jurídica'],correctIndex:0,explanation:'El desistimiento voluntario puede excluir la pena por tentativa.'},
+  {id:78,section:'A',type:'mc',question:'En el estudio de delitos contra personas protegidas por el derecho internacional humanitario, es importante:',options:['Verificar las condiciones del tipo y la condición de persona o bien protegido','Presumir que toda víctima tiene esa condición','Analizar solo la nacionalidad del autor','Ignorar el contexto jurídico aplicable'],correctIndex:0,explanation:'Es importante verificar las condiciones del tipo y la condición de persona o bien protegido.'},
+  {id:79,section:'A',type:'mc',question:'Si una disposición de la Ley 599 ha sido reformada, para estudiar su contenido vigente conviene:',options:['Consultar el texto oficial consolidado y las decisiones pertinentes','Usar exclusivamente una edición antigua','Aplicar una versión sin fecha','Sustituir la ley por opiniones en redes sociales'],correctIndex:0,explanation:'Conviene consultar el texto oficial consolidado y las decisiones pertinentes.'},
+  {id:80,section:'A',type:'mc',question:'¿Cuál es el método más adecuado para resolver una pregunta sobre el alcance vigente de un tipo penal?',options:['Revisar el texto actualizado, sus reformas y la interpretación judicial aplicable','Basarse solo en el nombre del delito','Aplicar analogía en perjuicio del acusado','Prescindir de los elementos legales'],correctIndex:0,explanation:'El método adecuado es revisar el texto actualizado, sus reformas y la interpretación judicial.'},
+  // SECCIÓN B: VERDADERO O FALSO (81-140)
+  {id:81,section:'B',type:'vf',question:'La Ley 599 de 2000 expidió el Código Penal colombiano.',correctAnswer:true,explanation:'Correcto. La Ley 599 de 2000 expidió el Código Penal colombiano.'},
+  {id:82,section:'B',type:'vf',question:'El principio de legalidad permite crear delitos por analogía cuando la conducta parece inmoral.',correctAnswer:false,explanation:'Falso. El principio de legalidad prohíbe crear delitos por analogía.'},
+  {id:83,section:'B',type:'vf',question:'El Código Penal divide las conductas punibles en delitos y contravenciones.',correctAnswer:true,explanation:'Correcto. El Código Penal divide las conductas punibles en delitos y contravenciones.'},
+  {id:84,section:'B',type:'vf',question:'La conducta punible debe ser típica, antijurídica y culpable.',correctAnswer:true,explanation:'Correcto. Art. 9 CP: la conducta punible debe ser típica, antijurídica y culpable.'},
+  {id:85,section:'B',type:'vf',question:'Para condenar basta, en todos los casos, con que se haya producido un resultado dañoso.',correctAnswer:false,explanation:'Falso. Se requiere análisis de tipicidad, antijuridicidad y culpabilidad.'},
+  {id:86,section:'B',type:'vf',question:'El principio de culpabilidad se opone a la responsabilidad penal objetiva.',correctAnswer:true,explanation:'Correcto. El principio de culpabilidad se opone a la responsabilidad penal objetiva.'},
+  {id:87,section:'B',type:'vf',question:'La culpa y el dolo son conceptos idénticos.',correctAnswer:false,explanation:'Falso. Son conceptos distintos: el dolo implica conocimiento y voluntad; la culpa, infracción del deber de cuidado.'},
+  {id:88,section:'B',type:'vf',question:'En la preterintención, el resultado previsible excede la intención inicial del agente.',correctAnswer:true,explanation:'Correcto. Art. 24 CP: en la preterintención el resultado excede la intención inicial.'},
+  {id:89,section:'B',type:'vf',question:'La tentativa exige, en general, comienzo de ejecución y falta de consumación por circunstancias ajenas al agente.',correctAnswer:true,explanation:'Correcto. Art. 27 CP: la tentativa requiere comienzo de ejecución y falta de consumación por circunstancias ajenas.'},
+  {id:90,section:'B',type:'vf',question:'Todo acto preparatorio constituye automáticamente tentativa.',correctAnswer:false,explanation:'Falso. Los actos preparatorios no constituyen tentativa, salvo que la ley los tipifique autónomamente.'},
+  {id:91,section:'B',type:'vf',question:'La comisión por omisión puede analizarse cuando existe posición de garante y se cumplen los requisitos legales.',correctAnswer:true,explanation:'Correcto. La comisión por omisión requiere posición de garante y requisitos legales.'},
+  {id:92,section:'B',type:'vf',question:'Para valorar una omisión relevante puede ser necesario analizar si el agente tenía posibilidad de actuar.',correctAnswer:true,explanation:'Correcto. La posibilidad de actuar es un elemento relevante en la omisión.'},
+  {id:93,section:'B',type:'vf',question:'La coautoría exige que todos los intervinientes realicen materialmente exactamente la misma acción.',correctAnswer:false,explanation:'Falso. La coautoría requiere plan común, división del trabajo y aporte esencial, no necesariamente la misma acción.'},
+  {id:94,section:'B',type:'vf',question:'El cómplice y el autor son siempre la misma categoría de interviniente.',correctAnswer:false,explanation:'Falso. El cómplice y el autor son categorías distintas de intervención.'},
+  {id:95,section:'B',type:'vf',question:'El determinador induce a otro a realizar una conducta antijurídica.',correctAnswer:true,explanation:'Correcto. Art. 30 CP: el determinador induce a otro a realizar la conducta.'},
+  {id:96,section:'B',type:'vf',question:'La ley penal favorable puede aplicarse retroactivamente en los términos legales.',correctAnswer:true,explanation:'Correcto. Art. 2 CP: la ley penal favorable se aplica retroactivamente.'},
+  {id:97,section:'B',type:'vf',question:'Una ley penal posterior más desfavorable se aplica siempre retroactivamente.',correctAnswer:false,explanation:'Falso. La ley penal más desfavorable no se aplica retroactivamente.'},
+  {id:98,section:'B',type:'vf',question:'El non bis in idem prohíbe, como regla general y con las salvedades aplicables, imputar más de una vez la misma conducta punible.',correctAnswer:true,explanation:'Correcto. Art. 8 CP: non bis in idem prohíbe juzgar dos veces por el mismo hecho.'},
+  {id:99,section:'B',type:'vf',question:'Una misma conducta puede requerir análisis de concurso de tipos penales, según sus elementos y las reglas legales.',correctAnswer:true,explanation:'Correcto. Una misma conducta puede requerir análisis de concurso de tipos.'},
+  {id:100,section:'B',type:'vf',question:'Las penas y las medidas de seguridad tienen, en todos los casos, idéntico fundamento y función.',correctAnswer:false,explanation:'Falso. Tienen fundamentos y funciones jurídicas distintas.'},
+  {id:101,section:'B',type:'vf',question:'La multa puede ser una pena principal conforme al Código Penal.',correctAnswer:true,explanation:'Correcto. La multa es una pena principal.'},
+  {id:102,section:'B',type:'vf',question:'La multa nunca puede ser una sanción penal principal.',correctAnswer:false,explanation:'Falso. La multa sí puede ser una pena principal.'},
+  {id:103,section:'B',type:'vf',question:'La calidad de servidor público se limita siempre a las personas elegidas por voto popular.',correctAnswer:false,explanation:'Falso. La calidad de servidor público no se limita a los elegidos por voto popular.'},
+  {id:104,section:'B',type:'vf',question:'La legítima defensa exige analizar, entre otros aspectos, la agresión injusta y su actualidad o inminencia, conforme a la ley.',correctAnswer:true,explanation:'Correcto. La legítima defensa requiere agresión injusta, actual o inminente.'},
+  {id:105,section:'B',type:'vf',question:'Una represalia cuando el peligro ya terminó constituye necesariamente legítima defensa.',correctAnswer:false,explanation:'Falso. La represalia posterior no constituye legítima defensa.'},
+  {id:106,section:'B',type:'vf',question:'La coacción ajena insuperable puede ser relevante como causal de ausencia de responsabilidad.',correctAnswer:true,explanation:'Correcto. Art. 32 n.º 8 CP: la coacción ajena insuperable puede excluir la responsabilidad.'},
+  {id:107,section:'B',type:'vf',question:'Cualquier error elimina automáticamente toda responsabilidad penal.',correctAnswer:false,explanation:'Falso. Solo el error invencible elimina la responsabilidad; el vencible puede atenuarla.'},
+  {id:108,section:'B',type:'vf',question:'Un error invencible sobre un elemento del tipo puede excluir el dolo, sin descartar necesariamente una modalidad culposa legalmente prevista.',correctAnswer:true,explanation:'Correcto. Art. 32 n.º 10 CP: el error invencible excluye el dolo.'},
+  {id:109,section:'B',type:'vf',question:'La existencia de un diagnóstico médico excluye por sí sola y automáticamente la imputabilidad penal.',correctAnswer:false,explanation:'Falso. Se requiere análisis de la capacidad de comprender la ilicitud al momento del hecho.'},
+  {id:110,section:'B',type:'vf',question:'Para analizar un posible feminicidio basta siempre con constatar que la víctima era mujer.',correctAnswer:false,explanation:'Falso. Se requieren elementos y contextos específicos previstos legalmente.'},
+  {id:111,section:'B',type:'vf',question:'La ley penal colombiana se aplica, como regla general, a quien infrinja la ley en el territorio nacional, con las excepciones pertinentes.',correctAnswer:true,explanation:'Correcto. Art. 14 CP: la ley penal se aplica en el territorio nacional.'},
+  {id:112,section:'B',type:'vf',question:'La ley penal colombiana se aplica exclusivamente a ciudadanos colombianos.',correctAnswer:false,explanation:'Falso. Se aplica a quien cometa delitos en el territorio nacional, sin importar la nacionalidad.'},
+  {id:113,section:'B',type:'vf',question:'El homicidio protege principalmente la vida humana.',correctAnswer:true,explanation:'Correcto. Art. 103 CP: el homicidio protege la vida humana.'},
+  {id:114,section:'B',type:'vf',question:'Las lesiones personales se relacionan con la afectación de la integridad personal, el cuerpo o la salud.',correctAnswer:true,explanation:'Correcto. Art. 111 CP: las lesiones personales afectan la integridad personal.'},
+  {id:115,section:'B',type:'vf',question:'El secuestro afecta principalmente la libertad individual.',correctAnswer:true,explanation:'Correcto. El secuestro afecta principalmente la libertad individual.'},
+  {id:116,section:'B',type:'vf',question:'La desaparición forzada solo puede existir si se exige un rescate.',correctAnswer:false,explanation:'Falso. La desaparición forzada no requiere necesariamente exigencia de rescate.'},
+  {id:117,section:'B',type:'vf',question:'La desaparición forzada puede comprender la privación de la libertad seguida de ocultamiento o negativa a reconocerla o informar el paradero, según la ley.',correctAnswer:true,explanation:'Correcto. La desaparición forzada implica privación de libertad y ocultamiento o negativa a informar.'},
+  {id:118,section:'B',type:'vf',question:'El hurto es, principalmente, un delito contra la libertad sexual.',correctAnswer:false,explanation:'Falso. El hurto es un delito contra el patrimonio económico.'},
+  {id:119,section:'B',type:'vf',question:'La estafa puede relacionarse con el engaño, el error y una afectación patrimonial, conforme a sus elementos legales.',correctAnswer:true,explanation:'Correcto. La estafa implica engaño, error y afectación patrimonial.'},
+  {id:120,section:'B',type:'vf',question:'La extorsión puede consistir en constreñir a otro a hacer, tolerar u omitir algo con propósito de obtener provecho ilícito.',correctAnswer:true,explanation:'Correcto. Art. 244 CP: la extorsión implica constreñir a otro con propósito de obtener provecho ilícito.'},
+  {id:121,section:'B',type:'vf',question:'El abuso de confianza puede involucrar la apropiación de un bien recibido bajo una relación de confianza o con una obligación determinada.',correctAnswer:true,explanation:'Correcto. Art. 252 CP: el abuso de confianza implica apropiación de un bien recibido bajo relación de confianza.'},
+  {id:122,section:'B',type:'vf',question:'El daño en bien ajeno se limita exclusivamente a bienes de propiedad estatal.',correctAnswer:false,explanation:'Falso. El daño en bien ajeno puede recaer sobre bienes de cualquier propietario.'},
+  {id:123,section:'B',type:'vf',question:'La receptación puede recaer sobre bienes provenientes de una conducta delictiva, bajo los requisitos legales.',correctAnswer:true,explanation:'Correcto. La receptación implica actuar sobre bienes provenientes de una conducta delictiva.'},
+  {id:124,section:'B',type:'vf',question:'Todo acto de recibir dinero, sin importar su origen o contexto, constituye lavado de activos.',correctAnswer:false,explanation:'Falso. El lavado de activos requiere que los bienes sean de origen ilícito.'},
+  {id:125,section:'B',type:'vf',question:'El cohecho se relaciona con delitos contra la administración pública.',correctAnswer:true,explanation:'Correcto. El cohecho es un delito contra la administración pública.'},
+  {id:126,section:'B',type:'vf',question:'Un beneficio relacionado con el cohecho debe consistir necesariamente en dinero en efectivo.',correctAnswer:false,explanation:'Falso. El beneficio puede ser de diversa naturaleza, no necesariamente dinero en efectivo.'},
+  {id:127,section:'B',type:'vf',question:'El Código contempla modalidades de prevaricato relacionadas con la acción y con la omisión, conforme a sus tipos.',correctAnswer:true,explanation:'Correcto. Existen modalidades de prevaricato por acción y por omisión.'},
+  {id:128,section:'B',type:'vf',question:'El peculado por apropiación puede involucrar a un servidor público y bienes o recursos vinculados a su función, conforme a la ley.',correctAnswer:true,explanation:'Correcto. El peculado por apropiación involucra a un servidor público y bienes vinculados a su función.'},
+  {id:129,section:'B',type:'vf',question:'Los delitos contra la fe pública pueden proteger la confianza en documentos y otros medios regulados.',correctAnswer:true,explanation:'Correcto. Los delitos contra la fe pública protegen la confianza en documentos y medios regulados.'},
+  {id:130,section:'B',type:'vf',question:'El falso testimonio se configura por cualquier mentira pronunciada en una conversación privada.',correctAnswer:false,explanation:'Falso. El falso testimonio requiere declaración ante autoridad competente bajo las condiciones legales.'},
+  {id:131,section:'B',type:'vf',question:'El lavado de activos se relaciona con bienes de origen ilícito en las condiciones previstas legalmente.',correctAnswer:true,explanation:'Correcto. El lavado de activos implica bienes de origen ilícito.'},
+  {id:132,section:'B',type:'vf',question:'El concierto para delinquir se configura automáticamente por asistir a una reunión, sin otros elementos.',correctAnswer:false,explanation:'Falso. Se requiere acuerdo para cometer delitos, no solo asistir a una reunión.'},
+  {id:133,section:'B',type:'vf',question:'El genocidio se relaciona con la intención de destruir total o parcialmente un grupo protegido.',correctAnswer:true,explanation:'Correcto. El genocidio requiere intención de destruir total o parcialmente un grupo protegido.'},
+  {id:134,section:'B',type:'vf',question:'El Código contempla delitos contra personas y bienes protegidos por el derecho internacional humanitario.',correctAnswer:true,explanation:'Correcto. El Código contempla estos delitos.'},
+  {id:135,section:'B',type:'vf',question:'La trata de personas exige siempre el cruce de una frontera internacional.',correctAnswer:false,explanation:'Falso. La trata puede presentarse dentro del país o con traslado internacional.'},
+  {id:136,section:'B',type:'vf',question:'El Código Penal incluye delitos relacionados con el ambiente y los recursos naturales, conforme a la legislación vigente.',correctAnswer:true,explanation:'Correcto. El Código incluye delitos ambientales.'},
+  {id:137,section:'B',type:'vf',question:'El principio de dignidad humana protege exclusivamente a la víctima y nunca al procesado.',correctAnswer:false,explanation:'Falso. La dignidad humana protege a todas las personas, incluyendo al procesado.'},
+  {id:138,section:'B',type:'vf',question:'La imposición de una pena debe respetar la legalidad y los criterios de individualización aplicables.',correctAnswer:true,explanation:'Correcto. La pena debe imponerse respetando la legalidad y criterios de individualización.'},
+  {id:139,section:'B',type:'vf',question:'Un juez puede crear por analogía un delito para sancionar una conducta no prevista en la ley.',correctAnswer:false,explanation:'Falso. La prohibición de analogía impide crear delitos.'},
+  {id:140,section:'B',type:'vf',question:'La responsabilidad penal debe analizarse respecto de la conducta atribuible a cada interviniente.',correctAnswer:true,explanation:'Correcto. La responsabilidad penal es personal y debe analizarse respecto de cada interviniente.'}
+];
+
+// ===== GLOSARIO =====
 const glossary=[
 {term:'Silencio Administrativo Positivo',definition:'Cuando la administración no responde una petición dentro del término legal, se entiende que la solicitud fue aprobada. Aplica en casos específicos como licencias y permisos.',branch:'Administrativo',norm:'Ley 1437/2011, Art. 81'},
 {term:'Silencio Administrativo Negativo',definition:'Cuando la administración no responde una petición dentro del término legal, se entiende que la solicitud fue negada. Es la regla general.',branch:'Administrativo',norm:'Ley 1437/2011, Art. 82'},
@@ -490,6 +652,7 @@ const glossary=[
 {term:'Ponderación',definition:'Se aplica cuando existe un conflicto entre dos o más derechos fundamentales y no es posible resolverlo mediante la subsunción.',branch:'Argumentación',norm:'Jurisprudencia Corte Constitucional'}
 ];
 
+// ===== PREGUNTAS PARA SIMULACRO =====
 const questions=[
 {id:1,category:'Derecho Administrativo',difficulty:'medium',question:'Una entidad pública expide un acto administrativo imponiendo una obligación no prevista en la Constitución, ley o reglamento. ¿Cuál es la razón jurídica más sólida para cuestionar su validez?',options:['La administración solo puede actuar con autorización judicial previa.','La administración está sometida al principio de legalidad y requiere competencia atribuida por el ordenamiento.','Los particulares nunca pueden estar sometidos a obligaciones administrativas.','Todo acto requiere autorización del Congreso.'],correctIndex:1,explanation:'La administración está sometida al principio de legalidad. Solo puede actuar cuando el ordenamiento le atribuya competencia.'},
 {id:2,category:'Derecho Administrativo',difficulty:'easy',question:'¿Cuál situación corresponde mejor al concepto de descentralización administrativa?',options:['Un ministro imparte instrucciones a una dirección interna.','Un alcalde distribuye funciones entre secretarías.','La Nación transfiere competencias a una entidad con personería jurídica y autonomía administrativa.','Un superior revisa actuaciones de su subordinado.'],correctIndex:2,explanation:'La descentralización implica transferir competencias a una entidad con personería jurídica propia.'},
@@ -518,6 +681,32 @@ const questions=[
 {id:802,category:'Régimen Disciplinario',difficulty:'easy',question:'En materia disciplinaria, la responsabilidad objetiva está permitida cuando se demuestra que el servidor incumplió materialmente una obligación.',options:['Verdadero.','Falso.'],correctIndex:1,explanation:'FALSO. La responsabilidad disciplinaria requiere culpabilidad (dolo o culpa), no es objetiva.'},
 {id:803,category:'Régimen Disciplinario',difficulty:'medium',question:'Un servidor público es investigado disciplinariamente por una conducta. Posteriormente, la misma autoridad inicia nuevo proceso por los mismos hechos. ¿Qué principio resulta comprometido?',options:['Celeridad.','Non bis in idem.','Publicidad.','Coordinación administrativa.'],correctIndex:1,explanation:'El principio non bis in idem prohíbe ser investigado o sancionado dos veces por los mismos hechos.'}
 ];
+
+// Agregar preguntas 1-80 del banco penal al simulacro
+penalBankQuestions.filter(q => q.section === 'A').forEach(q => {
+  questions.push({
+    id: 1000 + q.id,
+    category: 'Derecho Penal - Ley 599/2000',
+    difficulty: q.id <= 20 ? 'easy' : q.id <= 50 ? 'medium' : 'hard',
+    question: q.question,
+    options: q.options,
+    correctIndex: q.correctIndex,
+    explanation: q.explanation
+  });
+});
+
+// Agregar preguntas 81-140 (V/F) al simulacro
+penalBankQuestions.filter(q => q.section === 'B').forEach(q => {
+  questions.push({
+    id: 2000 + q.id,
+    category: 'Derecho Penal - Ley 599/2000 (V/F)',
+    difficulty: 'medium',
+    question: q.question,
+    options: ['Verdadero', 'Falso'],
+    correctIndex: q.correctAnswer ? 0 : 1,
+    explanation: q.explanation
+  });
+});
 
 const flashcards=[
 {q:'¿Qué establece el Art. 209 CP?',a:'Principios de la función administrativa: igualdad, moralidad, eficacia, economía, celeridad, imparcialidad, publicidad.',cat:'Constitucional'},
@@ -549,45 +738,142 @@ const flashcards=[
 
 const aiKnowledge={
 conceptos:[
-{keywords:['silencio administrativo','positivo','negativo'],topic:'Silencio Administrativo',response:'**Silencio Administrativo:**\n\n **Positivo (Art. 81 Ley 1437/2011):** Cuando la administración no responde, se entiende APROBADA. Aplica en casos específicos como licencias.\n\n📌 **Negativo (Art. 82 Ley 1437/2011):** Cuando la administración no responde, se entiende NEGADA. Es la regla general.\n\n️ **Clave:** El silencio positivo es la excepción; el negativo es la regla.',refs:[{id:130,title:'Ley 1437 de 2011'}]},
-{keywords:['209','art 209','función administrativa','principios'],topic:'Artículo 209',response:'El **Art. 209 de la Constitución** es CLAVE. Principios de la función administrativa:\n\n Igualdad, Moralidad, Eficacia, Economía, Celeridad, Imparcialidad, Publicidad\n\n⚠️ "Supremacía judicial" NO está en el Art. 209 (pregunta trampa frecuente).',refs:[{id:1,title:'Constitución Política'}]},
+{keywords:['silencio administrativo','positivo','negativo'],topic:'Silencio Administrativo',response:'**Silencio Administrativo:**\n\n📌 **Positivo (Art. 81 Ley 1437/2011):** Cuando la administración no responde, se entiende APROBADA. Aplica en casos específicos como licencias.\n\n📌 **Negativo (Art. 82 Ley 1437/2011):** Cuando la administración no responde, se entiende NEGADA. Es la regla general.\n\n️ **Clave:** El silencio positivo es la excepción; el negativo es la regla.',refs:[{id:130,title:'Ley 1437 de 2011'}]},
+{keywords:['209','art 209','función administrativa','principios'],topic:'Artículo 209',response:'El **Art. 209 de la Constitución** es CLAVE. Principios de la función administrativa:\n\n📌 Igualdad, Moralidad, Eficacia, Economía, Celeridad, Imparcialidad, Publicidad\n\n⚠️ "Supremacía judicial" NO está en el Art. 209 (pregunta trampa frecuente).',refs:[{id:1,title:'Constitución Política'}]},
 {keywords:['dolo','culpa','diferencia'],topic:'Dolo vs Culpa',response:'**Dolo (Art. 22 CP):** El autor CONOCE y QUIERE el resultado.\n• Directo 1° grado: sabe y quiere\n• Eventual: prevé como probable y lo deja al azar\n\n**Culpa (Art. 23 CP):** Infracción al deber objetivo de cuidado.\n• Consciente: prevé pero confía en evitar\n• Inconsciente: no prevé pero debió prever\n\n🎯 **Diferencia clave:** En dolo eventual "acepta el riesgo"; en culpa consciente "confía en evitarlo".',refs:[{id:13,title:'Código Penal'}]},
 {keywords:['909','ley 909','empleo público'],topic:'Ley 909 de 2004',response:'La **Ley 909 de 2004** es la norma MÁS preguntada. Regula el empleo público y la carrera administrativa.\n\n📌 Tipos de empleos: carrera, libre nombramiento, período fijo\n📌 Sistema de mérito\n📌 **Concurso de méritos** obligatorio\n📌 **CNSC** administra las carreras (Art. 130 CP)\n\n⚠️ La provisionalidad NO otorga derechos de carrera.',refs:[{id:100,title:'Ley 909 de 2004'}]},
-{keywords:['bloque','constitucionalidad'],topic:'Bloque de Constitucionalidad',response:'El **Bloque de Constitucionalidad** (Art. 93 CP) integra:\n\n Constitución Política\n📌 Tratados de DDHH ratificados\n📌 Leyes estatutarias que desarrollan derechos fundamentales\n📌 Jurisprudencia de la Corte Constitucional',refs:[{id:1,title:'Constitución Política'}]},
-{keywords:['tradición','código civil','modo de adquirir'],topic:'Tradición',response:'**Tradición (Art. 740 CC):** Modo de adquirir el dominio que consiste en la entrega que el dueño hace de la cosa a otro, con ánimo de transferirla.\n\n**Requisitos:**\n Tradente: facultad e intención de transferir\n📌 Adquirente: capacidad e intención de adquirir\n📌 Acto: entrega de la cosa\n\n⚠️ **No confundir** la tradición (modo) con el contrato (título).',refs:[{id:10,title:'Código Civil'}]},
-{keywords:['posesión','tenencia','ánimo'],topic:'Posesión',response:'**Posesión (Art. 762 CC):** Tenencia de una cosa con ánimo de señor o dueño.\n\n**Elementos:**\n📌 Material: tenencia\n📌 Subjetivo: ánimo de señor o dueño\n Objeto: cosa determinada\n\n🎯 **Diferencia con mera tenencia:** Falta el ánimo de señor o dueño.',refs:[{id:10,title:'Código Civil'}]},
-{keywords:['dominio','propiedad','669'],topic:'Dominio',response:'**Dominio (Art. 669 CC):** Derecho real en una cosa corporal para gozar y disponer de ella, sin ir contra la ley o contra derecho ajeno.\n\n**Contenido:**\n📌 Usar\n📌 Gozar\n📌 Disponer\n\n**Límites:** La ley y los derechos de terceros.',refs:[{id:10,title:'Código Civil'}]},
+{keywords:['bloque','constitucionalidad'],topic:'Bloque de Constitucionalidad',response:'El **Bloque de Constitucionalidad** (Art. 93 CP) integra:\n\n📌 Constitución Política\n📌 Tratados de DDHH ratificados\n📌 Leyes estatutarias que desarrollan derechos fundamentales\n📌 Jurisprudencia de la Corte Constitucional',refs:[{id:1,title:'Constitución Política'}]},
+{keywords:['tradición','código civil','modo de adquirir'],topic:'Tradición',response:'**Tradición (Art. 740 CC):** Modo de adquirir el dominio que consiste en la entrega que el dueño hace de la cosa a otro, con ánimo de transferirla.\n\n**Requisitos:**\n📌 Tradente: facultad e intención de transferir\n📌 Adquirente: capacidad e intención de adquirir\n📌 Acto: entrega de la cosa\n\n⚠️ **No confundir** la tradición (modo) con el contrato (título).',refs:[{id:10,title:'Código Civil'}]},
+{keywords:['posesión','tenencia','ánimo'],topic:'Posesión',response:'**Posesión (Art. 762 CC):** Tenencia de una cosa con ánimo de señor o dueño.\n\n**Elementos:**\n Material: tenencia\n📌 Subjetivo: ánimo de señor o dueño\n📌 Objeto: cosa determinada\n\n🎯 **Diferencia con mera tenencia:** Falta el ánimo de señor o dueño.',refs:[{id:10,title:'Código Civil'}]},
+{keywords:['dominio','propiedad','669'],topic:'Dominio',response:'**Dominio (Art. 669 CC):** Derecho real en una cosa corporal para gozar y disponer de ella, sin ir contra la ley o contra derecho ajeno.\n\n**Contenido:**\n📌 Usar\n Gozar\n📌 Disponer\n\n**Límites:** La ley y los derechos de terceros.',refs:[{id:10,title:'Código Civil'}]},
 {keywords:['tutela','acción de tutela','art 86'],topic:'Acción de Tutela',response:'La **Acción de Tutela** (Art. 86 CP) es el mecanismo constitucional más importante para proteger derechos fundamentales. Es inmediata, preferente y no requiere abogado.\n\n**Requisitos:**\n• Inmediatez\n• Subsidiariedad\n• Derecho fundamental vulnerado\n\n**Reglamentada por:** Decreto 2591 de 1991.',refs:[{id:2,title:'Acción de Tutela'}]},
 {keywords:['1437','cpa','cca'],topic:'Ley 1437 de 2011',response:'La **Ley 1437 de 2011** contiene el CPA y CCA.\n\n**Principios (Art. 3):**\n📌 Debido proceso, Imparcialidad, Eficacia, Celeridad, Publicidad\n\n**Medios de control:**\n• Nulidad simple\n• Nulidad y restablecimiento del derecho\n• Reparación directa\n• Controversias contractuales',refs:[{id:130,title:'Ley 1437 de 2011'}]},
 {keywords:['80','ley 80','contratación'],topic:'Ley 80 de 1993',response:'La **Ley 80 de 1993** es el Estatuto General de Contratación.\n\n**Principios:**\n📌 Transparencia, Economía, Responsabilidad, Selección objetiva\n\n**Modalidades:**\n• Licitación pública\n• Concurso de méritos\n• Selección abreviada\n• Contratación directa (causales taxativas)\n• Mínima cuantía',refs:[{id:110,title:'Ley 80 de 1993'}]},
 {keywords:['1952','disciplinario'],topic:'Ley 1952 de 2019',response:'La **Ley 1952 de 2019** es el Código General Disciplinario.\n\n**Principios:** Legalidad, Tipicidad, Culpabilidad, Favorabilidad, Non bis in idem\n\n**Faltas:** Gravísimas, Graves, Leves\n\n**Sanciones:** Destitución, Suspensión, Multa, Inhabilidad',refs:[{id:120,title:'Ley 1952 de 2019'}]},
 {keywords:['control fiscal','contraloría'],topic:'Control Fiscal',response:'El **Control Fiscal** (Ley 42 de 1993, Art. 267 CP):\n📌 Es **posterior y selectivo**\n📌 Lo ejerce la Contraloría\n📌 Aplica a entidades públicas Y particulares\n\n⚠️ La Contraloría VIGILA pero no ADMINISTRA.',refs:[{id:121,title:'Ley 42 de 1993'}]},
-{keywords:['plan de estudio','qué estudiar'],topic:'Plan de Estudio',response:'🎯 **Plan de estudio:**\n\n**PRIORIDAD ALTA (60%):**\n1️ Ley 909 de 2004\n2️⃣ Ley 80 de 1993\n3️⃣ Ley 1437 de 2011\n4️⃣ Art. 209 CP\n5️⃣ Ley 1952 de 2019\n\n**PRIORIDAD MEDIA:**\n6️⃣ Ley 42 de 1993\n7️ Ley 678 de 2001\n8️⃣ Decreto 1083 de 2015\n9️⃣ Ley 1755 de 2015\n\n💡 Usa las flashcards y simulacros diariamente.',refs:[]},
-{keywords:['hola','buenos','hey','saludos'],topic:'Saludo',response:'¡Hola! 👋 Soy el Profe Juan Osorio IA. Puedo ayudarte con:\n\n📚 Explicar normas y conceptos\n🎯 Crear quizzes personalizados\n💡 Consejos de estudio\n🔍 Buscar artículos específicos\n\n¿Sobre qué tema quieres que hablemos?',refs:[]},
-{keywords:['gracias','thank','agradezco'],topic:'Agradecimiento',response:'¡De nada! 😊 Estoy aquí para ayudarte. Si tienes otra duda, pregúntame sin miedo.',refs:[]}
+{keywords:['plan de estudio','qué estudiar'],topic:'Plan de Estudio',response:' **Plan de estudio:**\n\n**PRIORIDAD ALTA (60%):**\n1️⃣ Ley 909 de 2004\n2️⃣ Ley 80 de 1993\n3️⃣ Ley 1437 de 2011\n4️⃣ Art. 209 CP\n5️⃣ Ley 1952 de 2019\n\n**PRIORIDAD MEDIA:**\n6️⃣ Ley 42 de 1993\n7️⃣ Ley 678 de 2001\n8️ Decreto 1083 de 2015\n9️⃣ Ley 1755 de 2015\n\n💡 Usa las flashcards y simulacros diariamente.',refs:[]},
+{keywords:['hola','buenos','hey','saludos'],topic:'Saludo',response:'¡Hola! 👋 Soy el Profe Juan Osorio IA. Puedo ayudarte con:\n\n Explicar normas y conceptos\n🎯 Crear quizzes personalizados\n💡 Consejos de estudio\n🔍 Buscar artículos específicos\n\n¿Sobre qué tema quieres que hablemos?',refs:[]},
+{keywords:['gracias','thank','agradezco'],topic:'Agradecimiento',response:'¡De nada! 😊 Estoy aquí para ayudarte. Si tienes otra duda, pregúntame sin miedo.',refs:[]},
+{keywords:['tentativa','desistimiento'],topic:'Tentativa',response:'**Tentativa (Art. 27 CP):**\n📌 Inicio de ejecución con actos idóneos\n📌 Consumación no se produce por causas AJENAS al autor\n\n**Tipos:**\n• Inacabada: interrumpe antes de agotar actos\n• Acabada: agota actos pero no hay resultado\n\n**Desistimiento voluntario:**\n📌 Autor abandona por su propia voluntad\n📌 O impide el resultado\n📌 Solo responde por actos ya ejecutados que sean delito\n\n⚠️ Si abandona por temor a ser capturado, NO hay desistimiento, hay tentativa.',refs:[{id:13,title:'Código Penal'}]},
+{keywords:['autoría','participación','cómplice','determinador','coautor'],topic:'Autoría y Participación',response:'**Autor (Art. 29 CP):** Realiza directamente la conducta o tiene dominio del hecho.\n• Directo, Mediato, Coautor\n\n**Participación (Art. 30 CP):**\n• **Determinador:** hace nacer la decisión (misma pena del autor)\n• **Cómplice:** ayuda a decisión ya tomada (pena rebajada)\n\n🎯 **Clave:** Determinador CREA la voluntad; cómplice AYUDA a voluntad ya formada.\n\n**Dominio del hecho:** Criterio para distinguir autor de partícipe.',refs:[{id:13,title:'Código Penal'}]},
+{keywords:['error tipo','error prohibición'],topic:'Error de Tipo vs Error de Prohibición',response:'**Error de Tipo (Art. 32 n.º 10 CP):**\n📌 Recae sobre ELEMENTOS DEL TIPO (hechos)\n📌 Ej: creer que la cosa es propia\n• Invencible: excluye dolo Y culpa\n• Vencible: excluye dolo, deja culpa si el tipo la admite\n\n**Error de Prohibición (Art. 32 n.º 11 CP):**\n Recae sobre la LICITUD (cree que es legal)\n• Invencible: excluye culpabilidad\n• Vencible: ATENÚA la pena\n\n🎯 **Diferencia clave:** Tipo = sobre hechos; Prohibición = sobre licitud.',refs:[{id:13,title:'Código Penal'}]},
+{keywords:['legítima defensa'],topic:'Legítima Defensa',response:'**Legítima Defensa (Art. 32 n.º 6 CP):**\nCausal de JUSTIFICACIÓN que elimina la antijuridicidad.\n\n**Requisitos:**\n📌 Agresión **injusta** (ilegítima)\n📌 **Actual o inminente** (no pasada)\n📌 **Racionalidad del medio** empleado\n📌 **No provocación**\n\n**Privilegiada:** Presunción cuando penetran a tu habitación o dependencias.\n\n⚠️ Si la agresión ya terminó y persigues al agresor, hay EXCESO.',refs:[{id:13,title:'Código Penal'}]},
+{keywords:['peculado','cohecho','concusión','prevaricato'],topic:'Delitos contra la Administración Pública',response:'**Peculado (Art. 593 CP):** Servidor público que se apodera de bienes confiados.\n\n**Cohecho (Arts. 405-407 CP):** Servidor público que recibe dinero o dádiva.\n• Propio: omite/retarda acto\n• Impropio: ejecuta acto debido\n\n**Concusión (Art. 404 CP):** Servidor público que EXIGE (abusa de su posición).\n\n**Prevaricato (Art. 413 CP):** Servidor público que dicta resolución contraria a la ley.\n\n🎯 **Diferencia clave:** Concusión = EXIGE; Cohecho = RECIBE.',refs:[{id:13,title:'Código Penal'}]},
+{keywords:['hurto','estafa','extorsión','abuso confianza'],topic:'Delitos contra el Patrimonio',response:'**Hurto (Art. 239 CP):** Apoderarse de cosa mueble ajena con propósito de provecho.\n\n**Estafa (Art. 246 CP):** Inducir a otro en error mediante artificios o engaños para obtener provecho ilícito.\n\n**Extorsión (Art. 244 CP):** Constreñir a otro a obtener provecho ilícito.\n\n**Abuso de Confianza (Art. 252 CP):** Perjudicar a otro disponiendo de cosa recibida en depósito, comisión, administración o tenencia.\n\n **Diferencia clave:**\n• Hurto: apoderarse sin consentimiento\n• Estafa: víctima entrega por engaño\n• Extorsión: víctima entrega por constreñimiento\n• Abuso de confianza: ya tenía tenencia legítima',refs:[{id:13,title:'Código Penal'}]}
 ],
+saludos:['hola','buenos días','buenas tardes','buenas noches','hey','saludos'],
+agradecimientos:['gracias','thank','te agradezco','muy amable'],
 getResponse(query){
 const q=query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-for(const c of this.conceptos){
-for(const kw of c.keywords){
+if(this.saludos.some(s=>q.includes(s))){
+return{text:'¡Hola! 👋 Soy el Profe Juan Osorio IA. Puedo ayudarte con:\n\n📚 Explicar normas y conceptos\n🎯 Crear quizzes personalizados\n💡 Consejos de estudio\n🔍 Buscar artículos específicos\n\n¿Sobre qué tema quieres que hablemos?',refs:[]};
+}
+if(this.agradecimientos.some(s=>q.includes(s))){
+return{text:'¡De nada! 😊 Estoy aquí para ayudarte. Si tienes otra duda, pregúntame sin miedo.',refs:[]};
+}
+let bestMatch=null,bestScore=0;
+for(const concept of this.conceptos){
+let score=0;
+for(const kw of concept.keywords){
 const kwNorm=kw.normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-if(q.includes(kwNorm))return{text:c.response,refs:c.refs||[],topic:c.topic};
+if(q.includes(kwNorm))score+=kwNorm.length;
 }
+if(score>bestScore){bestScore=score;bestMatch=concept;}
 }
-return{text:'Hmm, no tengo una respuesta específica para eso, pero puedo ayudarte con:\n\n📜 **Acciones constitucionales**\n⚖️ **Teoría del delito**\n👔 **Función pública**\n💼 **Contratación estatal**\n🛡️ **Control fiscal y disciplinario**\n🏠 **Código Civil**\n🎯 **Plan de estudio**\n\n¿Sobre cuál de estos temas quieres que hablemos?',refs:[]};
+if(bestMatch&&bestScore>0){
+return{text:bestMatch.response,refs:bestMatch.refs||[],topic:bestMatch.topic};
+}
+return{text:'Hmm, no tengo una respuesta específica para eso, pero puedo ayudarte con:\n\n📜 **Acciones constitucionales**\n⚖️ **Teoría del delito**\n👔 **Función pública**\n💼 **Contratación estatal**\n🛡️ **Control fiscal y disciplinario**\n⚔️ **Derecho Penal (Ley 599/2000)**\n **Código Civil**\n **Plan de estudio**\n\n¿Sobre cuál de estos temas quieres que hablemos?',refs:[]};
 }
 };
 
 const ccConceptMapData=[
 {a:"74",t:"PERSONA NATURAL",i:"🧑‍‍🧑",d:"Son personas todos los individuos de la especie humana, sea cual sea su edad, sexo, estirpe o condición.",c:["Todo ser humano es sujeto de derechos y obligaciones.","Nadie puede ser excluido de la condición de persona."],k:["Naturaleza: norma definitoria","Función: reconocer la personalidad","Concordancia: C.N. arts. 13, 14, 15 y 17"],e:["Sujeto: individuo de la especie humana","Criterio: pertenecer a la especie humana","Irrelevantes: edad, sexo, estirpe, condición"],x:"Un menor de edad o un extranjero también es persona y titular de derechos.",m:["Persona natural (art. 74)","Persona jurídica (art. 633)"],u:["Fundamenta que cualquier individuo puede ser parte en un proceso.","Se combina con las reglas de existencia legal (art. 90)."],r:"Confundir ser persona con poder actuar por sí mismo: son cosas distintas."},
 {a:"90",t:"EXISTENCIA LEGAL",i:"👶",d:"La existencia legal de toda persona principia al nacer, esto es, al separarse completamente de su madre.",c:["La criatura que muere en el vientre o antes de separarse por completo se reputa no haber existido jamás.","Tampoco existió quien no sobrevivió a la separación ni un momento."],k:["Naturaleza: norma de determinación","Función: fijar el inicio de la personalidad","Concordancia: art. 1019"],e:["Hecho: nacimiento","Condición: separación completa de la madre","Efecto: personalidad jurídica"],x:"Un bebé nace y vive apenas un instante: existió legalmente y pudo ser titular de derechos.",m:["Nacimiento con vida","Muerte antes de la separación (se reputa no existir)"],u:["Clave en sucesiones: probar que el heredero existía al abrirse la herencia.","Se prueba con el registro civil de nacimiento."],r:"Creer que la existencia legal empieza con la concepción; el art. 90 la ubica en el nacimiento."},
-{a:"633",t:"PERSONA JURÍDICA",i:"🏢",d:"Persona ficticia, capaz de ejercer derechos, contraer obligaciones civiles y ser representada judicial y extrajudicialmente.",c:["Puede ser titular de derechos y deudora de obligaciones.","Actúa mediante representante, judicial y extrajudicialmente."],k:["Naturaleza: norma definitoria","Función: crear sujetos distintos de sus miembros","Especies: corporaciones y fundaciones de beneficencia pública"],e:["Sujeto: persona ficticia","Capacidad: derechos y obligaciones civiles","Representación: judicial y extrajudicial"],x:"Una fundación de beneficencia pública celebra un contrato a través de su representante.",m:["Corporaciones","Fundaciones de beneficencia pública","Entidades que participan de ambos caracteres"],u:["Identificar quién es el sujeto procesal: la entidad, no sus miembros.","Verificar que quien firma o demanda tenga la representación."],r:"Demandar a los miembros cuando la titular de la obligación es la persona jurídica."},
-{a:"669",t:"DOMINIO O PROPIEDAD",i:"",d:"Derecho real en una cosa corporal para gozar y disponer de ella, sin ir contra la ley o contra derecho ajeno.",c:["Faculta a usar, gozar y disponer del bien.","Su ejercicio está limitado por la ley y por los derechos de terceros."],k:["Naturaleza: derecho real","Objeto: cosa corporal","Nota: la Corte Constitucional declaró inexequible el adverbio 'arbitrariamente' (Sent. C-595)"],e:["Sujeto: propietario","Objeto: cosa corporal","Contenido: gozar y disponer","Límite: ley y derecho ajeno"],x:"El dueño de un apartamento puede arrendarlo o venderlo, respetando la ley y los derechos de otros.",m:["Propiedad plena","Nuda propiedad (separada del goce de la cosa)"],u:["Base de la acción reivindicatoria (art. 950).","Se acredita con título y su registro."],r:"Pensar que el dueño puede hacer cualquier cosa con su bien: la ley y el derecho ajeno lo limitan."},
+{a:"633",t:"PERSONA JURÍDICA",i:"",d:"Persona ficticia, capaz de ejercer derechos, contraer obligaciones civiles y ser representada judicial y extrajudicialmente.",c:["Puede ser titular de derechos y deudora de obligaciones.","Actúa mediante representante, judicial y extrajudicialmente."],k:["Naturaleza: norma definitoria","Función: crear sujetos distintos de sus miembros","Especies: corporaciones y fundaciones de beneficencia pública"],e:["Sujeto: persona ficticia","Capacidad: derechos y obligaciones civiles","Representación: judicial y extrajudicial"],x:"Una fundación de beneficencia pública celebra un contrato a través de su representante.",m:["Corporaciones","Fundaciones de beneficencia pública","Entidades que participan de ambos caracteres"],u:["Identificar quién es el sujeto procesal: la entidad, no sus miembros.","Verificar que quien firma o demanda tenga la representación."],r:"Demandar a los miembros cuando la titular de la obligación es la persona jurídica."},
+{a:"669",t:"DOMINIO O PROPIEDAD",i:"🏠",d:"Derecho real en una cosa corporal para gozar y disponer de ella, sin ir contra la ley o contra derecho ajeno.",c:["Faculta a usar, gozar y disponer del bien.","Su ejercicio está limitado por la ley y por los derechos de terceros."],k:["Naturaleza: derecho real","Objeto: cosa corporal","Nota: la Corte Constitucional declaró inexequible el adverbio 'arbitrariamente' (Sent. C-595)"],e:["Sujeto: propietario","Objeto: cosa corporal","Contenido: gozar y disponer","Límite: ley y derecho ajeno"],x:"El dueño de un apartamento puede arrendarlo o venderlo, respetando la ley y los derechos de otros.",m:["Propiedad plena","Nuda propiedad (separada del goce de la cosa)"],u:["Base de la acción reivindicatoria (art. 950).","Se acredita con título y su registro."],r:"Pensar que el dueño puede hacer cualquier cosa con su bien: la ley y el derecho ajeno lo limitan."},
 {a:"673",t:"MODOS DE ADQUIRIR EL DOMINIO",i:"🔑",d:"Los modos de adquirir el dominio son la ocupación, la accesión, la tradición, la sucesión por causa de muerte y la prescripción.",c:["Solo por alguno de estos modos se adquiere el dominio.","La sucesión y la prescripción se desarrollan en otras partes del código."],k:["Naturaleza: norma de enumeración","Función: delimitar las vías de adquisición","Concordancia: arts. 685, 713, 740, 1008, 1674, 2512 y 2519"],e:["1. Ocupación","2. Accesión","3. Tradición","4. Sucesión por causa de muerte","5. Prescripción"],x:"Alguien compra una casa (título) y se la entregan e inscriben (modo: tradición).",m:["Originarios: ocupación, accesión, prescripción","Derivativos: tradición, sucesión"],u:["Identificar el modo con el que el demandante dice ser dueño.","Si no hay modo válido, no hay dominio."],r:"Creer que firmar el contrato basta para ser dueño: se requiere el modo."},
 {a:"740",t:"TRADICIÓN",i:"🤝",d:"Modo de adquirir el dominio que consiste en la entrega que el dueño hace de la cosa a otro.",c:["Transfiere el dominio y los demás derechos reales.","Exige voluntad de quien entrega y de quien recibe."],k:["Naturaleza: modo de adquirir el dominio","Función: transferir derechos reales","Concordancia: arts. 665, 673, 754, 756 y 764"],e:["Tradente: facultad e intención de transferir","Adquirente: capacidad e intención de adquirir","Acto: entrega de la cosa"],x:"El vendedor entrega el vehículo con intención de transferirlo y el comprador lo recibe para adquirirlo.",m:["Tradición de bienes muebles","Tradición de derechos reales distintos del dominio"],u:["Demostrar que hubo entrega con intención de transferir.","Atacar la tradición si faltó facultad o capacidad de una parte."],r:"Confundir la tradición (modo) con el contrato (título)."},
-{a:"762",t:"POSESIÓN",i:"🌾",d:"Tenencia de una cosa determinada con ánimo de señor o dueño, por sí mismo o por otra persona que la tenga a su nombre.",c:["El poseedor es reputado dueño mientras otra persona no justifique serlo.","Puede ser protegida por las acciones posesorias."],k:["Naturaleza: situación de hecho con efectos jurídicos","Función: proteger a quien se comporta como dueño","Concordancia: arts. 785 y 2518"],e:["Elemento material: tenencia","Elemento subjetivo: ánimo de señor o dueño","Objeto: cosa determinada"],x:"Una familia cultiva y cerca un lote por años, actuando como dueña.",m:["Posesión ejercida directamente","Posesión ejercida por otro a su nombre"],u:["Se prueba con hechos positivos propios del dominio (art. 981): cercar, construir, sembrar.","Presupuesto de la prescripción."],r:"Confundir posesión con mera tenencia: falta el ánimo de señor o dueño."},
+{a:"762",t:"POSESIÓN",i:"",d:"Tenencia de una cosa determinada con ánimo de señor o dueño, por sí mismo o por otra persona que la tenga a su nombre.",c:["El poseedor es reputado dueño mientras otra persona no justifique serlo.","Puede ser protegida por las acciones posesorias."],k:["Naturaleza: situación de hecho con efectos jurídicos","Función: proteger a quien se comporta como dueño","Concordancia: arts. 785 y 2518"],e:["Elemento material: tenencia","Elemento subjetivo: ánimo de señor o dueño","Objeto: cosa determinada"],x:"Una familia cultiva y cerca un lote por años, actuando como dueña.",m:["Posesión ejercida directamente","Posesión ejercida por otro a su nombre"],u:["Se prueba con hechos positivos propios del dominio (art. 981): cercar, construir, sembrar.","Presupuesto de la prescripción."],r:"Confundir posesión con mera tenencia: falta el ánimo de señor o dueño."},
 {a:"950",t:"ACCIÓN REIVINDICATORIA",i:"⚖️",d:"La acción reivindicatoria o de dominio corresponde a quien tiene la propiedad plena o nuda, absoluta o fiduciaria de la cosa.",c:["Permite reclamar la cosa de quien la posee.","Protege al propietario frente a la privación de su bien."],k:["Naturaleza: acción real","Función: recuperar la cosa","Concordancia: arts. 665, 670, 978, 1988, 2278, 2342 y 2418"],e:["Demandante: propietario (pleno, nudo, absoluto o fiduciario)","Objeto: cosa de la que se es dueño","Fundamento: el dominio"],x:"El dueño de un lote demanda a quien lo ocupa sin título para que se lo restituya.",m:["Por propietario pleno","Por nudo propietario","Por propietario fiduciario"],u:["Se debe probar el dominio del demandante.","Se complementa con la acción publiciana para quien está en vías de adquirir."],r:"Demandar sin acreditar la calidad de propietario."}
 ];
+
+// ===== BANCO DE ESTUDIO PENAL (141-400) =====
+const penalStudyBank = {
+  'C. Relación o Emparejamiento (141-180)': [
+    {id:141,question:'Relaciona cada concepto con su definición:\n\n141. Principio de legalidad\n142. Principio de favorabilidad\n143. Antijuridicidad material\n144. Culpabilidad\n145. Non bis in idem\n\nA. Prohibición general de imputar más de una vez la misma conducta punible\nB. Aplicación de la ley penal más favorable en los términos legales\nC. Necesidad de una ley previa que describa la conducta punible y su consecuencia\nD. Lesión o puesta en peligro de un bien jurídico sin justa causa\nE. Exigencia de atribución personal de responsabilidad conforme a la ley',answer:'141-C, 142-B, 143-D, 144-E, 145-A'},
+    {id:146,question:'Relaciona cada concepto con su definición:\n\n146. Dolo\n147. Culpa\n148. Preterintención\n149. Tentativa\n150. Comisión por omisión\n\nA. Infracción del deber objetivo de cuidado que produce el resultado previsto por el tipo\nB. Inicio de ejecución sin consumación por circunstancias ajenas a la voluntad del agente\nC. Conocimiento de los hechos constitutivos de la infracción y voluntad de realizarlos\nD. Omisión atribuible a quien tenía una posición de garante\nE. Resultado previsible que excede la intención inicial del agente',answer:'146-C, 147-A, 148-E, 149-B, 150-D'},
+    {id:151,question:'Relaciona cada concepto con su definición:\n\n151. Autor\n152. Coautor\n153. Determinador\n154. Cómplice\n155. Garante\n\nA. Persona que induce a otro a realizar una conducta antijurídica\nB. Persona que presta ayuda o contribuye a la conducta punible bajo las condiciones legales\nC. Persona que realiza directamente la conducta o la realiza por medio de otro\nD. Persona que tiene un deber jurídico relevante de protección o de control\nE. Interviniente que actúa con otros conforme a un plan común y una división del trabajo',answer:'151-C, 152-E, 153-A, 154-B, 155-D'},
+    {id:156,question:'Relaciona cada concepto con su definición:\n\n156. Legítima defensa\n157. Estado de necesidad\n158. Coacción ajena insuperable\n159. Error invencible sobre un elemento del tipo\n160. Consentimiento válido\n\nA. Aceptación emitida válidamente por el titular de un bien jurídico disponible\nB. Defensa de un derecho propio o ajeno frente a una agresión injusta actual o inminente\nC. Actuación ante un peligro actual o inminente para proteger un derecho\nD. Situación en que una fuerza o presión ajena insuperable incide sobre la actuación del agente\nE. Desconocimiento invencible de un hecho constitutivo de la descripción típica',answer:'156-B, 157-C, 158-D, 159-E, 160-A'},
+    {id:161,question:'Relaciona cada concepto con su definición:\n\n161. Pena principal\n162. Pena accesoria\n163. Multa\n164. Medida de seguridad\n165. Reinserción social\n\nA. Sanción pecuniaria prevista por la ley penal\nB. Función de la pena relacionada con la reincorporación social de la persona condenada\nC. Consecuencia penal principal prevista para una conducta punible\nD. Consecuencia jurídica que acompaña a una pena principal cuando la ley lo establece\nE. Consecuencia jurídica con funciones diferenciadas de la pena',answer:'161-C, 162-D, 163-A, 164-E, 165-B'},
+    {id:166,question:'Relaciona cada concepto con su definición:\n\n166. Homicidio\n167. Lesiones personales\n168. Secuestro\n169. Hurto\n170. Extorsión\n\nA. Constreñimiento a hacer, tolerar u omitir algo con propósito de obtener provecho ilícito\nB. Apoderamiento de cosa mueble ajena con propósito de obtener provecho\nC. Privación de la libertad individual en los términos del tipo penal\nD. Muerte causada a otra persona, conforme al tipo aplicable\nE. Afectación de la integridad personal, el cuerpo o la salud',answer:'166-D, 167-E, 168-C, 169-B, 170-A'},
+    {id:171,question:'Relaciona cada concepto con su definición:\n\n171. Estafa\n172. Abuso de confianza\n173. Daño en bien ajeno\n174. Receptación\n175. Lavado de activos\n\nA. Apropiación de un bien recibido bajo una relación de confianza u obligación determinada\nB. Operaciones sobre bienes de origen ilícito dirigidas a ocultar o encubrir ese origen\nC. Engaño que induce o mantiene a otro en error y produce consecuencias patrimoniales\nD. Conducta sobre bienes provenientes de un delito, realizada bajo los requisitos legales\nE. Destrucción, inutilización o daño de un bien ajeno en los términos del tipo penal',answer:'171-C, 172-A, 173-E, 174-D, 175-B'},
+    {id:176,question:'Relaciona cada concepto con su definición:\n\n176. Peculado por apropiación\n177. Cohecho\n178. Prevaricato\n179. Genocidio\n180. Desaparición forzada\n\nA. Privación de libertad seguida de ocultamiento o negativa a reconocerla o informar el paradero\nB. Conducta de servidor público relacionada con decisiones o actuaciones manifiestamente contrarias a la ley\nC. Apropiación de bienes o recursos vinculados a la función pública\nD. Conducta dirigida a destruir total o parcialmente un grupo protegido\nE. Solicitud, recepción, entrega u ofrecimiento de beneficios relacionados con la función pública',answer:'176-C, 177-E, 178-B, 179-D, 180-A'}
+  ],
+  'D. Completamiento (181-240)': [
+    {id:181,question:'181. La Ley ___ de 2000 expidió el Código Penal colombiano.',answer:'599'},
+    {id:182,question:'182. No hay conducta punible sin ley ___, según el principio de legalidad.',answer:'previa'},
+    {id:183,question:'183. La conducta punible debe ser típica, antijurídica y ___.',answer:'culpable'},
+    {id:184,question:'184. La antijuridicidad material se relaciona con la lesión o puesta en peligro de un ___ jurídico.',answer:'bien'},
+    {id:185,question:'185. La conducta es dolosa cuando el agente conoce los hechos y quiere su realización: actúa con ___.',answer:'dolo'},
+    {id:186,question:'186. La infracción del deber objetivo de cuidado se relaciona con la ___.',answer:'culpa'},
+    {id:187,question:'187. El resultado previsible que excede la intención inicial caracteriza la ___.',answer:'preterintención'},
+    {id:188,question:'188. La conducta puede realizarse por acción o por ___.',answer:'omisión'},
+    {id:189,question:'189. La conducta iniciada que no se consuma por circunstancias ajenas puede configurar ___.',answer:'tentativa'},
+    {id:190,question:'190. En la tentativa, la falta de consumación debe obedecer, en general, a circunstancias ajenas al ___.',answer:'agente'},
+    {id:191,question:'191. Quien induce a otro a realizar una conducta antijurídica es el ___.',answer:'determinador'},
+    {id:192,question:'192. Quien ayuda o contribuye a la conducta punible, bajo los requisitos legales, puede ser considerado ___.',answer:'cómplice'},
+    {id:193,question:'193. La intervención conjunta con plan común, división del trabajo y aporte esencial puede configurar ___.',answer:'coautoría'},
+    {id:194,question:'194. La comisión por omisión puede analizarse cuando existe posición de ___.',answer:'garante'},
+    {id:195,question:'195. La aplicación de la ley penal más favorable corresponde al principio de ___.',answer:'favorabilidad'},
+    {id:196,question:'196. La prohibición de ___ impide crear delitos o penas en perjuicio de una persona.',answer:'analogía'},
+    {id:197,question:'197. La prohibición general de imputar dos veces la misma conducta punible se conoce como non bis in ___.',answer:'idem'},
+    {id:198,question:'198. Las conductas punibles se dividen en delitos y ___.',answer:'contravenciones'},
+    {id:199,question:'199. Una de las funciones de la pena es la reinserción ___.',answer:'social'},
+    {id:200,question:'200. Entre las funciones de las medidas de seguridad previstas por el Código está la ___.',answer:'protección (o curación, tutela, rehabilitación)'}
+  ],
+  'E. Jerarquización u Ordenamiento (241-280)': [
+    {id:241,question:'241. Ordena los pasos del análisis general de la conducta punible:\nA) Culpabilidad\nB) Conducta\nC) Antijuridicidad\nD) Tipicidad',answer:'B → D → C → A (Conducta → Tipicidad → Antijuridicidad → Culpabilidad)'},
+    {id:242,question:'242. Ordena cronológicamente este supuesto de tentativa:\nA) Una circunstancia ajena al agente interrumpe la ejecución\nB) El agente decide cometer el delito\nC) Comienza la ejecución\nD) El delito no llega a consumarse',answer:'B → C → A → D'},
+    {id:243,question:'243. Ordena cronológicamente los componentes de este supuesto de estafa:\nA) La víctima incurre en error\nB) El agente emplea un engaño\nC) La víctima realiza una disposición patrimonial\nD) Se produce el perjuicio patrimonial',answer:'B → A → C → D'},
+    {id:244,question:'244. Ordena los componentes del siguiente supuesto de extorsión:\nA) La víctima hace, tolera u omite algo\nB) El agente constriñe a la víctima\nC) El agente actúa con propósito de obtener un provecho ilícito',answer:'C → B → A (o B → C → A, según el caso)'},
+    {id:245,question:'245. Ordena cronológicamente este supuesto de abuso de confianza:\nA) El agente recibe legítimamente el bien bajo una obligación o destino determinado\nB) El bien queda bajo su custodia\nC) El agente se apropia del bien para sí o para otro\nD) El titular resulta afectado por la apropiación',answer:'A → B → C → D'},
+    {id:246,question:'246. Ordena los hechos descritos en este supuesto de peculado por apropiación:\nA) El servidor público tiene relación funcional con los bienes\nB) Se apropia de los bienes o recursos\nC) Los destina para sí o para un tercero\nD) Se afecta el patrimonio público',answer:'A → B → C → D'},
+    {id:247,question:'247. Ordena cronológicamente este supuesto de falsedad y uso documental:\nA) Se altera o crea un documento falso\nB) Se presenta el documento como auténtico\nC) Otra persona o autoridad lo recibe\nD) El destinatario lo consulta o lo toma en consideración',answer:'A → B → C → D'},
+    {id:248,question:'248. Ordena cronológicamente este supuesto de falso testimonio:\nA) La autoridad competente recibe la declaración\nB) Se cumplen las formalidades aplicables, incluido el juramento cuando corresponda\nC) La persona declara hechos falsos',answer:'A → B → C'},
+    {id:249,question:'249. Ordena los hechos del supuesto de desaparición forzada:\nA) Se priva a una persona de su libertad\nB) Se oculta la privación o se niega información sobre ella o el paradero\nC) La persona queda sustraída de la protección legal',answer:'A → B → C'},
+    {id:250,question:'250. Ordena cronológicamente este supuesto de legítima defensa:\nA) Se presenta una agresión injusta actual o inminente\nB) La persona realiza una acción defensiva\nC) La agresión cesa',answer:'A → B → C'}
+  ],
+  'F. Respuesta Corta (281-350)': [
+    {id:281,question:'281. ¿Qué exige el principio de legalidad penal?',answer:'Exige que la conducta y la sanción estén previstas previamente en la ley (Art. 6 CP).'},
+    {id:282,question:'282. ¿Qué importancia tiene la dignidad humana como principio rector del Código Penal?',answer:'Es el principio fundamental que orienta toda la aplicación del derecho penal (Art. 1 CP).'},
+    {id:283,question:'283. ¿Cuáles son los elementos generales de la conducta punible?',answer:'Típica, antijurídica y culpable (Art. 9 CP).'},
+    {id:284,question:'284. ¿Cuál es la diferencia entre antijuridicidad formal y material?',answer:'La formal es la contrariedad con el ordenamiento; la material es la lesión o puesta en peligro del bien jurídico.'},
+    {id:285,question:'285. ¿Por qué el principio de culpabilidad se opone a la responsabilidad penal objetiva?',answer:'Porque exige que la responsabilidad se base en la capacidad de comprender y actuar conforme a esa comprensión, no solo en el resultado.'},
+    {id:286,question:'286. ¿Cómo definirías el dolo según el Código Penal?',answer:'Conocimiento de los hechos constitutivos de la infracción y voluntad de realizarlos (Art. 22 CP).'},
+    {id:287,question:'287. ¿Qué diferencia general existe entre culpa con representación y culpa sin representación?',answer:'Con representación: prevé el resultado pero confía en evitarlo. Sin representación: no lo prevé pero debió preverlo.'},
+    {id:288,question:'288. ¿Qué caracteriza a la preterintención?',answer:'El resultado previsible excede la intención inicial del agente (Art. 24 CP).'},
+    {id:289,question:'289. ¿Cuáles son los elementos generales de la tentativa?',answer:'Inicio de ejecución, actos idóneos e inequívocamente dirigidos a la consumación, y falta de consumación por circunstancias ajenas (Art. 27 CP).'},
+    {id:290,question:'290. ¿Qué diferencia hay entre un acto preparatorio y el comienzo de ejecución de una tentativa?',answer:'El acto preparatorio no constituye tentativa; el comienzo de ejecución sí, cuando hay actos idóneos e inequívocos.'},
+    {id:291,question:'291. ¿Qué efecto puede tener el desistimiento voluntario de la tentativa?',answer:'Puede excluir la pena por tentativa, sin perjuicio de los actos ya ejecutados que constituyan delito.'},
+    {id:292,question:'292. ¿Qué diferencia general existe entre autoría y participación?',answer:'El autor realiza directamente la conducta o tiene dominio del hecho; el partícipe contribuye o ayuda sin tener el dominio.'},
+    {id:293,question:'293. ¿Qué elementos deben analizarse para valorar una posible coautoría?',answer:'Plan común, división del trabajo criminal y aporte esencial de cada interviniente.'},
+    {id:294,question:'294. ¿Qué hace un determinador?',answer:'Induce a otro a realizar una conducta antijurídica (hace nacer la decisión de delinquir).'},
+    {id:295,question:'295. ¿Qué caracteriza, en términos generales, la complicidad?',answer:'Contribuir o prestar ayuda a la conducta punible, bajo las condiciones previstas por la ley.'},
+    {id:296,question:'296. ¿Qué es la comisión por omisión?',answer:'Realización de un tipo penal mediante la omisión de una conducta jurídicamente exigible, cuando se tiene posición de garante.'},
+    {id:297,question:'297. ¿Qué significa tener posición de garante?',answer:'Tener un deber jurídico especial de protección o de control que obliga a evitar un resultado.'},
+    {id:298,question:'298. ¿Qué se entiende, en términos generales, por concurso de conductas punibles?',answer:'Cuando una misma persona realiza varias conductas que configuran diferentes delitos, o una conducta que infringe varios tipos penales.'},
+    {id:299,question:'299. ¿En qué consiste el principio de favorabilidad?',answer:'En la aplicación retroactiva de la ley penal más favorable al procesado o condenado.'},
+    {id:300,question:'300. ¿Qué impide la prohibición de analogía en materia penal?',answer:'Crear o ampliar delitos y penas en perjuicio de la persona procesada.'}
+  ],
+  'G. Desarrollo o Respuesta Larga (351-400)': [
+    {id:351,question:'351. Explica cómo se organiza el Código Penal colombiano y cuál es la función de la parte general y de la parte especial.',answer:'El Código Penal se organiza en Parte General (Arts. 1-100 aprox.) que regula principios, aplicación de la ley, conducta punible y consecuencias jurídicas; y Parte Especial (Arts. 101 en adelante) que describe conductas punibles específicas y sus sanciones. La Parte General establece las reglas aplicables a todos los delitos; la Parte Especial tipifica cada delito en particular.'},
+    {id:352,question:'352. Analiza el principio de legalidad y explica cómo limita la creación e interpretación de delitos y penas.',answer:'El principio de legalidad (Art. 6 CP) exige que la conducta y la sanción estén previstas previamente en la ley. Limita la creación de delitos porque impide que el juez cree delitos por analogía o por interpretación extensiva en perjuicio del procesado. Solo la ley puede definir qué conductas son punibles y qué sanciones corresponden.'},
+    {id:353,question:'353. Expón la estructura de análisis de una conducta punible e ilústrala con un ejemplo hipotético.',answer:'La estructura es: 1) Conducta (acción u omisión voluntaria) → 2) Tipicidad (adecuación al tipo penal) → 3) Antijuridicidad (contrariedad al ordenamiento sin justa causa) → 4) Culpabilidad (reproche personal). Ejemplo: A dispara contra B con intención de matarlo. 1) Conducta: acción voluntaria de disparar. 2) Tipicidad: se adecua al tipo de homicidio. 3) Antijuridicidad: no hay causal de justificación. 4) Culpabilidad: A es imputable y actúa con dolo.'},
+    {id:354,question:'354. Explica la diferencia entre la mera infracción formal de una norma y la antijuridicidad material, relacionándola con la protección de bienes jurídicos.',answer:'La antijuridicidad formal es la simple contrariedad con el ordenamiento jurídico. La antijuridicidad material es la lesión o puesta en peligro efectiva de un bien jurídico protegido. No toda infracción formal constituye antijuridicidad material; se requiere que efectivamente se lesione o ponga en peligro el bien jurídico que la norma protege.'},
+    {id:355,question:'355. Compara dolo, culpa y preterintención. Incluye un ejemplo hipotético de cada modalidad.',answer:'Dolo (Art. 22 CP): el agente conoce y quiere el resultado. Ejemplo: A dispara contra B con intención de matarlo. Culpa (Art. 23 CP): el agente infringe el deber objetivo de cuidado. Ejemplo: A maneja a alta velocidad en zona escolar y atropella a un peatón. Preterintención (Art. 24 CP): el resultado previsible excede la intención inicial. Ejemplo: A golpea a B con intención de lesionarlo, pero B cae, golpea su cabeza y muere.'}
+  ]
+};
 
 // ===== ESTADO =====
 let currentTab='dashboard';
@@ -595,6 +881,7 @@ let selectedCategory='all';
 let selectedBranchFilter='all';
 let selectedFlashFilter='all';
 let selectedGlossaryFilter='all';
+let selectedPenalSection='all';
 let examQuestions=[];
 let currentQuestion=0;
 let score=0;
@@ -612,6 +899,7 @@ renderCategories();
 renderFilters();
 renderFlashcards();
 renderGlossary();
+renderPenalBank();
 renderTrending();
 updateCounts();
 setupTabs();
@@ -637,7 +925,7 @@ document.getElementById('statNorms').textContent=stats.normsViewed;
 document.getElementById('statQuestions').textContent=stats.questionsAnswered;
 document.getElementById('statCorrect').textContent=stats.questionsAnswered>0?Math.round((stats.correctAnswers/stats.questionsAnswered)*100)+'%':'0%';
 document.getElementById('statFlashcards').textContent=stats.flashcardsViewed;
-const maxNorms=norms.length,maxQ=100,maxFlash=flashcards.length;
+const maxNorms=norms.length,maxQ=questions.length,maxFlash=flashcards.length;
 document.getElementById('barNorms').style.width=Math.min((stats.normsViewed/maxNorms)*100,100)+'%';
 document.getElementById('barQuestions').style.width=Math.min((stats.questionsAnswered/maxQ)*100,100)+'%';
 document.getElementById('barCorrect').style.width=(stats.questionsAnswered>0?(stats.correctAnswers/stats.questionsAnswered)*100:0)+'%';
@@ -679,6 +967,7 @@ document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'
 document.getElementById('tab-'+tab.dataset.tab).classList.add('active');
 currentTab=tab.dataset.tab;
 if(tab.dataset.tab==='glosario')renderGlossary();
+if(tab.dataset.tab==='banco-penal')renderPenalBank();
 });
 });
 }
@@ -736,7 +1025,7 @@ if(n.keyArticles&&n.keyArticles.length){
 body+=`<div class="modal-section"><h4>📋 Artículos Clave</h4>${n.keyArticles.map(a=>`<div class="article-item"><strong>${a.article}</strong><span>${a.description}</span></div>`).join('')}</div>`;
 }
 if(n.examTips){
-body+=`<div class="modal-section"><h4>💡 Consejo del Profe IA</h4><div class="tip-box"><strong> Recomendación personalizada:</strong>${n.examTips}</div></div>`;
+body+=`<div class="modal-section"><h4>💡 Consejo del Profe IA</h4><div class="tip-box"><strong>🤖 Recomendación personalizada:</strong>${n.examTips}</div></div>`;
 }
 let linksHtml='';
 if(n.url)linksHtml+=`<a href="${n.url}" target="_blank" class="btn-funcion-publica">📖 Ver en Función Pública →</a>`;
@@ -764,7 +1053,6 @@ container.style.display='none';
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-// ===== MAPA CONCEPTUAL =====
 function renderConceptMap(){
 const COL=[["1. Descripción","#e0a100","#fff7dc"],["2. Consecuencia jurídica","#d8434a","#ffe9ea"],["3. Clasificación jurídica","#2b6fd6","#e6f0ff"],["4. Elementos jurídicos","#2e9a4d","#e5f6ea"],["5. Ejemplo práctico","#e8781a","#fff0e0"],["6. Modalidades","#7a4fc2","#efe8fa"],["7. Uso estratégico en litigio","#5b6470","#eceef1"],["Error común","#c4161c","#ffe3e4"]];
 function li(a){return"<ul>"+a.map(function(s){return"<li>"+s+"</li>"}).join("")+"</ul>"}
@@ -785,7 +1073,6 @@ b.onclick=function(){show(i)};nav.appendChild(b);
 show(0);
 }
 
-// ===== GLOSARIO =====
 function renderGlossary(){
 const branches=['all',...new Set(glossary.map(g=>g.branch))];
 const filterBar=document.getElementById('glossaryFilterBar');
@@ -801,19 +1088,18 @@ function showGlossaryDetail(term){
 const g=glossary.find(x=>x.term===term);
 if(!g)return;
 document.getElementById('modalHeader').innerHTML=`<h2>${g.term}</h2>`;
-document.getElementById('modalBody').innerHTML=`<div class="modal-section"><h4> Definición</h4><p style="font-size:13px;line-height:1.6;">${g.definition}</p></div><div class="modal-section"><h4>🏷️ Rama del Derecho</h4><p style="font-size:12px;">${g.branch}</p></div><div class="modal-section"><h4>📜 Norma de Referencia</h4><p style="font-size:12px;">${g.norm}</p></div>`;
+document.getElementById('modalBody').innerHTML=`<div class="modal-section"><h4>📖 Definición</h4><p style="font-size:13px;line-height:1.6;">${g.definition}</p></div><div class="modal-section"><h4>🏷️ Rama del Derecho</h4><p style="font-size:12px;">${g.branch}</p></div><div class="modal-section"><h4>📜 Norma de Referencia</h4><p style="font-size:12px;">${g.norm}</p></div>`;
 document.getElementById('modal').classList.add('open');
 document.body.style.overflow='hidden';
 }
 
-// ===== FLASHCARDS =====
 function renderFlashcards(){
 const cats=['all',...new Set(flashcards.map(f=>f.cat))];
 const filterBar=document.getElementById('flashFilterBar');
 filterBar.innerHTML=cats.map(c=>`<button class="filter-chip ${c===selectedFlashFilter?'active':''}" onclick="setFlashFilter('${c}')">${c==='all'?'Todas':c}</button>`).join('');
 const grid=document.getElementById('flashcardGrid');
 const filtered=selectedFlashFilter==='all'?flashcards:flashcards.filter(f=>f.cat===selectedFlashFilter);
-grid.innerHTML=filtered.map((f,i)=>`<div class="flashcard" onclick="flipCard(this,${i})"><span class="fc-cat">${f.cat}</span><div class="fc-q">${f.q}</div><div class="fc-a">${f.a}</div><div class="fc-hint"> Clic para ver respuesta</div></div>`).join('');
+grid.innerHTML=filtered.map((f,i)=>`<div class="flashcard" onclick="flipCard(this,${i})"><span class="fc-cat">${f.cat}</span><div class="fc-q">${f.q}</div><div class="fc-a">${f.a}</div><div class="fc-hint">👆 Clic para ver respuesta</div></div>`).join('');
 }
 
 function setFlashFilter(c){selectedFlashFilter=c;renderFlashcards();}
@@ -821,7 +1107,7 @@ function flipCard(el,idx){el.classList.toggle('flipped');if(el.classList.contain
 
 function renderTrending(){
 const trending=[
-{q:'¿Qué es la Acción de Tutela?',a:'Mecanismo constitucional (Art. 86) para protección inmediata de derechos fundamentales.',cat:' Popular'},
+{q:'¿Qué es la Acción de Tutela?',a:'Mecanismo constitucional (Art. 86) para protección inmediata de derechos fundamentales.',cat:'🔥 Popular'},
 {q:'Art. 209 CP - Principios',a:'Igualdad, moralidad, eficacia, economía, celeridad, imparcialidad, publicidad.',cat:'⭐ Clave'},
 {q:'Diferencia Dolo vs Culpa',a:'Dolo: conoce y quiere. Culpa: infracción al deber de cuidado.',cat:'🎯 Examen'},
 {q:'Ley 909 de 2004',a:'Empleo público y carrera administrativa. Sistema de mérito.',cat:'📚 Norma'}
@@ -829,9 +1115,53 @@ const trending=[
 document.getElementById('trendingTopics').innerHTML=trending.map(t=>`<div class="flashcard" onclick="flipCard(this)"><span class="fc-cat">${t.cat}</span><div class="fc-q">${t.q}</div><div class="fc-a">${t.a}</div><div class="fc-hint">👆 Clic para ver</div></div>`).join('');
 }
 
-// ===== AGENTE IA =====
+function renderPenalBank(){
+const sections=Object.keys(penalStudyBank);
+const filterBar=document.getElementById('penalSectionFilter');
+filterBar.innerHTML=['all',...sections].map(s=>`<button class="filter-chip ${s===selectedPenalSection?'active':''}" onclick="setPenalSection('${s}')">${s==='all'?'Todas las Secciones':s}</button>`).join('');
+const content=document.getElementById('penalContent');
+let html='';
+const sectionsToShow=selectedPenalSection==='all'?sections:[selectedPenalSection];
+sectionsToShow.forEach(section=>{
+html+=`<div class="section-label">${section}</div>`;
+html+=`<div class="norm-list">`;
+penalStudyBank[section].forEach(q=>{
+html+=`<div class="norm-card" onclick="showPenalQuestion(${q.id},'${section}')"><div class="norm-icon"></div><div class="norm-body"><h4>Pregunta ${q.id}</h4><div class="norm-desc">${q.question.substring(0,100)}...</div></div><div class="norm-arrow">→</div></div>`;
+});
+html+=`</div>`;
+});
+content.innerHTML=html;
+}
+
+function setPenalSection(s){selectedPenalSection=s;renderPenalBank();}
+
+function showPenalQuestion(id,section){
+let question=null;
+for(const sec in penalStudyBank){
+const found=penalStudyBank[sec].find(q=>q.id===id);
+if(found){question=found;break;}
+}
+if(!question)return;
+document.getElementById('modalHeader').innerHTML=`<h2>Pregunta ${question.id} - ${section}</h2>`;
+document.getElementById('modalBody').innerHTML=`
+<div class="modal-section">
+<h4>📝 Enunciado</h4>
+<p style="font-size:13px;line-height:1.6;white-space:pre-wrap;">${question.question}</p>
+</div>
+<div class="modal-section">
+<h4>✅ Respuesta Sugerida</h4>
+<p style="font-size:13px;line-height:1.6;">${question.answer||'Consulta el texto oficial de la Ley 599 de 2000 y la jurisprudencia vigente.'}</p>
+</div>
+<div class="tip-box">
+<strong>💡 Nota del Profe:</strong>
+Esta pregunta es de estudio. Para practicar con calificación automática, usa la pestaña "Simulacro" y selecciona la categoría "Derecho Penal - Ley 599/2000".
+</div>`;
+document.getElementById('modal').classList.add('open');
+document.body.style.overflow='hidden';
+}
+
 function initAI(){
-document.getElementById('aiMessages').innerHTML=`<div class="ai-msg bot"><div class="msg-avatar">‍🏫</div><div class="msg-bubble">¡Hola! 👋 Soy el <strong>Profe Juan Osorio IA</strong>, tu asistente para el Examen de Idoneidad.<br><br>Puedo ayudarte con:<br>📚 Explicar normas y conceptos<br> Crear quizzes personalizados<br>💡 Darte consejos de estudio<br>🔍 Buscar artículos específicos<br><br>¿Sobre qué tema quieres que hablemos hoy?</div></div>`;
+document.getElementById('aiMessages').innerHTML=`<div class="ai-msg bot"><div class="msg-avatar">👨‍🏫</div><div class="msg-bubble">¡Hola! 👋 Soy el <strong>Profe Juan Osorio IA</strong>, tu asistente para el Examen de Idoneidad.<br><br>Puedo ayudarte con:<br>📚 Explicar normas y conceptos<br>🎯 Crear quizzes personalizados<br>💡 Darte consejos de estudio<br>🔍 Buscar artículos específicos<br><br>¿Sobre qué tema quieres que hablemos hoy?</div></div>`;
 }
 
 function toggleAI(){
@@ -852,7 +1182,7 @@ input.value='';
 const typing=document.createElement('div');
 typing.className='ai-msg bot';
 typing.id='typing';
-typing.innerHTML=`<div class="msg-avatar">👨‍🏫</div><div class="msg-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
+typing.innerHTML=`<div class="msg-avatar">‍🏫</div><div class="msg-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
 messages.appendChild(typing);
 messages.scrollTop=messages.scrollHeight;
 setTimeout(()=>{
@@ -861,7 +1191,7 @@ const response=aiKnowledge.getResponse(msg);
 let html=`<div class="msg-bubble">${response.text.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}`;
 if(response.refs&&response.refs.length>0){
 html+='<div style="margin-top:10px;">';
-response.refs.forEach(r=>{html+=`<div class="ref-card" onclick="closeAIAndOpenNorm(${r.id})"><strong>📖 ${r.title}</strong><span>Clic para ver la norma completa →</span></div>`;});
+response.refs.forEach(r=>{html+=`<div class="ref-card" onclick="closeAIAndOpenNorm(${r.id})"><strong> ${r.title}</strong><span>Clic para ver la norma completa →</span></div>`;});
 html+='</div>';
 }
 html+=`</div>`;
@@ -872,12 +1202,13 @@ messages.scrollTop=messages.scrollHeight;
 
 function closeAIAndOpenNorm(id){toggleAI();setTimeout(()=>openNorm(id),300);}
 
-// ===== EXAMEN =====
 function renderCategories(){
 const categories=[
 {id:'all',label:'Todas las Categorías',emoji:'🎯'},
 {id:'Derecho Administrativo',label:'Derecho Administrativo',emoji:'🏛️'},
 {id:'Teoría del Delito',label:'Teoría del Delito',emoji:'⚔️'},
+{id:'Derecho Penal - Ley 599/2000',label:'Derecho Penal',emoji:'⚖️'},
+{id:'Derecho Penal - Ley 599/2000 (V/F)',label:'Penal V/F',emoji:'✅'},
 {id:'Función Pública',label:'Función Pública',emoji:'👔'},
 {id:'Contratación',label:'Contratación Estatal',emoji:'💼'},
 {id:'Control Fiscal',label:'Control Fiscal',emoji:'🔍'},
@@ -945,7 +1276,7 @@ if(idx===q.correctIndex)opt.classList.add('correct');
 else if(idx===i)opt.classList.add('wrong');
 else opt.classList.add('dim');
 });
-document.getElementById('feedback').innerHTML=`<div class="explanation"><strong>${correct?'✓ ¡Correcto!':' Incorrecto'} — Explicación:</strong>${q.explanation}</div><button class="btn-primary" onclick="nextQuestion()" style="width:100%;justify-content:center;">${currentQuestion<examQuestions.length-1?'Siguiente Pregunta →':'Ver Resultados'}</button>`;
+document.getElementById('feedback').innerHTML=`<div class="explanation"><strong>${correct?'✓ ¡Correcto!':'✗ Incorrecto'} — Explicación:</strong>${q.explanation}</div><button class="btn-primary" onclick="nextQuestion()" style="width:100%;justify-content:center;">${currentQuestion<examQuestions.length-1?'Siguiente Pregunta →':'Ver Resultados'}</button>`;
 }
 
 function nextQuestion(){
@@ -956,7 +1287,7 @@ else finishExam();
 
 function finishExam(){
 const pct=Math.round((score/examQuestions.length)*100);
-const emoji=pct>=80?'🏆':pct>=60?'🎉':pct>=40?'':'💪';
+const emoji=pct>=80?'🏆':pct>=60?'':pct>=40?'📚':'💪';
 const message=pct>=80?'¡Excelente! Dominas el tema.':pct>=60?'¡Buen trabajo! Sigue practicando.':pct>=40?'Necesitas repasar algunos temas.':'Te recomendamos estudiar más el tema.';
 document.getElementById('exam-player').style.display='none';
 document.getElementById('exam-results').style.display='block';
@@ -966,7 +1297,6 @@ document.getElementById('exam-results').innerHTML=`<div class="results"><div cla
 function restartExam(){startExam();}
 function backToSetup(){document.getElementById('exam-player').style.display='none';document.getElementById('exam-results').style.display='none';document.getElementById('exam-setup').style.display='block';}
 
-// ===== INICIAR =====
 init();
 </script>
 </body>
